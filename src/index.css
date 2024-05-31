@@ -4,7 +4,27 @@
 /* font-family: "Roboto", sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.homeBanner {
+  height: calc(100vh - 120px);
+
+  @media (max-width: 640px) {
+    height: calc(100vh - 200px);
+  }
+
+  @media (min-width: 641px) and (max-width: 768px) {
+    height: calc(100vh - 100px);
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    height: calc(100vh - 120px);
+  }
+
+  @media (min-width: 1025px) {
+    height: calc(100vh - 180px);
+  }
+}
