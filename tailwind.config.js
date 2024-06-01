@@ -10,6 +10,9 @@ export default {
         Merriweather: "'Merriweather', sans-serif",
         Roboto: "'Roboto', sans-serif",
       },
+      colors: {
+        primaryColor: "#E86822",
+      }
     },
   },
   plugins: [

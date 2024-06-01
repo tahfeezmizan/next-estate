@@ -21,12 +21,12 @@ const UserReview = () => {
         <div className="bg-gray-100">
             <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
                 <SectionTitle
-                    subHeading="Latest Reviews"
-                    Heading="User Review"
+                    subHeading="FEEDBACK FROM BUYERS"
+                    Heading="Clients Testimonials"
                 >
                 </SectionTitle>
 
-                <section>
+                <section className="">
                     <Swiper
                         slidesPerView={3}
                         spaceBetween={30}
@@ -40,8 +40,8 @@ const UserReview = () => {
                         {
                             data?.map(review => <SwiperSlide>
                                 <div className="h-72 p-10 overflow-hidden bg-white rounded-sm font-Roboto">
-                                    <div className="flex items-center gap-5 mb-4">
-                                        <img src={review?.image} alt="" />
+                                    <div className="flex items-start gap-4 mb-4">
+                                        <img className="w-12 border rounded-full" src={review?.image} alt="" />
                                         <div className="">
                                             <h2 className="font-semibold leading-8">{review?.name}</h2>
                                             <p className="text-sm leading-4 text-gray-500 font-normal">New York</p>
@@ -53,7 +53,7 @@ const UserReview = () => {
                                     </div>
                                     <div className="">
                                         <Rating
-                                            style={{ maxWidth: 180 }}
+                                            style={{ maxWidth: 100 }}
                                             value={review?.rating}
                                             readOnly
                                         />

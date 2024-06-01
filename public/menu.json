@@ -1,0 +1,30 @@
+[
+    {
+        "_id": "001",
+        "image": "https://example.com/images/property1.jpg",
+        "location": "Springfield, USA",
+        "price": "$250,000 - $300,000",
+        "verification_status": "verified"
+    },
+    {
+        "_id": "002",
+        "image": "https://example.com/images/property2.jpg",
+        "location": "Metropolis, USA",
+        "price": "$450,000 - $500,000",
+        "verification_status": "unverified"
+    },
+    {
+        "_id": "003",
+        "image": "https://example.com/images/property3.jpg",
+        "location": "Gotham, USA",
+        "price": "$350,000 - $400,000",
+        "verification_status": "verified"
+    },
+    {
+        "_id": "001",
+        "image": "https://example.com/images/property1.jpg",
+        "location": "Springfield, USA",
+        "price": "$250,000 - $300,000",
+        "verification_status": "verified"
+    }    
+]
