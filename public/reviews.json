@@ -1,32 +1,72 @@
 [
     {
-        "_id": "643010e0f5a7e52ce1e8fa65",
-        "name": "Jane Doe",
-        "details": "Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        "name": "John Doe",
+        "image": "https://example.com/images/johndoe.jpg",
+        "title": "Beautiful Beachfront Villa",
+        "description": "The villa was absolutely stunning with a breathtaking view of the ocean. The staff was friendly and accommodating. Highly recommended!",
+        "rating": 5
+    },
+    {
+        "name": "Jane Smith",
+        "image": "https://example.com/images/janesmith.jpg",
+        "title": "Cozy Mountain Cabin",
+        "description": "A perfect getaway spot! The cabin was cozy and well-equipped, and the surrounding nature was beautiful. Will visit again!",
         "rating": 3
     },
     {
-        "_id": "643010f9f5a7e52ce1e8fa66",
-        "name": "John Doe",
-        "details": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
-        "rating": 2
-    },
-    {
-        "_id": "6430110af5a7e52ce1e8fa67",
-        "name": "MJ Doe",
-        "details": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
-        "rating": 5
-    },
-    {
-        "_id": "64301123f5a7e52ce1e8fa68",
-        "name": "Sarah Smith",
-        "details": "I found the product to be incredibly useful and easy to use. The interface is intuitive, and it has all the features I need. Highly recommend it!",
+        "name": "Michael Brown",
+        "image": "https://example.com/images/michaelbrown.jpg",
+        "title": "Luxury City Apartment",
+        "description": "The apartment was modern and luxurious, with all the amenities one could need. Convenient location as well.",
         "rating": 4
     },
     {
-        "_id": "6430113af5a7e52ce1e8fa69",
-        "name": "Robert Johnson",
-        "details": "This is by far the best service I have ever used. The customer support is outstanding, and the product itself is top-notch. I couldn't be happier!",
+        "name": "Emily Davis",
+        "image": "https://example.com/images/emilydavis.jpg",
+        "title": "Quaint Countryside Cottage",
+        "description": "A charming little cottage in the countryside. Very peaceful and relaxing. A bit far from the city, but worth it for the tranquility.",
         "rating": 5
+    },
+    {
+        "name": "Chris Johnson",
+        "image": "https://example.com/images/chrisjohnson.jpg",
+        "title": "Modern Loft Downtown",
+        "description": "The loft was spacious and well-decorated, right in the heart of downtown. Perfect for a city break.",
+        "rating": 5
+    },
+    {
+        "name": "Jessica Lee",
+        "Image": "https://example.com/images/jessicalee.jpg",
+        "title": "Rustic Farmhouse",
+        "description": "A lovely farmhouse with a rustic feel. Great for a family vacation. Kids enjoyed the farm animals.",
+        "rating": 5
+    },
+    {
+        "name": "David Wilson",
+        "Image": "https://example.com/images/davidwilson.jpg",
+        "title": "Chic Urban Studio",
+        "description": "The studio was small but very chic and stylish. Ideal for solo travelers or couples.",
+        "rating": 4
+    },
+    {
+        "name": "Laura Martinez",
+        "Image": "https://example.com/images/lauramartinez.jpg",
+        "title": "Spacious Suburban Home",
+        "description": "A spacious home with a nice garden. Great for families looking for a quiet place to stay.",
+        "rating": 5
+    },
+    {
+        "name": "Tom Anderson",
+        "Image": "https://example.com/images/tomanderson.jpg",
+        "title": "Secluded Lakeside Cabin",
+        "description": "A peaceful cabin by the lake. Perfect for a romantic getaway or a fishing trip. Will definitely come back.",
+        "rating": 5
+    },
+    {
+        "name": "Alice White",
+        "image": "https://example.com/images/alicewhite.jpg",
+        "title": "Historic Downtown House",
+        "description": "The house had a lot of character and was in a great location. It was clean and well-maintained.",
+        "rating": 4
     }
 ]

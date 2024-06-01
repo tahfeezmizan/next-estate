@@ -2,6 +2,8 @@ import { useState } from "react";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from 'swiper/modules';
+import '@smastrom/react-rating/style.css'
+import { Rating } from "@smastrom/react-rating";
 
 const UserReview = () => {
     const [data, setData] = useState([]);
@@ -16,48 +18,52 @@ const UserReview = () => {
     }, [])
 
     return (
-        <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
+        <div className="bg-gray-100">
+            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
+                <SectionTitle
+                    subHeading="Latest Reviews"
+                    Heading="User Review"
+                >
+                </SectionTitle>
 
-            <SectionTitle
-                subHeading="Latest Reviews"
-                Heading="User Review"
-            >
-            </SectionTitle>
-
-            <section>
-                {
-                    data?.map(data => {
-                        <>
-                            <Swiper
-                                slidesPerView={3}
-                                spaceBetween={30}
-                                freeMode={true}
-                                pagination={{
-                                    clickable: true,
-                                }}
-                                modules={[FreeMode, Pagination]}
-                                className="mySwiper"
-                            >
-                                <SwiperSlide>
-                                    <div
-                                        className="h-[450px] md:h-[500px] flex items-end bg-green-400 rounded-2xl"
-                                        style={{
-                                            backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.9) 130%), url()`,
-                                            backgroundPosition: 'center',
-                                            backgroundSize: 'cover',
-                                            backgroundRepeat: 'no-repeat',
-                                        }}
-                                    >
-                                        <h1 className="text-4xl font-bold pb-8 pl-8">{data?.name}</h1>
+                <section>
+                    <Swiper
+                        slidesPerView={3}
+                        spaceBetween={30}
+                        freeMode={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[FreeMode, Pagination]}
+                        className="mySwiper"
+                    >
+                        {
+                            data?.map(review => <SwiperSlide>
+                                <div className="h-72 p-10 overflow-hidden bg-white rounded-sm font-Roboto">
+                                    <div className="flex items-center gap-5 mb-4">
+                                        <img src={review?.image} alt="" />
+                                        <div className="">
+                                            <h2 className="font-semibold leading-8">{review?.name}</h2>
+                                            <p className="text-sm leading-4 text-gray-500 font-normal">New York</p>
+                                        </div>
                                     </div>
-                                </SwiperSlide>
-
-                            </Swiper>
-                        </>
-                    })
-                }
-            </section>
-
+                                    <div className="mb-3">
+                                        <h2 className="font-medium leading-8">{review?.title}</h2>
+                                        <p className="text-sm leading-6 text-gray-500 font-normal">{review?.description}</p>
+                                    </div>
+                                    <div className="">
+                                        <Rating
+                                            style={{ maxWidth: 180 }}
+                                            value={review?.rating}
+                                            readOnly
+                                        />
+                                    </div>
+                                </div>
+                            </SwiperSlide>)
+                        }
+                    </Swiper >
+                </section>
+            </div >
         </div>
     );
 };
