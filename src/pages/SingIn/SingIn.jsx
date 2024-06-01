@@ -2,15 +2,16 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SingInImage from '../../assets/slider/slide_2.jpg'
 import singInBg from '../../assets/slider/singinBg.webp'
+import UseAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const SingIn = () => {
-    // const { singInUser } = UseAuth();
-    // const [disabled, setDisabled] = useState(true);
-    // const navigate = useNavigate();
-    // const location = useLocation();
+    const { singIn } = UseAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
     // const from = location?.state?.from?.pathname || '/';
     // console.log("login page location pathname", location.state);
 
@@ -27,15 +28,15 @@ const SingIn = () => {
 
     const onSubmit = (data) => {
         const { email, password } = data;
-        // console.log(email, password);
+        console.log(email, password);
 
-        // singInUser(email, password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         navigate(from, { replace: true })
-        //         toast.success('User Sing In Sucessfully')
-        //     })
+        singIn(email, password)
+            .then(result => {
+                console.log(result);
+                const user = result.user;
+                toast.success('User Sing In Sucessfully')
+                navigate(from, { replace: true })
+            })
     }
 
     return (
@@ -48,7 +49,7 @@ const SingIn = () => {
             <Helmet>
                 <title>Sing In - Next Estate Real Estate React Theme</title>
             </Helmet>
-            <div className="w-2/4 flex items-center justify-center text-white mx-auto shadow-2xl backdrop-blur-md rounded-2xl" >
+            <div className="w-2/4 flex items-center justify-center mx-auto shadow-2xl backdrop-blur-md rounded-2xl" >
                 <div className="card shrink-0 w-full max-w-lg p-10 ">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <h1 className="text-2xl font-Roboto font-medium leading-8 ">Sign into your account</h1>

@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import UseAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+    const {user} = UseAuth();
 
     const links = (
         <>
@@ -11,7 +13,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="navbar navMenu absolute left-0 right-0 top-0 z-50 py-2 text-white">
+        <div className="navbar navMenu absolute left-0 right-0 top-0 z-50 py-2 bg-black bg-opacity-35 text-white">
             <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto  navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -59,7 +61,7 @@ const Navbar = () => {
                         </div>
                         : */}
                     <div className="px-1 gap-5 felx font-Roboto">
-                        <NavLink className="login px-3 py-2" to="/singin">Login</NavLink>
+                        <NavLink className="login px-3 py-2" to="/singin">Login/Register</NavLink>
                     </div>
                 </div>
             </div>
