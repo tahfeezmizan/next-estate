@@ -5,6 +5,7 @@ import Mainlayout from "../Layout/Mainlayout";
 import Home from "../pages/Home/Home/Home";
 import AllProperties from "../pages/Shared/AllProperties/AllProperties";
 import SingIn from "../pages/SingIn/SingIn";
+import SingUp from "../pages/SingUp/SingUp";
 
 
 export const router = createBrowserRouter([
@@ -22,7 +23,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/singin',
-                element: <SingIn></SingIn>
+                element: <SingIn />
+            },
+            {
+                path: '/singup',
+                element: <SingUp />
             },
         ]
     },

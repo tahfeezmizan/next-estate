@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import SingInImage from '../../assets/slider/slide_2.jpg'
 import singInBg from '../../assets/slider/singinBg.webp'
 
-const SingIn = () => {
+const SingUp = () => {
     // const { singInUser } = UseAuth();
     // const [disabled, setDisabled] = useState(true);
     // const navigate = useNavigate();
@@ -38,6 +38,7 @@ const SingIn = () => {
         //     })
     }
 
+
     return (
         <div className="h-screen py-20 flex flex-col items-center justify-center" style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${singInBg})`,
@@ -46,12 +47,26 @@ const SingIn = () => {
             backgroundRepeat: 'no-repeat',
         }}>
             <Helmet>
-                <title>Sing In - Next Estate Real Estate React Theme</title>
+                <title>Sing Up - Next Estate Real Estate React Theme</title>
             </Helmet>
             <div className="w-2/4 flex items-center justify-center text-white mx-auto shadow-2xl backdrop-blur-md rounded-2xl" >
                 <div className="card shrink-0 w-full max-w-lg p-10 ">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                        <h1 className="text-2xl font-Roboto font-medium leading-8 ">Sign into your account</h1>
+                        <h1 className="text-2xl font-Roboto font-medium leading-8 ">Create an account</h1>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-white">Name</span>
+                            </label>
+                            <input
+                                type="name"
+                                name="name"
+                                placeholder="Enter Your Name"
+                                className="input input-bordered rounded-none"
+
+                                {...register("name", { required: true })}
+                            />
+                            {errors.email && <span className="text-xs text-red-500">Email is required</span>}
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-white">Email</span>
@@ -63,6 +78,20 @@ const SingIn = () => {
                                 className="input input-bordered rounded-none"
 
                                 {...register("email", { required: true })}
+                            />
+                            {errors.email && <span className="text-xs text-red-500">Email is required</span>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-white">Photo URL</span>
+                            </label>
+                            <input
+                                type="photoURL"
+                                name="photoURL"
+                                placeholder="Enter Your photoURL"
+                                className="input input-bordered rounded-none"
+
+                                {...register("photoURL", { required: true })}
                             />
                             {errors.email && <span className="text-xs text-red-500">Email is required</span>}
                         </div>
@@ -90,15 +119,18 @@ const SingIn = () => {
                         </div>
 
                         <div className="form-control pt-5">
-                            <button className="btn bg-primaryColor border-primaryColor hover:bg-transparent hover:border-primaryColor hover:text-primaryColor font-Roboto text-white text-base">Login</button>
+                            <button className="btn bg-primaryColor border-primaryColor hover:bg-transparent hover:border-primaryColor hover:text-primaryColor font-Roboto text-white text-base">Register</button>
                         </div>
                     </form>
+                    <div className="">
+                        {/* <SocialLogin></SocialLogin> */}
+                    </div>
 
-                    <Link to="/singin" className=" hover:text-primaryColor font-bold pt-5 text-center">Register here!</Link>
+                    <Link to="/singin" className=" hover:text-primaryColor font-bold pt-5 text-center">Back to login</Link>
                 </div>
             </div>
         </div>
     );
 };
 
-export default SingIn;
+export default SingUp;
