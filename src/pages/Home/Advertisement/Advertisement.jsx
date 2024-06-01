@@ -4,21 +4,23 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from 'swiper/modules';
 import { Link } from "react-router-dom";
 import { CiLocationOn } from "react-icons/ci";
+import useProperties from "../../../hooks/useProperties";
 
 const Advertisement = () => {
-    const [data, setData] = useState([]);
+    const [data] = useProperties();
+    // const [data, setData] = useState([]);
 
-    useEffect(() => {
-        fetch('menu.json')
-            .then(res => res.json())
-            .then(data => {
-                setData(data);
-                console.log(data);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch('menu.json')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setData(data);
+    //             console.log(data);
+    //         });
+    // }, []);
 
     return (
-        <div className="bg-gray-100">
+        <div className="">
             <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
                 <SectionTitle
                     subHeading="EXCLUSIVE DEALS"
@@ -57,14 +59,14 @@ const Advertisement = () => {
                         {
                             data?.slice(0, 6)?.map(item => (
                                 <SwiperSlide key={item.id}>
-                                    <div className="bg-white dark:bg-slate-800 border rounded-xl flex justify-around flex-col hover:shadow-lg duration-500 overflow-hidden">
+                                    <div className="bg-gray-50 dark:bg-slate-800 border rounded-xl flex justify-around flex-col hover:shadow-lg duration-500 overflow-hidden">
                                         <div className="h-64 overflow-hidden">
                                             <img className="w-full h-full object-cover transition-transform transform hover:scale-105 duration-500 ease-in-out" src={item?.image} alt="" />
                                         </div>
                                         <div className="p-5">
-                                            <p className="flex items-center gap-1 text-primaryColor"><span><CiLocationOn /></span>{item?.location}</p>
-                                            <div className="flex justify-between pb-4">
-                                                <p className='font-semibold text-lg'><span className="rounded">{item?.price}</span></p>
+                                            <p className="flex items-center gap-1 text-primaryColor leading-6"><span><CiLocationOn /></span>{item?.location}</p>
+                                            <div className="flex justify-between pb-3">
+                                                <p className='font-semibold text-lg'><span className="rounded">{item?.pricerange}</span></p>
                                                 <p className="capitalize my-1 font-medium">{item.verification_status}</p>
                                             </div>
 

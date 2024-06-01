@@ -1,30 +1,82 @@
 [
     {
-        "_id": "001",
-        "image": "https://example.com/images/property1.jpg",
+        "image": "https://dubai-residence.b-cdn.net/wp-content/uploads/2023/05/6-525x328.webp",
         "location": "Springfield, USA",
-        "price": "$250,000 - $300,000",
-        "verification_status": "verified"
+        "pricerange": "$250,000 - $300,000",
+        "verification_status": "verified",
+        "agentname": "John Doe",
+        "agentimage": "https://example.com/images/agent1.jpg"
     },
     {
-        "_id": "002",
-        "image": "https://example.com/images/property2.jpg",
+        "image": "https://dubai-residence.b-cdn.net/wp-content/uploads/2014/05/12-525x328.webp",
         "location": "Metropolis, USA",
-        "price": "$450,000 - $500,000",
-        "verification_status": "unverified"
+        "pricerange": "$450,000 - $500,000",
+        "verification_status": "unverified",
+        "agentname": "Jane Smith",
+        "agentimage": "https://example.com/images/agent2.jpg"
     },
     {
-        "_id": "003",
-        "image": "https://example.com/images/property3.jpg",
+        "image": "https://dubai-residence.b-cdn.net/wp-content/uploads/2014/05/prop3-525x328.webp",
         "location": "Gotham, USA",
-        "price": "$350,000 - $400,000",
-        "verification_status": "verified"
+        "pricerange": "$350,000 - $400,000",
+        "verification_status": "verified",
+        "agentname": "Emily Johnson",
+        "agentimage": "https://example.com/images/agent3.jpg"
     },
     {
-        "_id": "001",
-        "image": "https://example.com/images/property1.jpg",
-        "location": "Springfield, USA",
-        "price": "$250,000 - $300,000",
-        "verification_status": "verified"
-    }    
+        "image": "https://dubai-residence.b-cdn.net/wp-content/uploads/2014/05/16-525x328.webp",
+        "location": "Star City, USA",
+        "pricerange": "$300,000 - $350,000",
+        "verification_status": "verified",
+        "agentname": "Michael Brown",
+        "agentimage": "https://example.com/images/agent4.jpg"
+    },
+    {
+        "image": "https://example.com/images/property5.jpg",
+        "location": "Central City, USA",
+        "pricerange": "$200,000 - $250,000",
+        "verification_status": "unverified",
+        "agentname": "Jessica Lee",
+        "agentimage": "https://example.com/images/agent5.jpg"
+    },
+    {
+        "image": "https://example.com/images/property6.jpg",
+        "location": "Coast City, USA",
+        "pricerange": "$400,000 - $450,000",
+        "verification_status": "verified",
+        "agentname": "William Davis",
+        "agentimage": "https://example.com/images/agent6.jpg"
+    },
+    {
+        "image": "https://example.com/images/property7.jpg",
+        "location": "Blüdhaven, USA",
+        "pricerange": "$500,000 - $550,000",
+        "verification_status": "unverified",
+        "agentname": "Olivia Martinez",
+        "agentimage": "https://example.com/images/agent7.jpg"
+    },
+    {
+        "image": "https://example.com/images/property8.jpg",
+        "location": "National City, USA",
+        "pricerange": "$150,000 - $200,000",
+        "verification_status": "verified",
+        "agentname": "Sophia Hernandez",
+        "agentimage": "https://example.com/images/agent8.jpg"
+    },
+    {
+        "image": "https://example.com/images/property9.jpg",
+        "location": "Fawcett City, USA",
+        "pricerange": "$600,000 - $650,000",
+        "verification_status": "verified",
+        "agentname": "James Wilson",
+        "agentimage": "https://example.com/images/agent9.jpg"
+    },
+    {
+        "image": "https://example.com/images/property10.jpg",
+        "location": "Gateway City, USA",
+        "pricerange": "$700,000 - $750,000",
+        "verification_status": "unverified",
+        "agentname": "Isabella White",
+        "agentimage": "https://example.com/images/agent10.jpg"
+    }
 ]

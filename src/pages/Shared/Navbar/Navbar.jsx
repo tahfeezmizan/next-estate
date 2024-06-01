@@ -5,7 +5,8 @@ const Navbar = () => {
     const links = (
         <>
             <li><NavLink to='/'>Home</NavLink></li>
-            <li><NavLink to='/queries'>Properties</NavLink></li>
+            <li><NavLink to='/properties'> All Properties</NavLink></li>
+            <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
         </>
     );
 
@@ -34,7 +35,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-end z-[1000]">
-                    
+
                     {/* {user?.email ?
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -57,9 +58,9 @@ const Navbar = () => {
                             </ul>
                         </div>
                         : */}
-                        <div className="px-1 gap-5 felx font-Roboto">
-                            <NavLink className="login px-3 py-2" to="/login">Login</NavLink>
-                        </div>
+                    <div className="px-1 gap-5 felx font-Roboto">
+                        <NavLink className="login px-3 py-2" to="/singin">Login</NavLink>
+                    </div>
                 </div>
             </div>
         </div>
