@@ -94,7 +94,7 @@ const SingIn = () => {
                         </div>
                     </form>
 
-                    <Link to="/singin" className=" hover:text-primaryColor font-bold pt-5 text-center">Register here!</Link>
+                    <Link to="/singup" className=" hover:text-primaryColor font-bold pt-5 text-center">Register here!</Link>
                 </div>
             </div>
         </div>
