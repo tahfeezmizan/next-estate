@@ -8,7 +8,7 @@ const Home = () => {
         <>
             <Banner></Banner>
             <Advertisement></Advertisement>
-            <AllProperties></AllProperties>
+            {/* <AllProperties></AllProperties> */}
             <UserReview></UserReview>
         </>
     );

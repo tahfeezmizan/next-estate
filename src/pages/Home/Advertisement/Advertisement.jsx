@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
-import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from 'swiper/modules';
 import { Link } from "react-router-dom";
 import { CiLocationOn } from "react-icons/ci";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from 'swiper/modules';
 import useProperties from "../../../hooks/useProperties";
+import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const Advertisement = () => {
     const [data] = useProperties();
@@ -70,7 +69,7 @@ const Advertisement = () => {
                                                 <p className="capitalize my-1 font-medium">{item.verification_status}</p>
                                             </div>
 
-                                            <Link className="btn btn-sm text-primaryColor text-sm bg-[#e868221a] border-[#e868221a] hover:bg-primaryColor hover:text-white rounded-none">View Details</Link>
+                                            <Link to={`/properties/${item?._id}`} className="btn btn-sm text-primaryColor text-sm bg-[#e868221a] border-[#e868221a] hover:bg-primaryColor hover:text-white rounded-none">View Details</Link>
                                         </div>
                                     </div>
                                 </SwiperSlide>

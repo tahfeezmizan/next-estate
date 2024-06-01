@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import UseAuth from "../../hooks/useAuth";
+import singInBg from '../../assets/slider/singinBg.webp';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import SingInImage from '../../assets/slider/slide_2.jpg'
-import singInBg from '../../assets/slider/singinBg.webp'
-import UseAuth from "../../hooks/useAuth";
-import { toast } from "react-toastify";
 
 const SingIn = () => {
     const { singIn } = UseAuth();

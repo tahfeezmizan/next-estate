@@ -9,11 +9,12 @@ const Navbar = () => {
     const links = (
         <>
             <li><NavLink to='/'>Home</NavLink></li>
-            <li><NavLink to='/properties'> All Properties</NavLink></li>
-            {user ?
+            {user ? <>
+                <li><NavLink to='/allproperties'>All Properties</NavLink></li>
                 <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+            </>
                 :
-                ''
+                <li><NavLink to='/properties'>Properties</NavLink></li>
             }
         </>
     );

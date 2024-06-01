@@ -1,8 +1,12 @@
+import useProperties from "../../../hooks/useProperties";
 import SectionTitle from "../SectionTitle/SectionTitle";
+import PropertiesCart from "./PropertiesCart";
 
 const AllProperties = () => {
+    const [data] = useProperties();
+
     return (
-        <section className="bg-gray-50">
+        <section className="bg-gray-100">
             <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
                 <SectionTitle
                     subHeading="All Properties"
@@ -10,7 +14,11 @@ const AllProperties = () => {
                 ></SectionTitle>
 
                 <section>
-                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+                        {
+                            data?.map(card => <PropertiesCart card={card} key={card._id}></PropertiesCart>)
+                        }
+                    </div>
                 </section>
             </div>
         </section>

@@ -6,12 +6,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { Helmet } from 'react-helmet';
 
 
 const Banner = () => {
     return (
         <>
             <Swiper pagination={true} modules={[Pagination]} className="mySwiper homeBanner">
+                <Helmet>
+                    <title>Home - Next Estate Real Estate React</title>
+                </Helmet>
                 <SwiperSlide
                     style={{
                         backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${slider1})`,

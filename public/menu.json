@@ -1,79 +1,99 @@
 [
     {
+        "_id": 1,
         "image": "https://dubai-residence.b-cdn.net/wp-content/uploads/2023/05/6-525x328.webp",
         "location": "Springfield, USA",
+        "title": "For Sale: Springfield, USA",
         "pricerange": "$250,000 - $300,000",
         "verification_status": "verified",
         "agentname": "John Doe",
         "agentimage": "https://example.com/images/agent1.jpg"
     },
     {
+        "_id": 2,
         "image": "https://dubai-residence.b-cdn.net/wp-content/uploads/2014/05/12-525x328.webp",
         "location": "Metropolis, USA",
+        "title": "For Sale: Metropolis, USA",
         "pricerange": "$450,000 - $500,000",
         "verification_status": "unverified",
         "agentname": "Jane Smith",
         "agentimage": "https://example.com/images/agent2.jpg"
     },
     {
+        "_id": 3,
         "image": "https://dubai-residence.b-cdn.net/wp-content/uploads/2014/05/prop3-525x328.webp",
         "location": "Gotham, USA",
+        "title": "For Sale: Gotham, USA",
         "pricerange": "$350,000 - $400,000",
         "verification_status": "verified",
         "agentname": "Emily Johnson",
         "agentimage": "https://example.com/images/agent3.jpg"
     },
     {
+        "_id": 4,
         "image": "https://dubai-residence.b-cdn.net/wp-content/uploads/2014/05/16-525x328.webp",
         "location": "Star City, USA",
+        "title": "For Sale: Star City, USA",
         "pricerange": "$300,000 - $350,000",
         "verification_status": "verified",
         "agentname": "Michael Brown",
         "agentimage": "https://example.com/images/agent4.jpg"
     },
     {
+        "_id": 5,
         "image": "https://example.com/images/property5.jpg",
         "location": "Central City, USA",
+        "title": "For Sale: Central City, USA",
         "pricerange": "$200,000 - $250,000",
         "verification_status": "unverified",
         "agentname": "Jessica Lee",
         "agentimage": "https://example.com/images/agent5.jpg"
     },
     {
+        "_id": 6,
         "image": "https://example.com/images/property6.jpg",
         "location": "Coast City, USA",
+        "title": "For Sale: Coast City, USA",
         "pricerange": "$400,000 - $450,000",
         "verification_status": "verified",
         "agentname": "William Davis",
         "agentimage": "https://example.com/images/agent6.jpg"
     },
     {
+        "_id": 7,
         "image": "https://example.com/images/property7.jpg",
         "location": "Blüdhaven, USA",
+        "title": "For Sale: Blüdhaven, USA",
         "pricerange": "$500,000 - $550,000",
         "verification_status": "unverified",
         "agentname": "Olivia Martinez",
         "agentimage": "https://example.com/images/agent7.jpg"
     },
     {
+        "_id": 8,
         "image": "https://example.com/images/property8.jpg",
         "location": "National City, USA",
+        "title": "For Sale: National City, USA",
         "pricerange": "$150,000 - $200,000",
         "verification_status": "verified",
         "agentname": "Sophia Hernandez",
         "agentimage": "https://example.com/images/agent8.jpg"
     },
     {
+        "_id": 9,
         "image": "https://example.com/images/property9.jpg",
         "location": "Fawcett City, USA",
+        "title": "For Sale: Fawcett City, USA",
         "pricerange": "$600,000 - $650,000",
         "verification_status": "verified",
         "agentname": "James Wilson",
         "agentimage": "https://example.com/images/agent9.jpg"
     },
     {
+        "_id": 10,
         "image": "https://example.com/images/property10.jpg",
         "location": "Gateway City, USA",
+        "title": "For Sale: Gateway City, USA",
         "pricerange": "$700,000 - $750,000",
         "verification_status": "unverified",
         "agentname": "Isabella White",
