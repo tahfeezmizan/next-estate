@@ -58,7 +58,7 @@ const Advertisement = () => {
                     >
                         {
                             data?.slice(0, 6)?.map(item => (
-                                <SwiperSlide key={item.id}>
+                                <SwiperSlide key={item._id}>
                                     <div className="bg-gray-50 dark:bg-slate-800 border rounded-xl flex justify-around flex-col hover:shadow-lg duration-500 overflow-hidden">
                                         <div className="h-64 overflow-hidden">
                                             <img className="w-full h-full object-cover transition-transform transform hover:scale-105 duration-500 ease-in-out" src={item?.image} alt="" />

@@ -12,7 +12,7 @@ const SingIn = () => {
     const { singIn } = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    // const from = location?.state?.from?.pathname || '/';
+    const from = location?.state?.from?.pathname || '/';
     // console.log("login page location pathname", location.state);
 
     const [showPassword, setShowPassword] = useState(false);

@@ -13,7 +13,7 @@ const UserReview = () => {
             .then(res => res.json())
             .then(data => {
                 setData(data)
-                console.log(data);
+                // console.log(data);
             })
     }, [])
 
@@ -38,7 +38,7 @@ const UserReview = () => {
                         className="mySwiper"
                     >
                         {
-                            data?.map(review => <SwiperSlide>
+                            data?.map(review => <SwiperSlide key={review?._id}>
                                 <div className="h-72 p-10 overflow-hidden bg-white rounded-sm font-Roboto">
                                     <div className="flex items-start gap-4 mb-4">
                                         <img className="w-12 border rounded-full" src={review?.image} alt="" />
