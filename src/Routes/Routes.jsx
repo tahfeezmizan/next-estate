@@ -10,6 +10,8 @@ import Properties from "../pages/Properties/Properties";
 import PageBanner from "../pages/Shared/PageBanner/PageBanner";
 import PropertiesDetails from "../pages/Shared/AllProperties/PropertiesDetails";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import Dashboard from "../Layout/Dashboard";
+import MyProfile from "../pages/dashboard/User/MyProfile";
 
 
 export const router = createBrowserRouter([
@@ -51,4 +53,16 @@ export const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            // user profile
+            {
+                path: "myprofile",
+                element: <MyProfile />
+            }
+
+        ]
+    }
 ]);
