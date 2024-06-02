@@ -8,11 +8,14 @@ import { RiSofaLine } from "react-icons/ri";
 import { useParams } from "react-router-dom";
 import UseAuth from "../../../hooks/useAuth";
 import verified from '../../../assets/slider/verifid.png'
+import useAxiosSecure, { axiosSecure } from "../../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const PropertiesDetails = () => {
     const { user } = UseAuth();
     const [card, setCard] = useState(null);
     const { id } = useParams();
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         fetch(`http://localhost:5000/property/${id}`)
@@ -53,15 +56,27 @@ const PropertiesDetails = () => {
             rating,
             date,
         }
-        console.log(reviewValue)
+        // console.log(reviewValue)
 
+        axiosSecure.post('/reviews', reviewValue)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    toast.success('Review Added Successfully');
+                    // refetch(); // Uncomment this if you want to refetch the data
+                }
+            })
+            .catch(error => {
+                console.error('Error adding review:', error);
+                toast.error('Failed to add review');
+            });
 
     }
 
     if (!card) {
         return <p>Loading...</p>;
     }
-    const { _id, title, image, location, pricerange, agentname, agentimage, verification_status } = card;
+    const { title, image, location, pricerange, agentname, agentimage, verification_status } = card;
 
 
     return (
