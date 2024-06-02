@@ -20,7 +20,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="navbar navMenu absolute left-0 right-0 top-0 z-50 py-2 bg-black bg-opacity-35 text-white">
+        <div className="navbar navMenu fixed left-0 right-0 top-0 z-50 py-2 bg-black bg-opacity-55 text-white backdrop-blur-sm">
             <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto  navbar">
                 <div className="navbar-start">
                     <div className="dropdown">

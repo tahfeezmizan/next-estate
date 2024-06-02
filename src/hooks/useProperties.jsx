@@ -4,7 +4,7 @@ const useProperties = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('menu.json')
+        fetch('http://localhost:5000/property')
             .then(res => res.json())
             .then(data => {
                 setData(data);

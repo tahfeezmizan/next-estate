@@ -9,7 +9,7 @@ const UserReview = () => {
     const [data, setData] = useState([]);
 
     useState(() => {
-        fetch('reviews.json')
+        fetch('http://localhost:5000/reviews')
             .then(res => res.json())
             .then(data => {
                 setData(data)
