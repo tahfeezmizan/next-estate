@@ -1,5 +1,6 @@
-import React from 'react';
+import verified from '../../../assets/slider/verifid.png'
 import { CiLocationOn } from 'react-icons/ci';
+import { FaCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const PropertiesCart = ({ card }) => {
@@ -12,14 +13,17 @@ const PropertiesCart = ({ card }) => {
             </div>
             <div className="p-5">
                 <p className="flex text-base items-center gap-1 text-primaryColor leading-6"><span><CiLocationOn /></span>{location}</p>
-                <h2 className="font-semibold text-lg font-Roboto leading-10">{title}</h2>
-
-                <div className="flex justify-between pb-3">
-                    <p className='font-semibold text-lg'><span className="rounded">{pricerange}</span></p>
-                    <p className="capitalize my-1 font-medium">{verification_status}</p>
+                <div className="flex gap-2 items-center">
+                    <h2 className="font-semibold text-lg font-Roboto leading-10">{title}</h2>
+                    {
+                        verification_status === 'verified' && <img className='w-6 ' src={verified} alt="" />
+                    }
                 </div>
+
+                <p className='font-semibold text-lg pb-3'><span className="rounded">{pricerange}</span></p>
+
                 <div className="flex justify-between items-center ">
-                    <div className="flex items-start gap-4">
+                    <div className="flex gap-4 items-center">
                         <img className="w-12 border rounded-full" src={agentimage} alt="" />
                         <div className="">
                             <h2 className="font-semibold leading-8">{agentname}</h2>

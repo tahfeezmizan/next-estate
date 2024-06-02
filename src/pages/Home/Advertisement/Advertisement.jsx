@@ -4,9 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from 'swiper/modules';
 import useProperties from "../../../hooks/useProperties";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
+import verified from '../../../assets/slider/verifid.png'
 
 const Advertisement = () => {
     const [data] = useProperties();
+    
     // const [data, setData] = useState([]);
 
     // useEffect(() => {
@@ -64,9 +66,11 @@ const Advertisement = () => {
                                         </div>
                                         <div className="p-5">
                                             <p className="flex items-center gap-1 text-primaryColor leading-6"><span><CiLocationOn /></span>{item?.location}</p>
-                                            <div className="flex justify-between pb-3">
+                                            <div className="flex gap-2 items-center pb-3">
                                                 <p className='font-semibold text-lg'><span className="rounded">{item?.pricerange}</span></p>
-                                                <p className="capitalize my-1 font-medium">{item.verification_status}</p>
+                                                {
+                                                    item?.verification_status === 'verified' && <img className='w-6 ' src={verified} alt="" />
+                                                }
                                             </div>
 
                                             <Link to={`/properties/${item?._id}`} className="btn btn-sm text-primaryColor text-sm bg-[#e868221a] border-[#e868221a] hover:bg-primaryColor hover:text-white rounded-none">View Details</Link>

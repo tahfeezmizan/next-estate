@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useProperties = () => {
     const [data, setData] = useState([]);
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        fetch('http://localhost:5000/property')
-            .then(res => res.json())
-            .then(data => {
-                setData(data);
-                console.log(data);
-            });
+        axiosSecure.get('/property')
+        .then(res => {
+            setData(res.data);
+        })
     }, []);
     return [data]
 };

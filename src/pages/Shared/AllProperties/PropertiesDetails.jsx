@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { CiClock2, CiLocationOn } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
 import { FaRegHeart, FaShower } from "react-icons/fa";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { IoCarOutline } from "react-icons/io5";
@@ -8,6 +7,7 @@ import { MdCropLandscape } from "react-icons/md";
 import { RiSofaLine } from "react-icons/ri";
 import { useParams } from "react-router-dom";
 import UseAuth from "../../../hooks/useAuth";
+import verified from '../../../assets/slider/verifid.png'
 
 const PropertiesDetails = () => {
     const { user } = UseAuth();
@@ -27,7 +27,6 @@ const PropertiesDetails = () => {
     }, [id]);
 
 
-
     // reviews from
     const handleAddReview = e => {
         e.preventDefault();
@@ -45,6 +44,7 @@ const PropertiesDetails = () => {
         const message = form.message.value;
 
         const reviewValue = {
+            property: id,
             email,
             userName,
             userPhoto,
@@ -55,7 +55,7 @@ const PropertiesDetails = () => {
         }
         console.log(reviewValue)
 
-        
+
     }
 
     if (!card) {
@@ -77,9 +77,12 @@ const PropertiesDetails = () => {
                             <p className="bg-primaryColor text-white px-3 rounded-md">Sales</p>
                             <p className="bg-primaryColor text-white px-3 rounded-md">Villa</p>
                         </div>
-                        <h2 className="text-2xl md:text-4xl font-bold mb-3">{title}
-                            <span className='bg-gray-500 text-white text-sm rounded-full capitalize px-2 py-1 ml-2'>{verification_status}</span>
-                        </h2>
+                        <div className="flex gap-2 items-center">
+                            <h2 className="text-2xl md:text-4xl font-bold mb-3">{title}</h2>
+                            {
+                                verification_status === 'verified' && <img className='w-8 ' src={verified} alt="" />
+                            }
+                        </div>
                         <p className="flex items-center gap-2 text-gray-600">
                             <span className="text-primaryColor"><CiLocationOn /></span>{location}
                         </p>
