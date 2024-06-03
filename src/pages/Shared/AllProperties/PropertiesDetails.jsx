@@ -17,25 +17,21 @@ const PropertiesDetails = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
 
+    const email = user?.email;
+    const userName = user?.displayName;
+    const userPhoto = user?.photoURL;
+
     useEffect(() => {
-        fetch(`http://localhost:5000/property/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                setCard(data);
-                // console.log(data);
+        axiosSecure.get(`/property/${id}`)
+            .then(res => {
+                setCard(res.data)
             })
-            .catch(error => {
-                console.error('Error fetching property data:', error);
-            });
     }, [id]);
 
 
     // reviews from
     const handleAddReview = e => {
         e.preventDefault();
-        const email = user?.email;
-        const userName = user?.displayName;
-        const userPhoto = user?.photoURL;
 
         const today = new Date();
         const date = today.getTime();
@@ -47,7 +43,7 @@ const PropertiesDetails = () => {
         const message = form.message.value;
 
         const reviewValue = {
-            property: id,
+            propertyId: id,
             email,
             userName,
             userPhoto,
@@ -56,7 +52,7 @@ const PropertiesDetails = () => {
             rating,
             date,
         }
-        // console.log(reviewValue)
+        console.log(reviewValue)
 
         axiosSecure.post('/reviews', reviewValue)
             .then(res => {
@@ -70,7 +66,6 @@ const PropertiesDetails = () => {
                 console.error('Error adding review:', error);
                 toast.error('Failed to add review');
             });
-
     }
 
     if (!card) {
@@ -78,6 +73,29 @@ const PropertiesDetails = () => {
     }
     const { title, image, location, pricerange, agentname, agentimage, verification_status } = card;
 
+    const handleAddToWishlist = () => {
+        const wishListData = {
+            userEmail: email,
+            userName: userName,
+            propertyId: id,
+            image,
+            title,
+            location,
+            agentname,
+            agentimage,
+            pricerange,
+            verification_status,
+        }
+        console.log(wishListData);
+
+        axiosSecure.post('/wishlist', wishListData)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    toast.success(`${title} added to Wishlist`);
+                }
+            })
+    }
 
     return (
         <section className="bg-gray-100">
@@ -108,7 +126,10 @@ const PropertiesDetails = () => {
                             <h4 className='text-end text-base font-Roboto'>From</h4>
                             <p className="text-3xl font-Roboto font-medium">{pricerange}</p>
                         </div>
-                        <button className="flex items-center gap-2 btn btn-sm font-Roboto hover:text-primaryColor">
+                        <button
+                            onClick={() => handleAddToWishlist(card)}
+                            title="Add To Wishilist"
+                            className="flex items-center gap-2 btn btn-sm font-Roboto hover:text-primaryColor">
                             <FaRegHeart /> Favorite
                         </button>
                     </div>

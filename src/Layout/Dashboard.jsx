@@ -20,7 +20,7 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
 
                 <ul className="menu p-4 w-80 min-h-full bg-base-200  text-base-content">
-                    <NavLink className="text-xl uppercase Sitelogo">
+                    <NavLink to="/" className="text-xl uppercase Sitelogo">
                         {/* <img src={siteLogo} className="w-40" alt="" /> */}
                         <h1 className="text-3xl font-Merriweather">next estate</h1>
                     </NavLink>
