@@ -1,6 +1,6 @@
+import Swal from "sweetalert2";
 import { MdDeleteOutline } from "react-icons/md";
 import useMyReviews from "../../../hooks/useMyReviews";
-import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyReviews = () => {

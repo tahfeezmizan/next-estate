@@ -43,7 +43,7 @@ const Wishlist = () => {
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         {/* head */}
-                        <thead className="bg-primaryColor capitalize text-white text-xl">
+                        <thead className="bg-primaryColor text-center capitalize text-white text-xl">
                             <tr>
                                 <th></th>
                                 <th>image</th>
@@ -71,7 +71,7 @@ const Wishlist = () => {
                                     <td><img src={item?.agentimage} className="w-12 mx-auto" alt="" /></td>
                                     <td>{item?.agentname}</td>
                                     <td>{item?.pricerange}</td>
-                                    <td><button>Offer</button></td>
+                                    <td><button className="btn">Make an offer</button></td>
                                     <td >
                                         <button
                                             onClick={() => handleDelete(item?._id)}

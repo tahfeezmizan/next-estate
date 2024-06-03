@@ -6,12 +6,13 @@ import UseAuth from "../../hooks/useAuth";
 import singInBg from '../../assets/slider/singinBg.webp';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 const SingIn = () => {
-    const { singIn } = UseAuth();
+    const { singIn, googleLogin } = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location?.state?.from?.pathname || '/';
+    const from = location.state || '/'
     // console.log("login page location pathname", location.state);
 
     const [showPassword, setShowPassword] = useState(false);
@@ -93,8 +94,25 @@ const SingIn = () => {
                             <button className="btn bg-primaryColor border-primaryColor hover:bg-transparent hover:border-primaryColor hover:text-primaryColor font-Roboto text-white text-base">Login</button>
                         </div>
                     </form>
+                    <button
+                        onClick={() => googleLogin()
+                            .then(result => {
+                                toast.success('Congrs! Google Login Sucessfull');
+                                // navigate(location?.state ? location.state : '/');
+                                navigate(from)
+                            })
+                            .catch((error) => {
+                                const errorText = error.message;
+                                console.log(errorText)
+                                const errorMessage = errorText.slice(22, 40);
+                                toast.error(errorMessage)
+                            })
+                        }
+                        className='btn btn-sm text-2xl rounded-3xl px-6 bg-transparent hover:bg-transparent '><FcGoogle />
+                    </button>
 
-                    <Link to="/singup" className=" hover:text-primaryColor font-bold pt-5 text-center">Register here!</Link>
+
+                    <Link to="/singup" className="text-white hover:text-primaryColor font-bold pt-5 text-center">Register here!</Link>
                 </div>
             </div>
         </div>
