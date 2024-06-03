@@ -14,6 +14,7 @@ import Dashboard from "../Layout/Dashboard";
 import MyProfile from "../pages/dashboard/User/MyProfile";
 import Wishlist from "../pages/dashboard/User/Wishlist";
 import MyReviews from "../pages/dashboard/User/MyReviews";
+import MakeOffer from "../pages/dashboard/User/MakeOffer";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
             {
                 path: "myreviews",
                 element: <MyReviews />
+            },
+            {
+                path: "makeoffer/:id",
+                element: <MakeOffer />
             },
 
         ]

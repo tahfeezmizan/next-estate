@@ -19,15 +19,7 @@ const PropertiesDetails = () => {
     const { user } = UseAuth();
     const [data, setData] = useState([]);
     const axiosSecure = useAxiosSecure();
-    const [card, setCard] = useState(null);
-
-
-    useState(() => {
-        axiosSecure.get('/reviews')
-            .then(res => {
-                setData(res.data)
-            })
-    }, [])
+    const [card, setCard] = useState();
 
     const userEmail = user?.email;
     const userName = user?.displayName;
@@ -40,8 +32,15 @@ const PropertiesDetails = () => {
             })
     }, [id]);
 
+    // display review
+    useState(() => {
+        axiosSecure.get('/reviews')
+            .then(res => {
+                setData(res.data)
+            })
+    }, [])
 
-    // reviews from
+    // add reviews from user
     const handleAddReview = e => {
         e.preventDefault();
 
@@ -65,11 +64,11 @@ const PropertiesDetails = () => {
             rating,
             date,
         }
-        console.log(reviewValue)
+        // console.log(reviewValue)
 
         axiosSecure.post('/reviews', reviewValue)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success('Review Added Successfully');
                     // refetch(); // Uncomment this if you want to refetch the data
@@ -81,15 +80,11 @@ const PropertiesDetails = () => {
             });
     }
 
-    if (!card) {
-        return <p>Loading...</p>;
-    }
-    const { title, image, location, pricerange, agentname, agentimage, verification_status } = card;
-
+    // property add to wishlist 
     const handleAddToWishlist = () => {
         const wishListData = {
-            userEmail: email,
-            userName: userName,
+            userEmail,
+            userName,
             propertyId: id,
             image,
             title,
@@ -99,16 +94,21 @@ const PropertiesDetails = () => {
             pricerange,
             verification_status,
         }
-        console.log(wishListData);
+        // console.log(wishListData);
 
         axiosSecure.post('/wishlist', wishListData)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success(`${title} added to Wishlist`);
                 }
             })
     }
+
+    if (!card) {
+        return <p>Loading...</p>;
+    }
+    const { title, image, location, pricerange, agentname, agentimage, verification_status } = card;
 
     return (
         <section className="bg-gray-100">

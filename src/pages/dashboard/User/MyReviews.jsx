@@ -2,12 +2,14 @@ import Swal from "sweetalert2";
 import { MdDeleteOutline } from "react-icons/md";
 import useMyReviews from "../../../hooks/useMyReviews";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import UseAuth from "../../../hooks/useAuth";
 
 const MyReviews = () => {
+    const { user } = UseAuth();
     const [myreviews, refetch] = useMyReviews();
     const axiosSecure = useAxiosSecure();
 
-    const handleDelete = id => {
+    const handleDelete = () => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -18,7 +20,7 @@ const MyReviews = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/reviews/${id}`)
+                axiosSecure.delete(`/reviews/${user?.email}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             // refetch(),
