@@ -29,7 +29,7 @@ const PropertiesDetails = () => {
             })
     }, [])
 
-    const email = user?.email;
+    const userEmail = user?.email;
     const userName = user?.displayName;
     const userPhoto = user?.photoURL;
 
@@ -56,7 +56,8 @@ const PropertiesDetails = () => {
 
         const reviewValue = {
             propertyId: id,
-            email,
+            agentname,
+            userEmail,
             userName,
             userPhoto,
             title,

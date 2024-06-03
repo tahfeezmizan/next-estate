@@ -13,6 +13,7 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import Dashboard from "../Layout/Dashboard";
 import MyProfile from "../pages/dashboard/User/MyProfile";
 import Wishlist from "../pages/dashboard/User/Wishlist";
+import MyReviews from "../pages/dashboard/User/MyReviews";
 
 
 export const router = createBrowserRouter([
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
             // user profile
             {
@@ -65,7 +66,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "wishlist",
-                element: <Wishlist/>
+                element: <Wishlist />
+            },
+            {
+                path: "myreviews",
+                element: <MyReviews />
             },
 
         ]

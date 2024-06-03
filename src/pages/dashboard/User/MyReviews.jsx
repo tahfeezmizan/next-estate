@@ -1,12 +1,10 @@
-import { useState } from "react";
-import useAxiosSecure, { axiosSecure } from "../../../hooks/useAxiosSecure";
 import { MdDeleteOutline } from "react-icons/md";
+import useMyReviews from "../../../hooks/useMyReviews";
 import Swal from "sweetalert2";
-import useWishlist from "../../../hooks/useWishlist";
-import verified from '../../../assets/slider/verifid.png'
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const Wishlist = () => {
-    const [wishlist, refetch] = useWishlist();
+const MyReviews = () => {
+    const [myreviews, refetch] = useMyReviews();
     const axiosSecure = useAxiosSecure();
 
     const handleDelete = id => {
@@ -20,7 +18,7 @@ const Wishlist = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/wishlist/${id}`)
+                axiosSecure.delete(`/reviews/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             // refetch(),
@@ -39,39 +37,28 @@ const Wishlist = () => {
     return (
         <div>
             <div className="max-w-full">
-                <h1 className="text-5xl">Wishlist {wishlist.length}</h1>
+                <h1 className="text-5xl">myreviews {myreviews.length}</h1>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         {/* head */}
-                        <thead className="bg-primaryColor capitalize text-white text-xl">
+                        <thead className="bg-primaryColor capitalize text-center text-white text-xl">
                             <tr>
                                 <th></th>
-                                <th>image</th>
-                                <th>title</th>
-                                <th>location</th>
-                                <th>agent image</th>
+                                <th>property title</th>
                                 <th>agent name</th>
-                                <th>price range</th>
-                                <th>offer</th>
-                                <th>Remove</th>
+                                <th>review descrip</th>
+                                <th>review time</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody className="text-center">
                             {
-                                wishlist?.map((item, index) => <tr key={item._id}>
+                                myreviews?.map((item, index) => <tr key={item._id}>
                                     <th>{index + 1}</th>
-                                    <td><img src={item?.image} className="w-20 mx-auto" alt="" /></td>
-                                    <td> <div className="flex items-center gap-2">
-                                        <h3>{item?.title}</h3>
-                                        {
-                                            item?.verification_status === 'verified' && <img className='w-6 ' src={verified} alt="" />
-                                        }
-                                    </div></td>
-                                    <td>{item?.location}</td>
-                                    <td><img src={item?.agentimage} className="w-12 mx-auto" alt="" /></td>
+                                    <td>{item?.title}</td>
                                     <td>{item?.agentname}</td>
-                                    <td>{item?.pricerange}</td>
-                                    <td><button>Offer</button></td>
+                                    <td>{item?.message.substring(0, 100)}</td>
+                                    <td>{new Date(item?.date).toLocaleDateString('en-GB')}</td>
                                     <td >
                                         <button
                                             onClick={() => handleDelete(item?._id)}
@@ -89,4 +76,4 @@ const Wishlist = () => {
     );
 };
 
-export default Wishlist;
+export default MyReviews;
