@@ -10,12 +10,24 @@ import UseAuth from "../../../hooks/useAuth";
 import verified from '../../../assets/slider/verifid.png'
 import useAxiosSecure, { axiosSecure } from "../../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from 'swiper/modules';
+import { Rating } from "@smastrom/react-rating";
 
 const PropertiesDetails = () => {
-    const { user } = UseAuth();
-    const [card, setCard] = useState(null);
     const { id } = useParams();
+    const { user } = UseAuth();
+    const [data, setData] = useState([]);
     const axiosSecure = useAxiosSecure();
+    const [card, setCard] = useState(null);
+
+
+    useState(() => {
+        axiosSecure.get('/reviews')
+            .then(res => {
+                setData(res.data)
+            })
+    }, [])
 
     const email = user?.email;
     const userName = user?.displayName;
@@ -156,9 +168,41 @@ const PropertiesDetails = () => {
                             </div>
                         </div>
 
-                        <div className="p-8 rounded-md bg-white">
+                        <div className="p-8 rounded-md bg-white mb-8">
+                            <h2 className='text-lg font-medium font-Roboto leading-8 mb-4'>Feature</h2>
+
+                            <div className="flex flex-col md:flex-row gap-0 md:gap-8">
+                                <div className="flex-1">
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Air Conditioning</p>
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Barbeque</p>
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>ryer</p>
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Gym</p>
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Laundry</p>
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Lawn</p>
+                                </div>
+
+                                <div className="flex-1">
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Microwave</p>
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Outdoor Shower</p>
+                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Refrigerator</p>
+                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Sauna</p>
+                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Security</p>
+                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Swimming Pool</p>
+                                </div>
+
+                                <div className="flex-1">
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>TV Cable</p>
+                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Washer</p>
+                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>WiFi</p>
+                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Window Coverings</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* review section  */}
+                        <section className="bg-white p-8 rounded-md mb-8 ">
                             <div className="flex justify-between items-start">
-                                <h2 className='text-lg font-medium font-Roboto leading-8 mb-4'>Feature</h2>
+                                <h2 className='text-lg font-medium font-Roboto leading-8 mb-4'>Review</h2>
 
                                 {/* review  */}
                                 <button className="btn btn-sm text-primaryColor text-sm bg-[#e868221a] border-[#e868221a] hover:bg-primaryColor hover:text-white rounded-none" onClick={() => document.getElementById('my_modal_3').showModal()}>Leave A Review</button>
@@ -223,33 +267,42 @@ const PropertiesDetails = () => {
                                 </dialog>
                             </div>
 
-                            <div className="flex flex-col md:flex-row gap-0 md:gap-8">
-                                <div className="flex-1">
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Air Conditioning</p>
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Barbeque</p>
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>ryer</p>
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Gym</p>
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Laundry</p>
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Lawn</p>
-                                </div>
-
-                                <div className="flex-1">
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Microwave</p>
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Outdoor Shower</p>
-                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Refrigerator</p>
-                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Sauna</p>
-                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Security</p>
-                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Swimming Pool</p>
-                                </div>
-
-                                <div className="flex-1">
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>TV Cable</p>
-                                    <p className="flex mb-2 items-center gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Washer</p>
-                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>WiFi</p>
-                                    <p className="flex  items-centernter gap-2 text-lg text-[#595960]"><span className="text-primaryColor"><IoMdCheckmarkCircleOutline /></span>Window Coverings</p>
-                                </div>
-                            </div>
-                        </div>
+                            <Swiper
+                                slidesPerView={2}
+                                spaceBetween={30}
+                                freeMode={true}
+                                pagination={{
+                                    clickable: true,
+                                }}
+                                modules={[FreeMode, Pagination]}
+                                className="mySwiper"
+                            >
+                                {
+                                    data?.slice(0, 6)?.map(review => <SwiperSlide key={review?._id}>
+                                        <div className="h-72 p-10 overflow-hidden bg-white rounded-sm font-Roboto">
+                                            <div className="flex items-start gap-4 mb-4">
+                                                <img className="w-12 border rounded-full" src={review?.image} alt="" />
+                                                <div className="">
+                                                    <h2 className="font-semibold leading-8">{review?.name}</h2>
+                                                    <p className="text-sm leading-4 text-gray-500 font-normal">New York</p>
+                                                </div>
+                                            </div>
+                                            <div className="mb-3">
+                                                <h2 className="font-medium leading-8">{review?.title}</h2>
+                                                <p className="text-sm leading-6 text-gray-500 font-normal">{review?.description}</p>
+                                            </div>
+                                            <div className="">
+                                                <Rating
+                                                    style={{ maxWidth: 100 }}
+                                                    value={review?.rating}
+                                                    readOnly
+                                                />
+                                            </div>
+                                        </div>
+                                    </SwiperSlide>)
+                                }
+                            </Swiper >
+                        </section>
                     </div>
 
 

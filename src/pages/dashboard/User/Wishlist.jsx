@@ -2,17 +2,11 @@ import { useState } from "react";
 import useAxiosSecure, { axiosSecure } from "../../../hooks/useAxiosSecure";
 import { MdDeleteOutline } from "react-icons/md";
 import Swal from "sweetalert2";
+import useWishlist from "../../../hooks/useWishlist";
 
 const Wishlist = () => {
-    const [data, setData] = useState([]);
+    const [wishlist, refetch] = useWishlist();
     const axiosSecure = useAxiosSecure();
-
-    useState(() => {
-        axiosSecure.get('/wishlist')
-            .then(res => {
-                setData(res.data)
-            })
-    }, [])
 
     const handleDelete = id => {
         Swal.fire({
@@ -29,12 +23,13 @@ const Wishlist = () => {
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             // refetch(),
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your Item has been deleted.",
-                                    icon: "success"
-                                });
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Item has been deleted.",
+                                icon: "success"
+                            });
                         }
+                        refetch();
                     })
             }
         });
@@ -43,8 +38,9 @@ const Wishlist = () => {
     return (
         <div>
             <div className="max-w-full">
+                <h1 className="text-5xl">Wishlist {wishlist.length}</h1>
                 <div className="overflow-x-auto">
-                    <table className="table">
+                    <table className="table w-full">
                         {/* head */}
                         <thead className="bg-primaryColor capitalize text-white text-xl">
                             <tr>
@@ -60,7 +56,7 @@ const Wishlist = () => {
                         </thead>
                         <tbody>
                             {
-                                data?.map((item, index) => <tr key={item._id}>
+                                wishlist?.map((item, index) => <tr key={item._id}>
                                     <th>{index + 1}</th>
                                     <td><img src={item?.image} className="w-20" alt="" /></td>
                                     <td>{item?.title}</td>
