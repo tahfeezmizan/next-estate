@@ -12,6 +12,7 @@ import PropertiesDetails from "../pages/Shared/AllProperties/PropertiesDetails";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import Dashboard from "../Layout/Dashboard";
 import MyProfile from "../pages/dashboard/User/MyProfile";
+import Wishlist from "../pages/dashboard/User/Wishlist";
 
 
 export const router = createBrowserRouter([
@@ -61,7 +62,11 @@ export const router = createBrowserRouter([
             {
                 path: "myprofile",
                 element: <MyProfile />
-            }
+            },
+            {
+                path: "wishlist",
+                element: <Wishlist/>
+            },
 
         ]
     }

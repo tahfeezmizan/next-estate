@@ -25,7 +25,7 @@ const Dashboard = () => {
                         <h1 className="text-3xl font-Merriweather">next estate</h1>
                     </NavLink>
                     <li><Link to="/dashboard/myprofile">My Profile</Link></li>
-                    <li><Link to="/dashboard/">Wishlist</Link></li>
+                    <li><Link to="/dashboard/wishlist">Wishlist</Link></li>
                     <li><Link to="/dashboard/">Property Bought</Link></li>
                     <li><Link to="/dashboard/">My Reviews</Link></li>
                 </ul>

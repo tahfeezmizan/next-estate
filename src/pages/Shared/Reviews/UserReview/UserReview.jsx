@@ -4,17 +4,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from 'swiper/modules';
 import '@smastrom/react-rating/style.css'
 import { Rating } from "@smastrom/react-rating";
+import useAxiosSecure, { axiosSecure } from "../../../../hooks/useAxiosSecure";
 
 const UserReview = () => {
     const [data, setData] = useState([]);
+    const axiosSecure = useAxiosSecure();
 
     useState(() => {
-        fetch('http://localhost:5000/reviews')
-            .then(res => res.json())
-            .then(data => {
-                setData(data)
-                // console.log(data);
-            })
+        axiosSecure.get('/reviews')
+        .then(res => {
+            setData(res.data)
+        })
     }, [])
 
     return (
@@ -38,7 +38,7 @@ const UserReview = () => {
                         className="mySwiper"
                     >
                         {
-                            data?.map(review => <SwiperSlide key={review?._id}>
+                            data?.slice(0, 6)?.map(review => <SwiperSlide key={review?._id}>
                                 <div className="h-72 p-10 overflow-hidden bg-white rounded-sm font-Roboto">
                                     <div className="flex items-start gap-4 mb-4">
                                         <img className="w-12 border rounded-full" src={review?.image} alt="" />
