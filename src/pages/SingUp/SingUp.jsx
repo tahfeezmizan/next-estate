@@ -8,9 +8,11 @@ import singInBg from '../../assets/slider/singinBg.webp';
 import UseAuth from "../../hooks/useAuth";
 import { ImSpinner9 } from "react-icons/im";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import useAxisoCommon from "../../hooks/useAxisoCommon";
 
 const SingUp = () => {
     const { singUpUser, userProfileUpdate, isLoading, logOut } = UseAuth();
+    const axiosCommon = useAxisoCommon();
     // const [disabled, setDisabled] = useState(true);
     const navigate = useNavigate();
     // console.log("login page location pathname", location.state);
@@ -38,6 +40,14 @@ const SingUp = () => {
                         toast.success('User Register Sucessfully')
                         navigate("/singin")
                         logOut()
+                        const userinfo = {
+                            email,
+                            name
+                        };
+                        axiosCommon.post('/users', userinfo)
+                            .then(res => {
+                                console.log(res.data);
+                            })
                     })
             })
 

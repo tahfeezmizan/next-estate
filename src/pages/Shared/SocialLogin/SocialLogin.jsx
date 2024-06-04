@@ -24,7 +24,6 @@ const SocialLogin = () => {
                             email: result?.user?.email,
                             name: result?.user?.displayName
                         };
-
                         axiosCommon.post('/users', userinfo)
                         .then(res => {
                             console.log(res.data);
