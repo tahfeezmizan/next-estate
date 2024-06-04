@@ -1,3 +1,4 @@
+import { Rating } from "@smastrom/react-rating";
 import { useEffect, useState } from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { FaRegHeart, FaShower } from "react-icons/fa";
@@ -6,13 +7,12 @@ import { IoCarOutline } from "react-icons/io5";
 import { MdCropLandscape } from "react-icons/md";
 import { RiSofaLine } from "react-icons/ri";
 import { useParams } from "react-router-dom";
-import UseAuth from "../../../hooks/useAuth";
-import verified from '../../../assets/slider/verifid.png'
-import useAxiosSecure, { axiosSecure } from "../../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from 'swiper/modules';
-import { Rating } from "@smastrom/react-rating";
+import { Swiper, SwiperSlide } from "swiper/react";
+import verified from '../../../assets/slider/verifid.png';
+import UseAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const PropertiesDetails = () => {
     const { id } = useParams();

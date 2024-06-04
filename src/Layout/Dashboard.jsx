@@ -34,8 +34,8 @@ const Dashboard = () => {
                             <li><Link to="/dashboard/propertybought">My added properties</Link></li>
                             <li><Link to="/dashboard/myreviews">My sold properties</Link></li>
                             <li><Link to="/dashboard/myreviews">Requested properties</Link></li> */}
-                            <li><Link to="/dashboard/myprofile">Admin Profile</Link></li>
-                            <li><Link to="/dashboard/wishlist">Manage Properties</Link></li>
+                            <li><Link to="/dashboard/adminprofile">Admin Profile</Link></li>
+                            <li><Link to="/dashboard/manageproperties">Manage Properties</Link></li>
                             <li><Link to="/dashboard/manageusers">Manage Users</Link></li>
                             <li><Link to="/dashboard/myreviews">Manage reviews</Link></li>
                         </>
