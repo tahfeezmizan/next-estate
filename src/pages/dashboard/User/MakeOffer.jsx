@@ -39,6 +39,7 @@ const MakeOffer = () => {
             location,
             image,
             agentname,
+            status: 'pending',
             offeredAmound: parseFloat(offerprice),
             userEmail,
             userName,

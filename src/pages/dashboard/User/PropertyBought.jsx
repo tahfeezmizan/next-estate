@@ -1,5 +1,6 @@
 import { MdDeleteOutline } from "react-icons/md";
 import usePropertyBought from "../../../hooks/usePropertyBought";
+import { Link } from "react-router-dom";
 
 const PropertyBought = () => {
     const [refetch, boughtProperty] = usePropertyBought();
@@ -35,7 +36,19 @@ const PropertyBought = () => {
                                 <td>{item?.location}</td>
                                 <td>{item?.agentname}</td>
                                 <td>${item?.offeredAmound}</td>
-                                <td>{item?.status}</td>
+                                <td>
+                                    {
+                                        item?.status === "pending" && "complete" ? <h2 className={`text-sm rounded-full capitalize text-white font-medium 
+                                        ${item?.status === 'pending' && 'bg-yellow-500'} 
+                                        ${item?.status === 'in progress' && 'bg-blue-500'} 
+                                        ${item?.status === 'complete' && 'bg-green-500'} 
+                                        ${item?.status === 'complete' && 'bg-green-500'} 
+                                        ${item?.status === 'rejected' && 'bg-red-500'} `}>{item?.status}</h2>
+                                            :
+                                            <Link className="bg-primaryColor text-sm rounded-full capitalize text-white font-medium ">Pay</Link>
+                                    }
+                                </td>
+
                             </tr>)
                         }
                     </tbody>
