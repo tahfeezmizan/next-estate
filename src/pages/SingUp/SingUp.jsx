@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import singInBg from '../../assets/slider/singinBg.webp';
 import UseAuth from "../../hooks/useAuth";
 import { ImSpinner9 } from "react-icons/im";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SingUp = () => {
     const { singUpUser, userProfileUpdate, isLoading, logOut } = UseAuth();
@@ -35,8 +36,8 @@ const SingUp = () => {
                 userProfileUpdate(name, photoURL)
                     .then(() => {
                         toast.success('User Register Sucessfully')
-                        logOut()
                         navigate("/singin")
+                        logOut()
                     })
             })
 
@@ -128,9 +129,7 @@ const SingUp = () => {
                             </button>
                         </div>
                     </form>
-                    <div className="">
-                        {/* <SocialLogin></SocialLogin> */}
-                    </div>
+                    <div className="text-center"><SocialLogin></SocialLogin></div>
 
                     <Link to="/singin" className=" hover:text-primaryColor font-bold pt-5 text-center">Back to login</Link>
                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import UseAuth from '../hooks/useAuth';
 
+
 const Dashboard = () => {
     const { user } = UseAuth()
     const isAdmin = true;

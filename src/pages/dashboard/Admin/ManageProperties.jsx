@@ -1,10 +1,9 @@
-import React from 'react';
 import useProperties from '../../../hooks/useProperties';
 import { MdDeleteOutline } from 'react-icons/md';
 
 const ManageProperties = () => {
     const [data] = useProperties();
-    console.log(data);
+    
     return (
         <div>
             <div className="w-5/6 mx-auto py-10 mt-10">

@@ -8,6 +8,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { ImSpinner9 } from "react-icons/im";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SingIn = () => {
     const { singIn, googleLogin, isLoading } = UseAuth();
@@ -93,23 +94,7 @@ const SingIn = () => {
                             <button className="btn bg-primaryColor border-primaryColor hover:bg-transparent hover:border-primaryColor hover:text-primaryColor font-Roboto text-white text-base">{isLoading ? <div className="animate-spin"><ImSpinner9 /></div> : "Login"}</button>
                         </div>
                     </form>
-                    <button
-                        onClick={() => googleLogin()
-                            .then(result => {
-                                toast.success('Congrs! Google Login Sucessfull');
-                                // navigate(location?.state ? location.state : '/');
-                                navigate(from)
-                            })
-                            .catch((error) => {
-                                const errorText = error.message;
-                                console.log(errorText)
-                                const errorMessage = errorText.slice(22, 40);
-                                toast.error(errorMessage)
-                            })
-                        }
-                        className='btn text-lg w-80 mx-auto rounded-3xl px-6 bg-transparent hover:bg-transparent text-white '><FcGoogle /> Sing in With Google
-                    </button>
-
+                    <div className="text-center"><SocialLogin></SocialLogin></div>
 
                     <Link to="/singup" className="text-white hover:text-primaryColor font-bold pt-5 text-center">Register here!</Link>
                 </div>
