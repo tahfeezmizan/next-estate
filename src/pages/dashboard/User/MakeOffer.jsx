@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UseAuth from "../../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import verified from "../../../assets/slider/verifid.png"
+import { toast } from "react-toastify";
 
 const MakeOffer = () => {
     const { id } = useParams();
@@ -26,18 +27,36 @@ const MakeOffer = () => {
         e.preventDefault();
         const form = e.target;
         const offerprice = form.offerprice.value;
+        const email = user?.email;
+        const userName = user?.displayName;
 
         const today = new Date();
         const date = today.getTime();
 
         const offeredValue = {
             title,
+            date,
             location,
             image,
             agentname,
             offerprice,
+            email,
+            userName,
         }
         console.log(offeredValue);
+
+        axiosSecure.post('/makeoffer', offeredValue)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    toast.success('Review Added Successfully');
+                    // refetch(); // Uncomment this if you want to refetch the data
+                }
+            })
+            .catch(error => {
+                console.error('Error adding review:', error);
+                toast.error('Failed to add review');
+            });
     }
 
 
@@ -78,7 +97,7 @@ const MakeOffer = () => {
                     </div>
                     <p className='font-semibold text-lg pb-3'><span className="rounded">{pricerange}</span></p>
 
-                    <p className='font-semibold text-lg pb-3'><span className="rounded">Buyer </span></p>
+                    <p className="text-xl font-medium">Buyer Details</p>
 
                     <p className='font-semibold text-lg'><span className="rounded">{user?.displayName || 'No Name'}</span></p>
                     <p className='text-lg pb-3'><span className="rounded">{user?.email}</span></p>
