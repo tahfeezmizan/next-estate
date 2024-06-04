@@ -38,7 +38,7 @@ const Dashboard = () => {
                             <li><Link to="/dashboard/adminprofile">Admin Profile</Link></li>
                             <li><Link to="/dashboard/manageproperties">Manage Properties</Link></li>
                             <li><Link to="/dashboard/manageusers">Manage Users</Link></li>
-                            <li><Link to="/dashboard/myreviews">Manage reviews</Link></li>
+                            <li><Link to="/dashboard/managereviews">Manage reviews</Link></li>
                         </>
                             :
                             <>

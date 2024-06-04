@@ -1,31 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { MdDeleteOutline } from 'react-icons/md';
-import Swal from 'sweetalert2';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { toast } from 'react-toastify';
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { MdDeleteOutline } from "react-icons/md";
+import Swal from "sweetalert2";
 
-const ManageUsers = () => {
+const ManageReviews = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { refetch, data: user = [] } = useQuery({
-        queryKey: ['user'],
+    const {refetch, data: review = [] } = useQuery({
+        queryKey: ["review"],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users')
+            const res = await axiosSecure.get('/reviews')
             return res.data;
         }
     });
-
-    const handleMakeAdmin = (user) => {
-        axiosSecure.patch(`/users/admin/${user}`)
-            .then(res => {
-                console.log(res.data);
-                if (res.data?.modifiedCount) {
-                    refetch()
-                    toast.success(`${user.name} will be Admin`)
-                }
-            })
-    }
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -38,7 +25,7 @@ const ManageUsers = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/users/${id}`)
+                axiosSecure.delete(`/reviews/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             // refetch(),
@@ -54,40 +41,32 @@ const ManageUsers = () => {
         });
     }
 
+
     return (
         <div className="w-5/6 mx-auto py-10 mt-10">
-            <h1 className="text-2xl font-semibold font-Merriweather mb-5">Manage All Users<span className="bg-primaryColor px-3 ml-2 rounded-full text-lg font-Roboto text-white">{user.length}</span></h1>
+            <h1 className="text-2xl font-semibold font-Merriweather mb-5">Manage All Reviews<span className="bg-primaryColor px-3 ml-2 rounded-full text-lg font-Roboto text-white">{review.length}</span></h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     {/* head */}
                     <thead className="bg-primaryColor capitalize text-center text-white text-xl">
                         <tr>
+                            {/* ,,, and a delete button */}
                             <th></th>
-                            <th>User Name</th>
-                            <th>User Email</th>
-                            <th>Make Agent</th>
-                            <th>Make Admin</th>
-                            <th>Mark as fraud</th>
+                            <th>reviewer image</th>
+                            <th>reviewer email</th>
+                            <th>reviewer name</th>
+                            <th>review</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody className="text-center">
                         {
-                            user?.map((user, index) => <tr key={user._id}>
+                            review?.map((user, index) => <tr key={user._id}>
                                 <th>{index + 1}</th>
                                 <td className='capitalize'>{user?.name}</td>
-                                <td>{user?.email}</td>
-                                <td>{user?.agentname}</td>
-                                <td>
-                                    {
-                                        user?.role === 'admin' ? <button
-                                            onClick={() => handleMakeAdmin(user?._id)}
-                                            className='btn'
-                                        >Make Admin</button>
-                                            : "admin"
-                                    }
-                                </td>
-                                <td>{user?.pricerange}</td>
+                                <td>{user?.userEmail}</td>
+                                <td>{user?.userName}</td>
+                                <td>{user?.description}</td>
                                 <td >
                                     <button
                                         onClick={() => handleDelete(user?._id)}
@@ -104,4 +83,4 @@ const ManageUsers = () => {
     );
 };
 
-export default ManageUsers;
+export default ManageReviews;

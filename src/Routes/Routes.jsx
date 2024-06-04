@@ -19,6 +19,7 @@ import PropertyBought from "../pages/dashboard/User/PropertyBought";
 import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
 import AdminProfile from "../pages/dashboard/Admin/AdminProfile";
 import ManageProperties from "../pages/dashboard/Admin/ManageProperties";
+import ManageReviews from "../pages/dashboard/Admin/ManageReviews";
 
 
 export const router = createBrowserRouter([
@@ -100,6 +101,10 @@ export const router = createBrowserRouter([
             {
                 path: "manageproperties",
                 element: <ManageProperties />
+            },
+            {
+                path: "managereviews",
+                element: <ManageReviews />
             },
 
         ]
