@@ -8,7 +8,7 @@ const Dashboard = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-center">
+            <div className="drawer-content flex flex-col">
                 {/* Page content here */}
                 <div className="flex justify-end items-center">
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open Menu</label>
@@ -26,7 +26,7 @@ const Dashboard = () => {
                     </NavLink>
                     <li><Link to="/dashboard/myprofile">My Profile</Link></li>
                     <li><Link to="/dashboard/wishlist">Wishlist</Link></li>
-                    <li><Link to="/dashboard/">Property Bought</Link></li>
+                    <li><Link to="/dashboard/propertybought">Property Bought</Link></li>
                     <li><Link to="/dashboard/myreviews">My Reviews</Link></li>
                 </ul>
             </div>

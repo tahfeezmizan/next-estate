@@ -27,7 +27,7 @@ const MakeOffer = () => {
         e.preventDefault();
         const form = e.target;
         const offerprice = form.offerprice.value;
-        const email = user?.email;
+        const userEmail = user?.email;
         const userName = user?.displayName;
 
         const today = new Date();
@@ -39,8 +39,8 @@ const MakeOffer = () => {
             location,
             image,
             agentname,
-            offerprice,
-            email,
+            offeredAmound: parseFloat(offerprice),
+            userEmail,
             userName,
         }
         console.log(offeredValue);
@@ -114,7 +114,6 @@ const MakeOffer = () => {
                     <button className="mt-4 mb-8 w-full rounded-md bg-primaryColor px-6 py-3 font-medium text-white">Send Offer</button>
                 </form>
             </div>
-
         </div>
     );
 };

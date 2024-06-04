@@ -37,42 +37,40 @@ const MyReviews = () => {
     }
 
     return (
-        <div>
-            <div className="max-w-full">
-                <h1 className="text-5xl">myreviews {myreviews.length}</h1>
-                <div className="overflow-x-auto">
-                    <table className="table w-full">
-                        {/* head */}
-                        <thead className="bg-primaryColor capitalize text-center text-white text-xl">
-                            <tr>
-                                <th></th>
-                                <th>property title</th>
-                                <th>agent name</th>
-                                <th>review descrip</th>
-                                <th>review time</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-center">
-                            {
-                                myreviews?.map((item, index) => <tr key={item._id}>
-                                    <th>{index + 1}</th>
-                                    <td>{item?.title}</td>
-                                    <td>{item?.agentname}</td>
-                                    <td>{item?.message.substring(0, 100)}</td>
-                                    <td>{new Date(item?.date).toLocaleDateString('en-GB')}</td>
-                                    <td >
-                                        <button
-                                            onClick={() => handleDelete(item?._id)}
-                                            className="text-3xl">
-                                            <MdDeleteOutline />
-                                        </button>
-                                    </td>
-                                </tr>)
-                            }
-                        </tbody>
-                    </table>
-                </div>
+        <div className="w-5/6 mx-auto py-10 mt-10">
+            <h1 className="text-2xl font-semibold font-Merriweather mb-5">My Reviews <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{myreviews.length}</span></h1>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+                    {/* head */}
+                    <thead className="bg-primaryColor capitalize text-center text-white text-xl">
+                        <tr>
+                            <th></th>
+                            <th>property title</th>
+                            <th>agent name</th>
+                            <th>review descrip</th>
+                            <th>review time</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-center">
+                        {
+                            myreviews?.map((item, index) => <tr key={item._id}>
+                                <th>{index + 1}</th>
+                                <td>{item?.title}</td>
+                                <td>{item?.agentname}</td>
+                                <td>{item?.message.substring(0, 100)}</td>
+                                <td>{new Date(item?.date).toLocaleDateString('en-GB')}</td>
+                                <td >
+                                    <button
+                                        onClick={() => handleDelete(item?._id)}
+                                        className="text-3xl">
+                                        <MdDeleteOutline />
+                                    </button>
+                                </td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     );
