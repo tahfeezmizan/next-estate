@@ -7,12 +7,13 @@ import singInBg from '../../assets/slider/singinBg.webp';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { ImSpinner9 } from "react-icons/im";
 
 const SingIn = () => {
-    const { singIn, googleLogin } = UseAuth();
+    const { singIn, googleLogin, isLoading } = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state || '/'
+    const from = location?.state?.from?.pathname || '/';
     // console.log("login page location pathname", location.state);
 
     const [showPassword, setShowPassword] = useState(false);
@@ -28,8 +29,6 @@ const SingIn = () => {
 
     const onSubmit = (data) => {
         const { email, password } = data;
-        console.log(email, password);
-
         singIn(email, password)
             .then(result => {
                 console.log(result);
@@ -52,7 +51,7 @@ const SingIn = () => {
             <div className="w-2/4 flex items-center justify-center mx-auto shadow-2xl backdrop-blur-md rounded-2xl" >
                 <div className="card shrink-0 w-full max-w-lg p-10 ">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                        <h1 className="text-2xl font-Roboto font-medium leading-8 ">Sign into your account</h1>
+                        <h1 className="text-2xl font-Roboto text-white font-medium leading-8 ">Sign into your account</h1>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-white">Email</span>
@@ -91,7 +90,7 @@ const SingIn = () => {
                         </div>
 
                         <div className="form-control pt-5">
-                            <button className="btn bg-primaryColor border-primaryColor hover:bg-transparent hover:border-primaryColor hover:text-primaryColor font-Roboto text-white text-base">Login</button>
+                            <button className="btn bg-primaryColor border-primaryColor hover:bg-transparent hover:border-primaryColor hover:text-primaryColor font-Roboto text-white text-base">{isLoading ? <div className="animate-spin"><ImSpinner9 /></div> : "Login"}</button>
                         </div>
                     </form>
                     <button
@@ -108,7 +107,7 @@ const SingIn = () => {
                                 toast.error(errorMessage)
                             })
                         }
-                        className='btn btn-sm text-2xl rounded-3xl px-6 bg-transparent hover:bg-transparent '><FcGoogle />
+                        className='btn text-lg w-80 mx-auto rounded-3xl px-6 bg-transparent hover:bg-transparent text-white '><FcGoogle /> Sing in With Google
                     </button>
 
 

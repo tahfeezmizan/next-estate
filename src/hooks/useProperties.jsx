@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxisoCommon from "./useAxisoCommon";
 
 const useProperties = () => {
     const [data, setData] = useState([]);
-    const axiosSecure = useAxiosSecure();
+    const axiosCommon = useAxisoCommon();
 
     useEffect(() => {
-        axiosSecure.get('/property')
+        axiosCommon.get('/property')
         .then(res => {
             setData(res.data);
         })

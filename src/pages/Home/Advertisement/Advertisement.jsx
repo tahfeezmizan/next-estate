@@ -8,17 +8,6 @@ import verified from '../../../assets/slider/verifid.png'
 
 const Advertisement = () => {
     const [data] = useProperties();
-    
-    // const [data, setData] = useState([]);
-
-    // useEffect(() => {
-    //     fetch('menu.json')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setData(data);
-    //             console.log(data);
-    //         });
-    // }, []);
 
     return (
         <div className="">

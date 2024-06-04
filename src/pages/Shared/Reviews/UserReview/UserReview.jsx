@@ -1,20 +1,20 @@
-import { useState } from "react";
-import SectionTitle from "../../SectionTitle/SectionTitle";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from 'swiper/modules';
-import '@smastrom/react-rating/style.css'
 import { Rating } from "@smastrom/react-rating";
-import useAxiosSecure, { axiosSecure } from "../../../../hooks/useAxiosSecure";
+import '@smastrom/react-rating/style.css';
+import { useState } from "react";
+import { FreeMode, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import useAxisoCommon from "../../../../hooks/useAxisoCommon";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const UserReview = () => {
     const [data, setData] = useState([]);
-    const axiosSecure = useAxiosSecure();
+    const axiosCommon = useAxisoCommon();
 
     useState(() => {
-        axiosSecure.get('/reviews')
-        .then(res => {
-            setData(res.data)
-        })
+        axiosCommon.get('/reviews')
+            .then(res => {
+                setData(res.data)
+            })
     }, [])
 
     return (

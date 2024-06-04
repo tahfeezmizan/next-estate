@@ -4,6 +4,8 @@ import UseAuth from '../hooks/useAuth';
 
 const Dashboard = () => {
     const { user } = UseAuth()
+    const isAdmin = true;
+    const isAgent = false;
 
     return (
         <div className="drawer lg:drawer-open">
@@ -24,10 +26,28 @@ const Dashboard = () => {
                         {/* <img src={siteLogo} className="w-40" alt="" /> */}
                         <h1 className="text-3xl font-Merriweather">next estate</h1>
                     </NavLink>
-                    <li><Link to="/dashboard/myprofile">My Profile</Link></li>
-                    <li><Link to="/dashboard/wishlist">Wishlist</Link></li>
-                    <li><Link to="/dashboard/propertybought">Property Bought</Link></li>
-                    <li><Link to="/dashboard/myreviews">My Reviews</Link></li>
+
+                    {
+                        isAdmin ? <>
+                            {/* <li><Link to="/dashboard/myprofile">Agent Profil</Link></li>
+                            <li><Link to="/dashboard/wishlist">Add Property</Link></li>
+                            <li><Link to="/dashboard/propertybought">My added properties</Link></li>
+                            <li><Link to="/dashboard/myreviews">My sold properties</Link></li>
+                            <li><Link to="/dashboard/myreviews">Requested properties</Link></li> */}
+                            <li><Link to="/dashboard/myprofile">Admin Profile</Link></li>
+                            <li><Link to="/dashboard/wishlist">Manage Properties</Link></li>
+                            <li><Link to="/dashboard/manageusers">Manage Users</Link></li>
+                            <li><Link to="/dashboard/myreviews">Manage reviews</Link></li>
+                        </>
+                            :
+                            <>
+                                <li><Link to="/dashboard/myprofile">My Profile</Link></li>
+                                <li><Link to="/dashboard/wishlist">Wishlist</Link></li>
+                                <li><Link to="/dashboard/propertybought">Property Bought</Link></li>
+                                <li><Link to="/dashboard/myreviews">My Reviews</Link></li>
+                            </>
+                    },
+
                 </ul>
             </div>
         </div>

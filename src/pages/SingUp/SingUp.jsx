@@ -2,18 +2,16 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import SingInImage from '../../assets/slider/slide_2.jpg'
-import singInBg from '../../assets/slider/singinBg.webp'
-import UseAuth from "../../hooks/useAuth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import singInBg from '../../assets/slider/singinBg.webp';
+import UseAuth from "../../hooks/useAuth";
+import { ImSpinner9 } from "react-icons/im";
 
 const SingUp = () => {
-    const { singUpUser } = UseAuth();
+    const { singUpUser, userProfileUpdate, isLoading, logOut } = UseAuth();
     // const [disabled, setDisabled] = useState(true);
-    // const navigate = useNavigate();
-    // const location = useLocation();
-    // const from = location?.state?.from?.pathname || '/';
+    const navigate = useNavigate();
     // console.log("login page location pathname", location.state);
 
     const [showPassword, setShowPassword] = useState(false);
@@ -28,20 +26,20 @@ const SingUp = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        const { email, password } = data;
+        const { name, email, photoURL, password } = data;
         console.log(email, password);
 
         singUpUser(email, password)
             .then(result => {
                 console.log(result.user);
-                toast.success('User Sing In Sucessfully')
+                userProfileUpdate(name, photoURL)
+                    .then(() => {
+                        toast.success('User Register Sucessfully')
+                        logOut()
+                        navigate("/singin")
+                    })
             })
-        // singInUser(email, password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         navigate(from, { replace: true })
-        //     })
+
     }
 
 
@@ -58,8 +56,8 @@ const SingUp = () => {
             <div className="w-2/4 flex items-center justify-center mx-auto shadow-2xl backdrop-blur-md rounded-2xl" >
                 <div className="card shrink-0 w-full max-w-lg p-10 ">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                        <h1 className="text-2xl font-Roboto font-medium leading-8 ">Create an account</h1>
-                        {/* <div className="form-control">
+                        <h1 className="text-2xl font-Roboto text-white font-medium leading-8 ">Create an account</h1>
+                        <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-white">Name</span>
                             </label>
@@ -72,7 +70,7 @@ const SingUp = () => {
                                 {...register("name", { required: true })}
                             />
                             {errors.email && <span className="text-xs text-red-500">Email is required</span>}
-                        </div> */}
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-white">Email</span>
@@ -87,7 +85,7 @@ const SingUp = () => {
                             />
                             {errors.email && <span className="text-xs text-red-500">Email is required</span>}
                         </div>
-                        {/* <div className="form-control">
+                        <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-white">Photo URL</span>
                             </label>
@@ -99,8 +97,8 @@ const SingUp = () => {
 
                                 {...register("photoURL", { required: true })}
                             />
-                            {errors.email && <span className="text-xs text-red-500">Email is required</span>}
-                        </div> */}
+                            {errors.photoURL && <span className="text-xs text-red-500">Photo Url is required</span>}
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-white">Password</span>
@@ -125,7 +123,9 @@ const SingUp = () => {
                         </div>
 
                         <div className="form-control pt-5">
-                            <button className="btn bg-primaryColor border-primaryColor hover:bg-transparent hover:border-primaryColor hover:text-primaryColor font-Roboto text-white text-base">Register</button>
+                            <button className="btn bg-primaryColor border-primaryColor hover:bg-transparent hover:border-primaryColor hover:text-primaryColor font-Roboto text-white text-base">
+                                {isLoading ? <div className="animate-spin"><ImSpinner9 /></div> : "Register"}
+                            </button>
                         </div>
                     </form>
                     <div className="">
