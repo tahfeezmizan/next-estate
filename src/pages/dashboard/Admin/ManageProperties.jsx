@@ -22,7 +22,7 @@ const ManageProperties = () => {
                             <th>Reject</th>
                         </tr>
                     </thead>
-                    <tbody className="text-center">
+                    <tbody className="">
                         {
                             data?.map((property, index) => <tr key={property._id}>
                                 <th>{index + 1}</th>

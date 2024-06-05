@@ -13,7 +13,6 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    console.log("auth user", user);
 
     // create new user
     const singUpUser = (email, password) => {
@@ -49,7 +48,7 @@ const AuthProvider = ({ children }) => {
             role: "guest",
             status: "verified"
         }
-        const { data } = await axios.put(`${BASE_URL}/user`, newUser)
+        const { data } = await axios.put(`${BASE_URL}/user`, newUser);
         return data;
     }
 

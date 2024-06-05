@@ -59,14 +59,14 @@ const ManageReviews = () => {
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    <tbody className="text-center">
+                    <tbody className="">
                         {
                             review?.map((user, index) => <tr key={user._id}>
                                 <th>{index + 1}</th>
                                 <td className='capitalize'>{user?.name}</td>
                                 <td>{user?.userEmail}</td>
                                 <td>{user?.userName}</td>
-                                <td>{user?.description}</td>
+                                <td className="w-96">{user?.description}</td>
                                 <td >
                                     <button
                                         onClick={() => handleDelete(user?._id)}

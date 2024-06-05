@@ -71,7 +71,7 @@ const ManageUsers = () => {
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    <tbody className="text-center">
+                    <tbody className="">
                         {
                             user?.map((user, index) => <tr key={user._id}>
                                 <th>{index + 1}</th>
@@ -80,7 +80,7 @@ const ManageUsers = () => {
                                 <td>{user?.agentname}</td>
                                 <td>
                                     {
-                                        user?.role === 'admin' ? <button
+                                        user?.role === 'guest' ? <button
                                             onClick={() => handleMakeAdmin(user?._id)}
                                             className='btn'
                                         >Make Admin</button>

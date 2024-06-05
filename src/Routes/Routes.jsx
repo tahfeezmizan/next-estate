@@ -1,25 +1,24 @@
 import {
     createBrowserRouter,
 } from "react-router-dom";
+import Dashboard from "../Layout/Dashboard";
 import Mainlayout from "../Layout/Mainlayout";
 import Home from "../pages/Home/Home/Home";
+import Properties from "../pages/Properties/Properties";
 import AllProperties from "../pages/Shared/AllProperties/AllProperties";
+import PropertiesDetails from "../pages/Shared/AllProperties/PropertiesDetails";
+import PageBanner from "../pages/Shared/PageBanner/PageBanner";
 import SingIn from "../pages/SingIn/SingIn";
 import SingUp from "../pages/SingUp/SingUp";
-import Properties from "../pages/Properties/Properties";
-import PageBanner from "../pages/Shared/PageBanner/PageBanner";
-import PropertiesDetails from "../pages/Shared/AllProperties/PropertiesDetails";
-import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
-import Dashboard from "../Layout/Dashboard";
-import MyProfile from "../pages/dashboard/User/MyProfile";
-import Wishlist from "../pages/dashboard/User/Wishlist";
-import MyReviews from "../pages/dashboard/User/MyReviews";
-import MakeOffer from "../pages/dashboard/User/MakeOffer";
-import PropertyBought from "../pages/dashboard/User/PropertyBought";
-import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
-import AdminProfile from "../pages/dashboard/Admin/AdminProfile";
 import ManageProperties from "../pages/dashboard/Admin/ManageProperties";
 import ManageReviews from "../pages/dashboard/Admin/ManageReviews";
+import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
+import Profile from "../pages/dashboard/Profile";
+import MakeOffer from "../pages/dashboard/User/MakeOffer";
+import MyReviews from "../pages/dashboard/User/MyReviews";
+import PropertyBought from "../pages/dashboard/User/PropertyBought";
+import Wishlist from "../pages/dashboard/User/Wishlist";
+import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 
 export const router = createBrowserRouter([
@@ -66,11 +65,12 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
-            // user profile
             {
-                path: "myprofile",
-                element: <MyProfile />
+                path: "profile",
+                element: <Profile />
             },
+
+            // user profile
             {
                 path: "wishlist",
                 element: <Wishlist />
@@ -90,10 +90,6 @@ export const router = createBrowserRouter([
 
 
             // admin route 
-            {
-                path: "adminprofile",
-                element: <AdminProfile />
-            },
             {
                 path: "manageusers",
                 element: <ManageUsers />
