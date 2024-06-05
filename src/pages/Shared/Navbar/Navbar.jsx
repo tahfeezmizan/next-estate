@@ -62,9 +62,6 @@ const Navbar = () => {
 
                                 <Link onClick={() => {
                                     logOut()
-                                    if (logOut) {
-                                        toast.success('User has log out!');
-                                    }
                                 }}><a>Logout</a></Link>
 
                             </ul>

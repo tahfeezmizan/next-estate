@@ -4,6 +4,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import UseAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -18,6 +19,9 @@ const ManageUsers = () => {
     });
 
     const handleUserRole = async (email, name, role) => {
+        if (user?.email === email) {
+            return toast.error('Action not allwed')
+        }
         axiosSecure.patch(`/users/update/${email}`, { role })
             .then((data) => {
                 console.log(data.data);
@@ -32,10 +36,14 @@ const ManageUsers = () => {
                     });
                 }
             });
+
     }
-    
-    const handleUserRole = async (email, name, role) => {
-        axiosSecure.patch(`/users/update/${email}`, { role })
+
+
+    // agent fruad method
+    const handleAgentFraud = async (email, name, role) => {
+
+        axiosSecure.patch(`/users/updatefraud/${email}`, { role })
             .then((data) => {
                 console.log(data.data);
                 if (data.data.modifiedCount) {
@@ -105,11 +113,11 @@ const ManageUsers = () => {
                                 <td className='capitalize'>{user?.name}</td>
                                 <td>{user?.email}</td>
                                 <td>
-                                    {user?.role !== 'agent' ? <button
+                                    {user?.role !== 'agent' && user?.role !== 'admin' ? <button
                                         onClick={() => handleUserRole(user?.email, user?.name, 'agent')}
-                                        className='btn'
+                                        className='btn btn-sm'
                                     >Make Agent</button>
-                                        : "Agent"
+                                        : <span className='text-lg font-semibold'>{user?.role === 'admin' ? '' : "Agent"}</span>
                                     }
                                 </td>
                                 <td>
@@ -117,17 +125,17 @@ const ManageUsers = () => {
                                         user?.role !== 'admin' ? <button
                                             onClick={() => handleUserRole(user?.email, user?.name, 'admin')}
                                             // onClick={() => setUserRole('admin')}
-                                            className='btn'
+                                            className='btn btn-sm'
                                         >Make Admin</button>
-                                            : "admin"
+                                            : <span className='text-lg font-semibold'>Admin</span>
                                     }
                                 </td>
                                 <td>
                                     {/* only agent  */}
                                     {user?.role === 'agent' ?
-                                        <button 
-                                        onClick={() => {}}
-                                        className='btn'>Make Fraud</button>
+                                        <button
+                                            onClick={() => handleAgentFraud(user?.email, user?.name, 'true')}
+                                            className='btn btn-sm'>Make Fraud</button>
                                         : ""
                                     }
                                 </td>

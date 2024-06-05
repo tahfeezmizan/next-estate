@@ -19,6 +19,9 @@ import MyReviews from "../pages/dashboard/User/MyReviews";
 import PropertyBought from "../pages/dashboard/User/PropertyBought";
 import Wishlist from "../pages/dashboard/User/Wishlist";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import AddProperty from "../pages/dashboard/Agents/AddProperty";
+import AdminRoutes from "./AdminRoutes/AdminRoutes";
+import AgentRoutes from "./AgentRoutes/AgentRoutes";
 
 
 export const router = createBrowserRouter([
@@ -67,42 +70,66 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Profile />
+                element: <PrivateRoutes><Profile /></PrivateRoutes>
             },
 
             // user profile
             {
                 path: "wishlist",
-                element: <Wishlist />
+                element: <PrivateRoutes><Wishlist /></PrivateRoutes>
             },
             {
                 path: "myreviews",
-                element: <MyReviews />
+                element: <PrivateRoutes><MyReviews /></PrivateRoutes>
             },
             {
                 path: "makeoffer/:id",
-                element: <MakeOffer />
+                element: <PrivateRoutes><MakeOffer /></PrivateRoutes>
             },
             {
                 path: "propertybought",
-                element: <PropertyBought />
+                element: <PrivateRoutes><PropertyBought /></PrivateRoutes>
             },
 
 
             // admin route 
             {
                 path: "manageusers",
-                element: <ManageUsers />
+                element: <PrivateRoutes>
+                    <AdminRoutes>
+                        <ManageUsers />
+                    </AdminRoutes>
+                </PrivateRoutes>
             },
             {
                 path: "manageproperties",
-                element: <ManageProperties />
+                element: <PrivateRoutes>
+                    <AdminRoutes>
+                        <ManageProperties />
+                    </AdminRoutes>
+                </PrivateRoutes>
             },
             {
                 path: "managereviews",
-                element: <ManageReviews />
+                element:
+                    <PrivateRoutes>
+                        <AdminRoutes>
+                            <ManageReviews />
+                        </AdminRoutes>
+                    </PrivateRoutes>
             },
 
+
+            // agent routes
+            {
+                path: "addproperty",
+                element:
+                    <PrivateRoutes>
+                        <AgentRoutes>
+                            <AddProperty />
+                        </AgentRoutes>
+                    </PrivateRoutes>
+            },
         ]
     }
 ]);

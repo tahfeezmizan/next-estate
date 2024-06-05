@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import UseAuth from '../hooks/useAuth';
 import useRole from '../hooks/useRole';
 
 
 const Dashboard = () => {
     const [role] = useRole();
-    const { user } = UseAuth();
+    const { user, logOut } = UseAuth();
 
     return (
         <div className="drawer lg:drawer-open">
@@ -39,17 +39,10 @@ const Dashboard = () => {
                             </>
                         }
 
-                        {/* <li><NavLink to="/dashboard/adminhome">Home</NavLink></li>
-                        <li><NavLink to="/dashboard/manageproperties">Manage Properties</NavLink></li>
-                        <li><NavLink to="/dashboard/manageusers">Manage Users</NavLink></li>
-                        <li><NavLink to="/dashboard/managereviews">Manage reviews</NavLink></li> */}
-
-
                         {/* agent routes */}
                         {
                             role === "agent" && <>
-                                <li><NavLink to="/dashboard/myprofile">Agent Profil</NavLink></li>
-                                <li><NavLink to="/dashboard/wishlist">Add Property</NavLink></li>
+                                <li><NavLink to="/dashboard/addproperty">Add Property</NavLink></li>
                                 <li><NavLink to="/dashboard/propertybought">My added properties</NavLink></li>
                                 <li><NavLink to="/dashboard/myreviews">My sold properties</NavLink></li>
                                 <li><NavLink to="/dashboard/myreviews">Requested properties</NavLink></li>
@@ -67,7 +60,10 @@ const Dashboard = () => {
                     </div>
                     <div className="">
                         <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
-                        <li><NavLink to="/dashboard/">Logout</NavLink></li>
+                        <li><Link onClick={() => {
+                            logOut()
+                        }}><a>Logout</a></Link>
+                        </li>
                     </div>
                 </ul>
             </div>
