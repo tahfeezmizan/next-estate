@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
             name: user?.displayName,
             email: user?.email,
             role: "guest",
-            status: "verified"
+            fruad: false,
         }
         const { data } = await axios.put(`${BASE_URL}/user`, newUser);
         return data;

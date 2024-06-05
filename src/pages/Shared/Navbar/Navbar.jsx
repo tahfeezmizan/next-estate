@@ -8,13 +8,13 @@ const Navbar = () => {
 
     const links = (
         <>
-            <li><NavLink to='/'>Home</NavLink></li>
+            <NavLink to='/'>Home</NavLink>
             {user ? <>
-                <li><NavLink to='/allproperties'>All Properties</NavLink></li>
-                <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+                <NavLink to='/allproperties'>All Properties</NavLink>
+                <NavLink to='/dashboard'>Dashboard</NavLink>
             </>
                 :
-                <li><NavLink to='/properties'>Properties</NavLink></li>
+                <NavLink to='/properties'>Properties</NavLink>
             }
         </>
     );
@@ -56,17 +56,17 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><p className="text-lg font-bold capitalize">{user?.displayName || 'Name Not Found'}</p></li>
-                                <li><Link to='/profile'>Profile</Link></li>
-                                <li><Link to='/dashboard'>Dashboard</Link></li>
-                                <li>
-                                    <Link onClick={() => {
-                                        logOut()
-                                        if (logOut) {
-                                            toast.success('User has log out!');
-                                        }
-                                    }}><a>Logout</a></Link>
-                                </li>
+                                <p className="text-lg font-bold capitalize">{user?.displayName || 'Name Not Found'}</p>
+                                <Link to='/profile'>Profile</Link>
+                                <Link to='/dashboard'>Dashboard</Link>
+
+                                <Link onClick={() => {
+                                    logOut()
+                                    if (logOut) {
+                                        toast.success('User has log out!');
+                                    }
+                                }}><a>Logout</a></Link>
+
                             </ul>
                         </div>
                         :

@@ -5,11 +5,8 @@ import useRole from '../hooks/useRole';
 
 
 const Dashboard = () => {
-    const { user } = UseAuth()
     const [role] = useRole();
-    const isAdmin = true;
-    const isAgent = false;
-    console.log('user role', role);
+    const { user } = UseAuth();
 
     return (
         <div className="drawer lg:drawer-open">
@@ -35,12 +32,18 @@ const Dashboard = () => {
                         {/* admin routes  */}
                         {
                             role === "admin" && <>
-                                <li><NavLink to="/dashboard">Home</NavLink></li>
+                                <li><NavLink to="/dashboard/adminhome">Home</NavLink></li>
                                 <li><NavLink to="/dashboard/manageproperties">Manage Properties</NavLink></li>
                                 <li><NavLink to="/dashboard/manageusers">Manage Users</NavLink></li>
                                 <li><NavLink to="/dashboard/managereviews">Manage reviews</NavLink></li>
                             </>
                         }
+
+                        {/* <li><NavLink to="/dashboard/adminhome">Home</NavLink></li>
+                        <li><NavLink to="/dashboard/manageproperties">Manage Properties</NavLink></li>
+                        <li><NavLink to="/dashboard/manageusers">Manage Users</NavLink></li>
+                        <li><NavLink to="/dashboard/managereviews">Manage reviews</NavLink></li> */}
+
 
                         {/* agent routes */}
                         {

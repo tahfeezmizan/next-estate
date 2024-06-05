@@ -1,31 +1,56 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
 import Swal from 'sweetalert2';
+import UseAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { toast } from 'react-toastify';
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
+    const { user, isLoading } = UseAuth();
 
-    const { refetch, data: user = [] } = useQuery({
-        queryKey: ['user'],
+    const { refetch, data: allUser = [] } = useQuery({
+        queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users')
             return res.data;
         }
     });
 
-    const handleMakeAdmin = (user) => {
-        axiosSecure.patch(`/users/admin/${user}`)
-            .then(res => {
-                console.log(res.data);
-                if (res.data?.modifiedCount) {
-                    refetch()
-                    toast.success(`${user.name} will be Admin`)
+    const handleUserRole = async (email, name, role) => {
+        axiosSecure.patch(`/users/update/${email}`, { role })
+            .then((data) => {
+                console.log(data.data);
+                if (data.data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: `${name} is an ${role} Now!`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                 }
-            })
+            });
     }
+    
+    const handleUserRole = async (email, name, role) => {
+        axiosSecure.patch(`/users/update/${email}`, { role })
+            .then((data) => {
+                console.log(data.data);
+                if (data.data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: `${name} is an ${role} Now!`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            });
+    }
+
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -54,9 +79,11 @@ const ManageUsers = () => {
         });
     }
 
+    const filteredUsers = allUser.filter(user => !user.fraud);
+
     return (
         <div className="w-5/6 mx-auto py-10 mt-10">
-            <h1 className="text-2xl font-semibold font-Merriweather mb-5">Manage All Users<span className="bg-primaryColor px-3 ml-2 rounded-full text-lg font-Roboto text-white">{user.length}</span></h1>
+            <h1 className="text-2xl font-semibold font-Merriweather mb-5">Manage All Users<span className="bg-primaryColor px-3 ml-2 rounded-full text-lg font-Roboto text-white">{filteredUsers.length}</span></h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     {/* head */}
@@ -73,21 +100,37 @@ const ManageUsers = () => {
                     </thead>
                     <tbody className="">
                         {
-                            user?.map((user, index) => <tr key={user._id}>
+                            filteredUsers?.map((user, index) => <tr key={user._id}>
                                 <th>{index + 1}</th>
                                 <td className='capitalize'>{user?.name}</td>
                                 <td>{user?.email}</td>
-                                <td>{user?.agentname}</td>
+                                <td>
+                                    {user?.role !== 'agent' ? <button
+                                        onClick={() => handleUserRole(user?.email, user?.name, 'agent')}
+                                        className='btn'
+                                    >Make Agent</button>
+                                        : "Agent"
+                                    }
+                                </td>
                                 <td>
                                     {
-                                        user?.role === 'guest' ? <button
-                                            onClick={() => handleMakeAdmin(user?._id)}
+                                        user?.role !== 'admin' ? <button
+                                            onClick={() => handleUserRole(user?.email, user?.name, 'admin')}
+                                            // onClick={() => setUserRole('admin')}
                                             className='btn'
                                         >Make Admin</button>
                                             : "admin"
                                     }
                                 </td>
-                                <td>{user?.pricerange}</td>
+                                <td>
+                                    {/* only agent  */}
+                                    {user?.role === 'agent' ?
+                                        <button 
+                                        onClick={() => {}}
+                                        className='btn'>Make Fraud</button>
+                                        : ""
+                                    }
+                                </td>
                                 <td >
                                     <button
                                         onClick={() => handleDelete(user?._id)}
