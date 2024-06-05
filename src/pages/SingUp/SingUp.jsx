@@ -44,10 +44,10 @@ const SingUp = () => {
                             email,
                             name
                         };
-                        axiosCommon.post('/users', userinfo)
-                            .then(res => {
-                                console.log(res.data);
-                            })
+                        // axiosCommon.post('/users', userinfo)
+                        //     .then(res => {
+                        //         console.log(res.data);
+                        //     })
                     })
             })
 

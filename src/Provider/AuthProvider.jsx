@@ -1,6 +1,8 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase.config";
+import axios from "axios";
+import { BASE_URL } from "../constant";
 
 
 export const AuthContext = createContext(null);
@@ -10,7 +12,8 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
+    console.log("auth user", user);
 
     // create new user
     const singUpUser = (email, password) => {
@@ -38,6 +41,18 @@ const AuthProvider = ({ children }) => {
         })
     }
 
+    // save user 
+    const saveUser = async user => {
+        const newUser = {
+            name: user?.displayName,
+            email: user?.email,
+            role: "guest",
+            status: "verified"
+        }
+        const { data } = await axios.put(`${BASE_URL}/user`, newUser)
+        return data;
+    }
+
     // sing out user
     const logOut = () => {
         setUser(null);
@@ -50,6 +65,7 @@ const AuthProvider = ({ children }) => {
             if (currentUser) {
                 console.log(currentUser);
                 setUser(currentUser);
+                saveUser(currentUser);
             }
             setIsLoading(false)
         });

@@ -11,7 +11,7 @@ import { ImSpinner9 } from "react-icons/im";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SingIn = () => {
-    const { singIn, googleLogin, isLoading } = UseAuth();
+    const { singIn, isLoading } = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
