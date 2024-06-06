@@ -6,6 +6,7 @@ import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const MyAddedProperties = () => {
     const { user, isLoading } = UseAuth();
@@ -15,14 +16,32 @@ const MyAddedProperties = () => {
         queryKey: ["myproperty"],
         enabled: !isLoading && !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get(`/properties/${user?.email}`)
-            return res.data
+            const res = await axiosSecure.get(`/properties/${user?.email}`);
+            return res.data;
         }
     });
 
-    const handleUpdate = () => {
+    const { data: allUser = {}, refetch: refetchUser } = useQuery({
+        queryKey: ['users', user?.email],
+        enabled: !isLoading && !!user?.email,
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/${user?.email}`);
+            return res.data;
+        }
+    });
 
-    }
+    useEffect(() => {
+        const deleteAllProperties = async () => {
+            for (const { _id } of property) {
+                await axiosSecure.delete(`/properties/${_id}`);
+            }
+            refetch();
+        };
+
+        if (allUser?.fraud) {
+            deleteAllProperties();
+        }
+    }, [allUser, property, axiosSecure, refetch]);
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -38,18 +57,17 @@ const MyAddedProperties = () => {
                 axiosSecure.delete(`/properties/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
-                            // refetch(),
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your Item has been deleted.",
+                                text: "Your item has been deleted.",
                                 icon: "success"
                             });
+                            refetch();
                         }
-                        refetch();
-                    })
+                    });
             }
         });
-    }
+    };
 
     return (
         <div className="w-5/6 mx-auto py-10 mt-10">
@@ -63,39 +81,41 @@ const MyAddedProperties = () => {
                     <thead className="bg-primaryColor capitalize text-center text-white text-lg">
                         <tr>
                             <th></th>
-                            <th>Propery Image</th>
-                            <th>property title</th>
-                            <th>Property location</th>
-                            <th>agent name</th>
-                            <th>agent email</th>
+                            <th>Property Image</th>
+                            <th>Property Title</th>
+                            <th>Property Location</th>
+                            <th>Agent Name</th>
+                            <th>Agent Email</th>
                             <th>Status</th>
-                            <th>price range</th>
+                            <th>Price Range</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody className="">
                         {
-                            property?.map((property, index) => <tr key={property._id}>
-                                <th>{index + 1}</th>
-                                <td><img src={property?.image} className="w-20 mx-auto" alt="" /></td>
-                                <td>{property?.title}</td>
-                                <td>{property?.location}</td>
-                                <td>{property?.agentname}</td>
-                                <td>{property?.email}</td>
-                                <td>{property?.verification_status}</td>
-                                <td><span>${property?.minprice}</span> - <span>${property?.maxprice}</span></td>
-                                <td >
-                                    <Link to={`/updateproperties/${property?._id}`} className="text-3xl hover:text-primaryColor btn"><FaRegEdit /></Link>
-                                </td>
-                                <td >
-                                    <button
-                                        onClick={() => handleDelete(property?._id)}
-                                        className="text-3xl hover:text-primaryColor btn ">
-                                        <MdDeleteOutline />
-                                    </button>
-                                </td>
-                            </tr>)
+                            property?.map((property, index) => (
+                                <tr key={property._id}>
+                                    <th>{index + 1}</th>
+                                    <td><img src={property?.image} className="w-20 mx-auto" alt="" /></td>
+                                    <td>{property?.title}</td>
+                                    <td>{property?.location}</td>
+                                    <td>{property?.agentname}</td>
+                                    <td>{property?.email}</td>
+                                    <td>{property?.verification_status}</td>
+                                    <td><span>${property?.minprice}</span> - <span>${property?.maxprice}</span></td>
+                                    <td>
+                                        <Link to={`/updateproperties/${property?._id}`} className="text-3xl hover:text-primaryColor btn"><FaRegEdit /></Link>
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleDelete(property?._id)}
+                                            className="text-3xl hover:text-primaryColor btn">
+                                            <MdDeleteOutline />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
                         }
                     </tbody>
                 </table>
