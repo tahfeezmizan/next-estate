@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { MdDeleteOutline } from 'react-icons/md';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ManageProperties = () => {
-    // const [data] = useProperties()
     const axiosSecure = useAxiosSecure();
 
     const { refetch, data: property = [] } = useQuery({
@@ -26,7 +25,7 @@ const ManageProperties = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/property/${id}`)
+                axiosSecure.delete(`/propertie/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             // refetch(),
