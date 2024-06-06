@@ -13,6 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import verified from '../../../assets/slider/verifid.png';
 import UseAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const PropertiesDetails = () => {
     const { id } = useParams();
@@ -113,6 +114,9 @@ const PropertiesDetails = () => {
 
     return (
         <section className="bg-gray-100">
+            <Helmet>
+                <title>Properties Details - Next Estate Real Estate React Template</title>
+            </Helmet>
             <div className="">
                 <img src={image} className="w-full h-[650px] object-cover object-center" alt="" />
             </div>

@@ -1,8 +1,9 @@
+import axios from "axios";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase.config";
-import axios from "axios";
 import { BASE_URL } from "../constant";
+import useAxisoCommon from "../hooks/useAxisoCommon";
 
 
 export const AuthContext = createContext(null);
@@ -13,6 +14,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const axisoCommon = useAxisoCommon();
 
     // create new user
     const singUpUser = (email, password) => {
@@ -46,7 +48,6 @@ const AuthProvider = ({ children }) => {
             name: user?.displayName,
             email: user?.email,
             role: "guest",
-            fruad: false,
         }
         const { data } = await axios.put(`${BASE_URL}/user`, newUser);
         return data;
@@ -62,11 +63,23 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
-                console.log(currentUser);
-                setUser(currentUser);
                 saveUser(currentUser);
+                setUser(currentUser);
+                console.log(currentUser);
+
+                const userData = { email: currentUser?.email }
+                axisoCommon.post('/jwt', userData)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token)
+                        }else{
+                            localStorage.removeItem('access-token')
+                        }
+                        
+                    })
             }
-            setIsLoading(false)
+            setIsLoading(false);
+
         });
         return () => unsubscribe();
     }, [])

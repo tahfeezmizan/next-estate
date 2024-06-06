@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import useProperties from "../../../hooks/useProperties";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import PropertiesCart from "./PropertiesCart";
@@ -8,6 +9,9 @@ const AllProperties = () => {
 
     return (
         <section className="bg-gray-100">
+            <Helmet>
+                <title>All Properties - Next Estate Real Estate React Template</title>
+            </Helmet>
             <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
                 <SectionTitle
                     subHeading="All Properties"

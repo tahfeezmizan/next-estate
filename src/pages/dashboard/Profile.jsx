@@ -5,7 +5,7 @@ import useRole from '../../hooks/useRole';
 const Profile = () => {
     const { user } = UseAuth()
     const [role] = useRole();
-    console.log('user role', role);
+    
     return (
         <div className="bg-gray-200 h-screen flex items-center justify-center">
             <div className="bg-white w-[600px] font-Roboto text-center pb-5">

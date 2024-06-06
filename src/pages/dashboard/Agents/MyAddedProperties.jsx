@@ -1,27 +1,105 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { MdDeleteOutline } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const MyAddedProperties = () => {
-    // const [myproperty, refetch] = useMyProperties()
     const { user, isLoading } = UseAuth();
-    console.log('agent email', user?.email);
     const axiosSecure = useAxiosSecure();
 
     const { refetch, data: property = [] } = useQuery({
         queryKey: ["myproperty"],
-        enabled: !isLoading && !!user?.email, 
+        enabled: !isLoading && !!user?.email,
         queryFn: async () => {
             const res = await axiosSecure.get(`/properties/${user?.email}`)
             return res.data
         }
     });
 
-    console.log(property);
+    const handleUpdate = () => {
+
+    }
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/properties/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            // refetch(),
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Item has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                        refetch();
+                    })
+            }
+        });
+    }
 
     return (
-        <div>
-            <h2 className="text-5xl">{property.length}</h2>
+        <div className="w-5/6 mx-auto py-10 mt-10">
+            <Helmet>
+                <title>My Added Properties - Next Estate Real Estate React Template</title>
+            </Helmet>
+            <h1 className="text-2xl font-semibold font-Merriweather mb-5">My Added All Properties<span className="bg-primaryColor px-3 ml-2 rounded-full text-lg font-Roboto text-white">{property.length}</span></h1>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+                    {/* head */}
+                    <thead className="bg-primaryColor capitalize text-center text-white text-lg">
+                        <tr>
+                            <th></th>
+                            <th>Propery Image</th>
+                            <th>property title</th>
+                            <th>Property location</th>
+                            <th>agent name</th>
+                            <th>agent email</th>
+                            <th>Status</th>
+                            <th>price range</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody className="">
+                        {
+                            property?.map((property, index) => <tr key={property._id}>
+                                <th>{index + 1}</th>
+                                <td><img src={property?.image} className="w-20 mx-auto" alt="" /></td>
+                                <td>{property?.title}</td>
+                                <td>{property?.location}</td>
+                                <td>{property?.agentname}</td>
+                                <td>{property?.email}</td>
+                                <td>{property?.verification_status}</td>
+                                <td><span>${property?.minprice}</span> - <span>${property?.maxprice}</span></td>
+                                <td >
+                                    <Link to={`/updateproperties/${property?._id}`} className="text-3xl hover:text-primaryColor btn"><FaRegEdit /></Link>
+                                </td>
+                                <td >
+                                    <button
+                                        onClick={() => handleDelete(property?._id)}
+                                        className="text-3xl hover:text-primaryColor btn ">
+                                        <MdDeleteOutline />
+                                    </button>
+                                </td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

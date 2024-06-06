@@ -1,31 +1,17 @@
-import { toast } from "react-toastify";
-import { IMGBB_API_KEY } from "../../../constant";
-import UseAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { Helmet } from "react-helmet";
-import { useQuery } from "@tanstack/react-query";
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import UseAuth from '../../../hooks/useAuth';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { IMGBB_API_KEY } from '../../../constant';
 
-const AddProperty = () => {
-    const { user } = UseAuth();
+const UpdateProperties = () => {
+
+    const { user } = UseAuth()
     const axiosSecure = useAxiosSecure();
-
-    const { refetch, data: allUser = [] } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/users/${user?.email}`);
-            return res.data;
-        }
-    });
 
     const handleAddProperty = async e => {
         e.preventDefault();
-
-        if (allUser.fraud) {
-            toast.error('Your account has been flagged for fraudulent activity. You cannot add new properties.');
-            return;
-        }
-
-        const agentemail = user?.email;
+        const email = user?.email;
         const agentname = user?.displayName;
         const agentimage = user?.photoURL;
 
@@ -43,7 +29,7 @@ const AddProperty = () => {
         const { data } = await axiosSecure.post(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, formData)
 
         const propertyItem = {
-            agentemail,
+            email,
             agentname,
             agentimage,
             title,
@@ -59,15 +45,14 @@ const AddProperty = () => {
         // send data to bd and store 
         const propertySend = await axiosSecure.post('/property', propertyItem)
         if (propertySend?.data?.insertedId) {
-            toast.success('Added New Propety')
+            toast.success('Added New Food in Menu')
             form.reset()
         }
     }
-
     return (
         <section className="py-10">
             <Helmet>
-                <title>Add New Properties - </title>
+                <title>Add New Properties - Next Estate Real Estate React Template</title>
             </Helmet>
             <div className="w-full md:w-8/12 mx-auto">
                 <div className=" mx-auto rounded-lg p-12 font-Roboto">
@@ -134,7 +119,7 @@ const AddProperty = () => {
                         </div>
 
                         <div className="form-control my-6">
-                            <button className="btn btn-outline bg-[#ff8717] hover:bg-[#eb7d16] border-none rounded-none px-10 text-xl text-white">Add Property</button>
+                            <button className="btn btn-outline bg-[#ff8717] hover:bg-[#eb7d16] border-none rounded-none px-10 text-xl text-white">Update Property</button>
                         </div>
                     </form>
                 </div >
@@ -143,4 +128,4 @@ const AddProperty = () => {
     );
 };
 
-export default AddProperty;
+export default UpdateProperties;
