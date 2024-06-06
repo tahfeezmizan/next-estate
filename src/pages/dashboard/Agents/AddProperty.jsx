@@ -36,6 +36,7 @@ const AddProperty = () => {
             location,
             maxprice,
             description,
+            verification_status: 'pending',
             image: data?.data?.display_url,
         }
 

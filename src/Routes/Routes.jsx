@@ -22,6 +22,7 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import AddProperty from "../pages/dashboard/Agents/AddProperty";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import AgentRoutes from "./AgentRoutes/AgentRoutes";
+import MyAddedProperties from "../pages/dashboard/Agents/MyAddedProperties";
 
 
 export const router = createBrowserRouter([
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
+                element: <PrivateRoutes><Profile /></PrivateRoutes>
+            },
+            {
+                path: 'profile',
                 element: <PrivateRoutes><Profile /></PrivateRoutes>
             },
 
@@ -127,6 +132,15 @@ export const router = createBrowserRouter([
                     <PrivateRoutes>
                         <AgentRoutes>
                             <AddProperty />
+                        </AgentRoutes>
+                    </PrivateRoutes>
+            },
+            {
+                path: "myaddedproperties",
+                element:
+                    <PrivateRoutes>
+                        <AgentRoutes>
+                            <MyAddedProperties />
                         </AgentRoutes>
                     </PrivateRoutes>
             },

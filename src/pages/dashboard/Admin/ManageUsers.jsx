@@ -42,7 +42,6 @@ const ManageUsers = () => {
 
     // agent fruad method
     const handleAgentFraud = async (email, name, role) => {
-
         axiosSecure.patch(`/users/updatefraud/${email}`, { role })
             .then((data) => {
                 console.log(data.data);

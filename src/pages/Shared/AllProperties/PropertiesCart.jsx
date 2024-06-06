@@ -4,7 +4,7 @@ import { FaCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const PropertiesCart = ({ card }) => {
-    const { _id, title, image, location, pricerange, agentname, agentimage, verification_status } = card;
+    const { _id, title, image, location, minprice, maxprice, agentname, agentimage, verification_status } = card;
 
     return (
         <div className="bg-gray-50 dark:bg-slate-800 border rounded-xl flex justify-around flex-col hover:shadow-lg duration-500 overflow-hidden">
@@ -20,7 +20,7 @@ const PropertiesCart = ({ card }) => {
                     }
                 </div>
 
-                <p className='font-semibold text-lg pb-3'><span className="rounded">{pricerange}</span></p>
+                <p className='font-semibold text-lg pb-3'><span>${minprice}</span> - <span>${maxprice}</span></p>
 
                 <div className="flex justify-between items-center ">
                     <div className="flex gap-4 items-center">

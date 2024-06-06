@@ -91,7 +91,8 @@ const PropertiesDetails = () => {
             location,
             agentname,
             agentimage,
-            pricerange,
+            minprice,
+            maxprice,
             verification_status,
         }
         // console.log(wishListData);
@@ -108,7 +109,7 @@ const PropertiesDetails = () => {
     if (!card) {
         return <p>Loading...</p>;
     }
-    const { title, image, location, pricerange, agentname, agentimage, verification_status } = card;
+    const { title, image, location, minprice, maxprice, agentname, agentimage, verification_status } = card;
 
     return (
         <section className="bg-gray-100">
@@ -137,7 +138,7 @@ const PropertiesDetails = () => {
                     <div className="flex justify-between items-end flex-col -mt-2 md:mt-9 pb-10">
                         <div className="text-primaryColor pb-2">
                             <h4 className='text-end text-base font-Roboto'>From</h4>
-                            <p className="text-3xl font-Roboto font-medium">{pricerange}</p>
+                            <p className="text-3xl font-Roboto font-medium"><span>${minprice}</span> - <span>${maxprice}</span></p>
                         </div>
                         <button
                             onClick={() => handleAddToWishlist(card)}
