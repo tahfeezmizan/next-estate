@@ -46,7 +46,7 @@ const Dashboard = () => {
                                 <li><NavLink to="/dashboard/myaddedproperties">My added properties</NavLink></li>
                                 <li><NavLink to="/dashboard/updateproperties/:id">My sold properties</NavLink></li>
                                 <li><NavLink to="/dashboard/soldproperties">My sold properties</NavLink></li>
-                                <li><NavLink to="/dashboard/myreviews">Requested properties</NavLink></li>
+                                <li><NavLink to="/dashboard/offeredproperties">Requested properties</NavLink></li>
                             </>
                         }
 

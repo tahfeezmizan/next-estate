@@ -42,7 +42,7 @@ const Wishlist = () => {
                 <div className="overflow-x-auto">
                     <table className="table w-full font-Roboto rounded-tl-xl">
                         {/* head */}
-                        <thead className="bg-primaryColor text-center capitalize rounded-md font-medium text-white text-xl">
+                        <thead className="bg-primaryColor capitalize rounded-md font-medium text-white text-lg ">
                             <tr>
                                 <th></th>
                                 <th>image</th>
@@ -55,7 +55,7 @@ const Wishlist = () => {
                                 <th>Remove</th>
                             </tr>
                         </thead>
-                        <tbody className="text-center">
+                        <tbody className="">
                             {
                                 wishlist?.map((item, index) => <tr key={item._id}>
                                     <th>{index + 1}</th>
@@ -69,7 +69,7 @@ const Wishlist = () => {
                                     <td>{item?.location}</td>
                                     <td><img src={item?.agentimage} className="w-12 mx-auto" alt="" /></td>
                                     <td>{item?.agentname}</td>
-                                    <td>{item?.pricerange}</td>
+                                    <td> <span>${item.minprice}</span> - <span>${item.maxprice}</span></td>
                                     <td><Link to={`/dashboard/makeoffer/${item?.propertyId}`} className="btn">Make an offer</Link></td>
                                     <td >
                                         <button

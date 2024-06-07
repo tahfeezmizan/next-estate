@@ -24,6 +24,7 @@ import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import MyAddedProperties from "../pages/dashboard/Agents/MyAddedProperties";
 import UpdateProperties from "../pages/dashboard/Agents/UpdateProperties";
+import OfferedProperties from "../pages/dashboard/Agents/OfferedProperties";
 
 
 export const router = createBrowserRouter([
@@ -151,6 +152,15 @@ export const router = createBrowserRouter([
                     <PrivateRoutes>
                         <AgentRoutes>
                             <UpdateProperties />
+                        </AgentRoutes>
+                    </PrivateRoutes>
+            },
+            {
+                path: "offeredproperties",
+                element:
+                    <PrivateRoutes>
+                        <AgentRoutes>
+                            <OfferedProperties />
                         </AgentRoutes>
                     </PrivateRoutes>
             },

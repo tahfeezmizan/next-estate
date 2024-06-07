@@ -109,7 +109,7 @@ const ManageProperties = () => {
                                                 <select name='status' className="select select-bordered w-full max-w-xs">
                                                     <option disabled selected>{property.verification_status}</option>
                                                     
-                                                    <option className='text-lg'>verify</option>
+                                                    <option className='text-lg'>verified</option>
                                                     <option className='text-lg'>rejected</option>
                                                 </select>
 

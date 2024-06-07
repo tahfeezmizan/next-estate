@@ -21,7 +21,7 @@ const MakeOffer = () => {
     if (!card) {
         return <p>Loading...</p>;
     }
-    const { title, image, location, pricerange, agentname, agentimage, verification_status } = card;
+    const { title, image, location, pricerange, maxprice, minprice, agentname, agentimage, verification_status } = card;
 
     const handleOffer = (e) => {
         e.preventDefault();
@@ -78,7 +78,9 @@ const MakeOffer = () => {
                                 }
                             </div>
                             <span className="float-right text-gray-400">{location}</span>
-                            <p className='font-semibold text-lg '><span className="rounded">{pricerange}</span></p>
+                            <p className='font-semibold text-lg '><span className="rounded">
+                                ${minprice}</span> - <span>${maxprice}
+                                </span></p>
                             <h2 className="font-semibold leading-8"><span className="text-gray-400 ">Agent Name: </span>{agentname}</h2>
 
                         </div>
@@ -96,7 +98,9 @@ const MakeOffer = () => {
                             verification_status === 'verified' && <img className='w-6 ' src={verified} alt="" />
                         }
                     </div>
-                    <p className='font-semibold text-lg pb-3'><span className="rounded">{pricerange}</span></p>
+                    <p className='font-semibold text-lg pb-3'><span className="rounded">
+                        ${minprice}</span> - <span>${maxprice}
+                        </span></p>
 
                     <p className="text-xl font-medium">Buyer Details</p>
 
