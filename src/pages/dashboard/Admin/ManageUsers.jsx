@@ -98,7 +98,7 @@ const ManageUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            allUser.map((user, index) => (
+                            allUser?.map((user, index) => (
                                 <tr key={user._id}>
                                     <th>{index + 1}</th>
                                     <td className='capitalize'>{user?.name}</td>
@@ -141,8 +141,7 @@ const ManageUsers = () => {
                                             <td>
                                                 <button
                                                     onClick={() => handleDelete(user?._id)}
-                                                    className="text-3xl"
-                                                >
+                                                    className="text-3xl">
                                                     <MdDeleteOutline />
                                                 </button>
                                             </td>

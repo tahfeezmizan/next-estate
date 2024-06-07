@@ -105,7 +105,7 @@ const MyAddedProperties = () => {
                                     <td>{property?.verification_status}</td>
                                     <td><span>${property?.minprice}</span> - <span>${property?.maxprice}</span></td>
                                     <td>
-                                        <Link to={`/updateproperties/${property?._id}`} className="text-3xl hover:text-primaryColor btn"><FaRegEdit /></Link>
+                                        <Link to={`/dashboard/updateproperties/${property?._id}`} className="text-3xl hover:text-primaryColor btn"><FaRegEdit /></Link>
                                     </td>
                                     <td>
                                         <button
