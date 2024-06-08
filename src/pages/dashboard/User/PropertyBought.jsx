@@ -1,9 +1,10 @@
-import { MdDeleteOutline } from "react-icons/md";
-import usePropertyBought from "../../../hooks/usePropertyBought";
 import { Link } from "react-router-dom";
+import usePropertyBought from "../../../hooks/usePropertyBought";
+import verified from '../../../assets/slider/verifid.png'
 
 const PropertyBought = () => {
     const [refetch, boughtProperty] = usePropertyBought();
+    console.log(boughtProperty);
 
     return (
         <div className="w-5/6 mx-auto py-10 mt-10">
@@ -38,14 +39,13 @@ const PropertyBought = () => {
                                 <td>${item?.offeredAmound}</td>
                                 <td>
                                     {
-                                        item?.status === "pending" && "complete" ? <h2 className={`text-sm rounded-full capitalize text-white font-medium 
+                                        item?.status === "pending" && "accepted" ? <h2 className={` btn btn-sm px-5 text-sm rounded-full uppercase text-white font-medium 
                                         ${item?.status === 'pending' && 'bg-yellow-500'} 
                                         ${item?.status === 'in progress' && 'bg-blue-500'} 
-                                        ${item?.status === 'complete' && 'bg-green-500'} 
-                                        ${item?.status === 'complete' && 'bg-green-500'} 
+                                        ${item?.status === 'accepted' && 'bg-green-500'} 
                                         ${item?.status === 'rejected' && 'bg-red-500'} `}>{item?.status}</h2>
                                             :
-                                            <Link className="bg-primaryColor text-sm rounded-full capitalize text-white font-medium ">Pay</Link>
+                                            <Link className="btn btn-sm px-5 bg-primaryColor text-sm rounded-full text-white font-medium uppercase">Pay</Link>
                                     }
                                 </td>
 

@@ -10,6 +10,7 @@ const MakeOffer = () => {
     const { user } = UseAuth();
     const axiosSecure = useAxiosSecure();
     const [card, setCard] = useState();
+    console.log(card);
 
     useEffect(() => {
         axiosSecure.get(`/property/${id}`)
@@ -21,14 +22,14 @@ const MakeOffer = () => {
     if (!card) {
         return <p>Loading...</p>;
     }
-    const { title, image, location, pricerange, maxprice, minprice, agentname, agentimage, verification_status } = card;
+    const { title, agentemail, image, location, maxprice, minprice, agentname, verification_status } = card;
 
     const handleOffer = (e) => {
         e.preventDefault();
         const form = e.target;
         const offerprice = form.offerprice.value;
-        const userEmail = user?.email;
-        const userName = user?.displayName;
+        const buyerEmail = user?.email;
+        const buyerName = user?.displayName;
 
         const today = new Date();
         const date = today.getTime();
@@ -39,10 +40,12 @@ const MakeOffer = () => {
             location,
             image,
             agentname,
+            agentemail,
+            verification_status,
             status: 'pending',
             offeredAmound: parseFloat(offerprice),
-            userEmail,
-            userName,
+            buyerEmail,
+            buyerName,
         }
         console.log(offeredValue);
 
@@ -51,7 +54,6 @@ const MakeOffer = () => {
                 console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success('Review Added Successfully');
-                    // refetch(); // Uncomment this if you want to refetch the data
                 }
             })
             .catch(error => {

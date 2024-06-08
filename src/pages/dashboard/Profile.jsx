@@ -20,6 +20,7 @@ const Profile = () => {
                 <h2 className='text-3xl font-semibold capitalize leading-snug pb-2'>{user?.displayName}</h2>
                 <p className="bg-primaryColor rounded w-16 font-bold text-white py-1 capitalize mx-auto mb-2">{role}</p>
                 <p className=""><span className='font-semibold '>User Id:</span> {user?.uid}</p>
+                <p className=""><span className='font-semibold '>User Id:</span> {user?.email}</p>
             </div>
         </div >
     );

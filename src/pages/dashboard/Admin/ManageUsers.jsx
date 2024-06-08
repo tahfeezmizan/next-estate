@@ -22,6 +22,7 @@ const ManageUsers = () => {
         if (user?.email === email) {
             return toast.error('Action not allowed');
         }
+        
         axiosSecure.patch(`/users/update/${email}`, { role })
             .then((data) => {
                 if (data.data.modifiedCount) {
