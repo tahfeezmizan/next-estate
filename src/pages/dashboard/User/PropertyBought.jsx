@@ -45,7 +45,7 @@ const PropertyBought = () => {
                                         </h2>
                                     )}
                                     {item?.status === 'accepted' && (
-                                        <Link className="btn btn-sm px-5 bg-green-500 hover:bg-green-600 text-sm rounded-full text-white font-medium uppercase">
+                                        <Link to='/dashboard/payment' className="btn btn-sm px-5 bg-green-500 hover:bg-green-600 text-sm rounded-full text-white font-medium uppercase">
                                             Pay
                                         </Link>
                                     )}

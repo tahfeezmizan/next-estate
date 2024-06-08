@@ -25,6 +25,7 @@ import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import MyAddedProperties from "../pages/dashboard/Agents/MyAddedProperties";
 import UpdateProperties from "../pages/dashboard/Agents/UpdateProperties";
 import OfferedProperties from "../pages/dashboard/Agents/OfferedProperties";
+import Payment from "../pages/dashboard/User/Payment";
 
 
 export const router = createBrowserRouter([
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
             {
                 path: "propertybought",
                 element: <PrivateRoutes><PropertyBought /></PrivateRoutes>
+            },
+            {
+                path: "payment",
+                element: <PrivateRoutes><Payment /></PrivateRoutes>
             },
 
 
