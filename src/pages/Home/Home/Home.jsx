@@ -1,3 +1,4 @@
+import Blogs from "../../Shared/Blogs/Blogs";
 import Footer from "../../Shared/Footer/Footer";
 import UserReview from "../../Shared/Reviews/UserReview/UserReview";
 import Advertisement from "../Advertisement/Advertisement";
@@ -10,6 +11,7 @@ const Home = () => {
             <Advertisement></Advertisement>
             {/* <AllProperties></AllProperties> */}
             <UserReview></UserReview>
+            <Blogs></Blogs>
             <Footer></Footer>
         </>
     );

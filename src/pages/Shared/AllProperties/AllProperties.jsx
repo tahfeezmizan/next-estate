@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import useProperties from "../../../hooks/useProperties";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import PropertiesCart from "./PropertiesCart";
+import Blogs from "../Blogs/Blogs";
 
 const AllProperties = () => {
     const [data] = useProperties();
@@ -26,6 +27,7 @@ const AllProperties = () => {
                     </div>
                 </section>
             </div>
+            <Blogs></Blogs>
         </section>
     );
 };
