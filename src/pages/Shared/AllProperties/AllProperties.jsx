@@ -13,7 +13,7 @@ const AllProperties = () => {
             <Helmet>
                 <title>All Properties - Next Estate Real Estate React Template</title>
             </Helmet>
-            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
+            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20 px-3 md:px-0">
                 <SectionTitle
                     subHeading="All Properties"
                     Heading="Recommended For You"
@@ -27,6 +27,7 @@ const AllProperties = () => {
                     </div>
                 </section>
             </div>
+            
             <Blogs></Blogs>
         </section>
     );

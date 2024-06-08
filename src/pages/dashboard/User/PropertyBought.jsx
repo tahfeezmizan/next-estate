@@ -5,14 +5,15 @@ import verified from '../../../assets/slider/verifid.png'
 const PropertyBought = () => {
     const [refetch, boughtProperty] = usePropertyBought();
     console.log(boughtProperty);
+    console.log(boughtProperty)
 
     return (
-        <div className="w-5/6 mx-auto py-10 mt-10">
+        <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
             <h1 className="text-2xl font-semibold font-Merriweather mb-5">My Bought Property <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{boughtProperty.length}</span></h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     {/* head */}
-                    <thead className="bg-primaryColor text-center capitalize text-white text-xl">
+                    <thead className="bg-primaryColor capitalize text-white text-xl">
                         <tr>
                             <th></th>
                             <th>Property image</th>
@@ -23,7 +24,7 @@ const PropertyBought = () => {
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody className="text-center">
+                    <tbody className="">
                         {
                             boughtProperty?.map((item, index) => <tr key={item._id}>
                                 <th>{index + 1}</th>
@@ -38,15 +39,21 @@ const PropertyBought = () => {
                                 <td>{item?.agentname}</td>
                                 <td>${item?.offeredAmound}</td>
                                 <td>
-                                    {
-                                        item?.status === "pending" && "accepted" ? <h2 className={` btn btn-sm px-5 text-sm rounded-full uppercase text-white font-medium 
-                                        ${item?.status === 'pending' && 'bg-yellow-500'} 
-                                        ${item?.status === 'in progress' && 'bg-blue-500'} 
-                                        ${item?.status === 'accepted' && 'bg-green-500'} 
-                                        ${item?.status === 'rejected' && 'bg-red-500'} `}>{item?.status}</h2>
-                                            :
-                                            <Link className="btn btn-sm px-5 bg-primaryColor text-sm rounded-full text-white font-medium uppercase">Pay</Link>
-                                    }
+                                    {item?.status === 'pending' && (
+                                        <h2 className="btn btn-sm px-5 text-sm rounded-full uppercase text-white font-medium bg-yellow-400 hover:bg-yellow-500">
+                                            {item?.status}
+                                        </h2>
+                                    )}
+                                    {item?.status === 'accepted' && (
+                                        <Link className="btn btn-sm px-5 bg-green-500 hover:bg-green-600 text-sm rounded-full text-white font-medium uppercase">
+                                            Pay
+                                        </Link>
+                                    )}
+                                    {item?.status === 'rejected' && (
+                                        <h2 className="btn btn-sm px-5 text-sm rounded-full uppercase text-white font-medium bg-red-500 hover:bg-red-600">
+                                            {item?.status}
+                                        </h2>
+                                    )}
                                 </td>
 
                             </tr>)

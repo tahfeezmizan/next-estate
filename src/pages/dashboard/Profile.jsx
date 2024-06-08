@@ -7,7 +7,7 @@ const Profile = () => {
     const [role] = useRole();
     
     return (
-        <div className="bg-gray-200 h-screen flex items-center justify-center">
+        <div className="bg-gray-200 h-screen flex items-center justify-center px-3 md:px-0">
             <div className="bg-white w-[600px] font-Roboto text-center pb-5">
                 <div className="h-52 max-w-full" style={{
                     backgroundImage: `url(${slider1})`,

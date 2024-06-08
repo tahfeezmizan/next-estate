@@ -16,12 +16,12 @@ const ManageProperties = () => {
         }
     });
 
-    const handleStatusUpdate = (e, agentemail) => {
+    const handleStatusUpdate = (e, id) => {
         e.preventDefault();
         const value = e.target.status.value;
         console.log('Selected Verification Status:', value);
 
-        axiosSecure.put(`/propertystatus/${agentemail}`, { verification_status: value })
+        axiosSecure.put(`/propertystatus/${id}`, { verification_status: value })
             .then((data) => {
                 console.log(data.data);
                 if (data.data.modifiedCount > 0) {
@@ -64,7 +64,7 @@ const ManageProperties = () => {
     };
 
     return (
-        <div className="w-5/6 mx-auto py-10 mt-10">
+        <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
             <h1 className="text-2xl font-semibold font-Merriweather mb-5">
                 Manage All Properties
                 <span className="bg-primaryColor px-3 ml-2 rounded-full text-lg font-Roboto text-white">
@@ -98,17 +98,24 @@ const ManageProperties = () => {
                                     <span>${property.minprice}</span> - <span>${property.maxprice}</span>
                                 </td>
                                 <td>
-                                    <button className="btn" onClick={() => document.getElementById(`modal_${property._id}`).showModal()}>
+                                    <button
+                                        className={`btn btn-sm text-sm text-white rounded-full font-medium capitalize ${property.verification_status === 'pending' ? 'bg-yellow-400 hover:bg-yellow-500' :
+                                                property.verification_status === 'verified' ? 'bg-green-500 hover:bg-green-600' :
+                                                    'bg-red-500 hover:bg-red-600'
+                                            }`}
+                                        onClick={() => document.getElementById(`modal_${property._id}`).showModal()}
+                                    >
                                         {property.verification_status}
                                     </button>
+
+
                                     <dialog id={`modal_${property._id}`} className="modal modal-bottom sm:modal-middle">
                                         <div className="modal-box text-center">
                                             <h3 className="font-bold text-lg mb-5 border-b pb-4">Property Verify Status!</h3>
 
-                                            <form onSubmit={(e) => handleStatusUpdate(e, property.agentemail)}>
+                                            <form onSubmit={(e) => handleStatusUpdate(e, property._id)}>
                                                 <select name='status' className="select select-bordered w-full max-w-xs">
                                                     <option disabled selected>{property.verification_status}</option>
-                                                    
                                                     <option className='text-lg'>verified</option>
                                                     <option className='text-lg'>rejected</option>
                                                 </select>

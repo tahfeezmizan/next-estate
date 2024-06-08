@@ -54,7 +54,7 @@ const UpdateProperties = () => {
             <Helmet>
                 <title>Add New Properties - Next Estate Real Estate React Template</title>
             </Helmet>
-            <div className="w-full md:w-8/12 mx-auto">
+            <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
                 <div className=" mx-auto rounded-lg p-12 font-Roboto">
                     <h1 className="text-2xl md:text-3xl font-bold pb-6">Add New Properties</h1>
                     <form onSubmit={handleAddProperty}>

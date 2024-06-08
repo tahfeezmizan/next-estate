@@ -37,7 +37,7 @@ const MyReviews = () => {
     }
 
     return (
-        <div className="w-5/6 mx-auto py-10 mt-10">
+        <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
             <h1 className="text-2xl font-semibold font-Merriweather mb-5">My Reviews <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{myreviews.length}</span></h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">

@@ -6,7 +6,6 @@ import BlogCard from './BlogCard';
 
 const Blogs = () => {
     const axisoCommon = useAxisoCommon();
-    // const [blogs, setBlogs] = useState([])
 
     const { data: blogs = [] } = useQuery({
         queryKey: ['blogs'],
@@ -18,7 +17,7 @@ const Blogs = () => {
 
     return (
         <section className='bg-[#dfe7ed8f]'>
-            <div className='w-full lg:w-5/6 xl:w-8/12 mx-auto py-20'>
+            <div className='w-full lg:w-5/6 xl:w-8/12 mx-auto py-20 px-3 md:px-0'>
                 <SectionTitle Heading="News & Events" subHeading='INSTANT UPDATES'></SectionTitle>
 
                 {/* feature tea card container */}

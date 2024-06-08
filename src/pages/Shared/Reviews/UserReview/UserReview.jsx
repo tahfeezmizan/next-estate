@@ -19,7 +19,7 @@ const UserReview = () => {
 
     return (
         <div className="bg-gray-100">
-            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
+            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20 px-3 md:px-0">
                 <SectionTitle
                     subHeading="FEEDBACK FROM BUYERS"
                     Heading="Clients Testimonials"
@@ -28,8 +28,22 @@ const UserReview = () => {
 
                 <section className="">
                     <Swiper
-                        slidesPerView={3}
-                        spaceBetween={30}
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 1,
+                                spaceBetween: 20,
+                            },
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 30,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 40,
+                            },
+                        }}
                         freeMode={true}
                         pagination={{
                             clickable: true,

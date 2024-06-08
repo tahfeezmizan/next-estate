@@ -11,7 +11,7 @@ const Advertisement = () => {
 
     return (
         <div className="">
-            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20">
+            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto py-20 px-3 md:px-0">
                 <SectionTitle
                     subHeading="EXCLUSIVE DEALS"
                     Heading="Featured Luxury Property"

@@ -39,7 +39,7 @@ const OfferedProperties = () => {
     };
 
     return (
-        <div className="w-5/6 mx-auto py-10 mt-10">
+        <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
             <h1 className="text-2xl font-semibold font-Merriweather mb-5">Requested Property <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{property.length}</span></h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
@@ -77,20 +77,27 @@ const OfferedProperties = () => {
                                         {
                                             item?.status === 'pending' ? (
                                                 <button
-                                                    onClick={() => handlePropetyAccept(item?.agentemail, item?.agentname, 'accepted')}
-                                                    className='btn btn-sm'
+                                                    onClick={() => handlePropetyAccept(item?._id, item?.agentname, 'accepted')}
+                                                    className='btn btn-sm text-sm rounded-full bg-yellow-400 hover:bg-yellow-500 text-white font-medium uppercase'
                                                 >Accept</button>
-                                            ) :
-                                                <button className="bg-green-400 btn btn-sm">Accepted</button>
+                                            ) : item?.status === 'accepted' ? (
+                                                <span className="btn btn-sm px-5 bg-green-500 hover:bg-green-600 text-sm rounded-full text-white font-medium uppercase">{item?.status}</span>
+                                            ) : (
+                                                ""
+                                            )
                                         }
                                     </td>
                                     <td>
                                         {
-                                            item?.status === 'pending' && (
+                                            item?.status === 'pending' ? (
                                                 <button
-                                                    onClick={() => handlePropetyAccept(item?.agentemail, item?.agentname, 'rejected')}
-                                                    className='btn btn-sm'
+                                                    onClick={() => handlePropetyAccept(item?._id, item?.agentname, 'rejected')}
+                                                    className='btn btn-sm bg-yellow-400 hover:bg-yellow-500 text-sm rounded-full text-white font-medium uppercase'
                                                 >Reject</button>
+                                            ) : item?.status === 'rejected' ? (
+                                                <span className="bg-red-500 hover:bg-red-600 btn btn-sm text-sm rounded-full text-white font-medium uppercase">{item?.status}</span>
+                                            ) : (
+                                                ""
                                             )
                                         }
                                     </td>

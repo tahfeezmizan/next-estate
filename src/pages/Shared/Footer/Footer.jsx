@@ -3,7 +3,7 @@
 const Footer = () => {
     return (
         <section class="footer pt-28 bg-black text-base-content">
-            <div class="w-full px-4 md:px-0 md:w-8/12 mx-auto font-Roboto">
+            <div class="w-full px-3 md:px-0 md:w-8/12 mx-auto font-Roboto">
                 <div class="text-white grid grid-cols-2 xl:grid-cols-12 gap-10">
                     <div class=" col-span-2 lg:col-span-4 xl:col-span-6 text-center xl:text-start">
                         <a class="text-3xl text-white font-extrabold cursor-pointer">Next Easted</a>

@@ -44,7 +44,7 @@ const ManageReviews = () => {
 
 
     return (
-        <div className="w-5/6 mx-auto py-10 mt-10">
+        <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
             <Helmet>
                 <title>Manage Reviews - Next Estate Real Estate React Template</title>
             </Helmet>
