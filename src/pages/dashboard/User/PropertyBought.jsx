@@ -5,11 +5,13 @@ import verified from '../../../assets/slider/verifid.png'
 const PropertyBought = () => {
     const [refetch, boughtProperty] = usePropertyBought();
     console.log(boughtProperty);
-    console.log(boughtProperty)
+    // const payItem = boughtProperty.filter(item => item?.status === 'accepted')
+    // const price = payItem.reduce((total, item) => total + item.offeredAmound, 0);
 
     return (
         <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
             <h1 className="text-2xl font-semibold font-Merriweather mb-5">My Bought Property <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{boughtProperty.length}</span></h1>
+
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     {/* head */}
@@ -45,7 +47,7 @@ const PropertyBought = () => {
                                         </h2>
                                     )}
                                     {item?.status === 'accepted' && (
-                                        <Link to='/dashboard/payment' className="btn btn-sm px-5 bg-green-500 hover:bg-green-600 text-sm rounded-full text-white font-medium uppercase">
+                                        <Link to={`/dashboard/payment/${item?._id}`} className="btn btn-sm px-5 bg-green-500 hover:bg-green-600 text-sm rounded-full text-white font-medium uppercase">
                                             Pay
                                         </Link>
                                     )}

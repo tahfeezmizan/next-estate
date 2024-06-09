@@ -1,22 +1,68 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import UseAuth from '../../../hooks/useAuth';
 
-const CheckOutFrom = () => {
+const CheckOutFrom = ({ property }) => {
+    const { user } = UseAuth();
     const stripe = useStripe();
-    const elements = useElements()
+    const elements = useElements();
+    const axiosSecure = useAxiosSecure();
+    const [error, setError] = useState('');
+    const [clientSecret, setClientSecret] = useState('');
+
+    const propertyItem = property?.[0]
+    const price = property?.[0]?.offeredAmound;
+
+    useEffect(() => {
+        if (price > 0) {
+            axiosSecure.post('/create-payment-intent', { price: price })
+                .then(res => {
+                    console.log(res.data);
+                    setClientSecret(res.data?.clientSecret);
+                })
+        }
+    }, [price])
 
     const handlePayment = async (e) => {
         e.preventDefault();
-
         if (!stripe || !elements) {
             return
         }
-
         const card = elements.getElement(CardElement);
-
         if (card === null) {
             return
         }
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
+            card,
+        });
+        if (error) {
+            console.log(error);
+            setError(error.message)
+        } else {
+            console.log(paymentMethod);
+            setError('')
+        }
+
+        // confirm payment
+        const { } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    title: propertyItem?.title,
+                    location: propertyItem?.location,
+                    buyerEmail: user?.email,
+                    buyerName: user?.displayName,
+                    soldPrice: price,
+                    agentname: propertyItem?.agentname,
+                    agentemail: propertyItem?.agentemail,
+                    paymentData: Date.now()
+                },
+            }
+        })
+
+
     }
 
     return (
@@ -40,6 +86,7 @@ const CheckOutFrom = () => {
             <button type="submit" disabled={!stripe}>
                 Pay
             </button>
+            <p className="text-red-500">{error}</p>
 
             {/* <div class="mb-6 grid grid-cols-2 gap-4">
                 <div class="col-span-2 sm:col-span-1">
@@ -75,7 +122,7 @@ const CheckOutFrom = () => {
                 </div>
             </div> */}
 
-            <button type="submit" class="flex w-full items-center justify-center rounded-lg bg-primaryColor px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300">Pay now</button>
+            <button disabled={!stripe || !clientSecret} type="submit" class="flex w-full items-center justify-center rounded-lg bg-primaryColor px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300">Pay now</button>
         </form>
     );
 };
