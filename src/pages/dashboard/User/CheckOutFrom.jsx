@@ -11,6 +11,7 @@ const CheckOutFrom = ({ property }) => {
     const axiosSecure = useAxiosSecure();
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [transactionId, setTransactionId] = useState('');
 
     const propertyItem = property?.[0];
     const price = property?.[0]?.offeredAmound;
@@ -55,14 +56,8 @@ const CheckOutFrom = ({ property }) => {
             payment_method: {
                 card: card,
                 billing_details: {
-                    // title: propertyItem?.title,
-                    // location: propertyItem?.location,
                     email: user?.email || 'anonymous',
                     name: user?.displayName || 'anonymous',
-                    // soldPrice: price,
-                    // agentname: propertyItem?.agentname,
-                    // agentemail: propertyItem?.agentemail,
-                    // paymentData: Date.now()
                 },
             }
         });
@@ -76,6 +71,28 @@ const CheckOutFrom = ({ property }) => {
             if (paymentIntent.status === "succeeded") {
                 toast.success('Payment sucess')
                 console.log('Payment Tranjaction id:', paymentIntent.id);
+                setTransactionId(paymentIntent?.id);
+
+                // save payemnt history in databese
+                const payemntHistory = {
+                    transactionId: paymentIntent?.id,
+                    title: propertyItem?.title,
+                    location: propertyItem?.location,
+                    email: user?.email || 'anonymous',
+                    name: user?.displayName || 'anonymous',
+                    soldPrice: price,
+                    propertyId: propertyItem?._id,
+                    agentname: propertyItem?.agentname,
+                    agentemail: propertyItem?.agentemail,
+                    paymentData: Date.now()
+                }
+
+                const res = axiosSecure.post('/payments', payemntHistory)
+                    .then(res => {
+                        console.log(res.data);
+                    })
+
+                console.log(payemntHistory);
             }
         }
 
@@ -100,12 +117,13 @@ const CheckOutFrom = ({ property }) => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe || !clientSecret}>
+            <button type="submit" disabled={!stripe || !clientSecret}
+                className='flex w-full my-4 items-center justify-center rounded-lg bg-primaryColor px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300'
+            >
                 Pay
             </button>
             <p className="text-red-500">{error}</p>
-
-            <button disabled={!stripe || !clientSecret} type="submit" class="flex w-full items-center justify-center rounded-lg bg-primaryColor px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300">Pay now</button>
+            {transactionId && <p className="text-green-500 pb-2 font-medium ">Your Transaction id: {transactionId}</p>}
         </form>
     );
 };
