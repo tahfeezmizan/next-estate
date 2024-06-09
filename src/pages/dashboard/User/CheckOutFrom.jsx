@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import UseAuth from '../../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const CheckOutFrom = ({ property }) => {
     const { user } = UseAuth();
@@ -11,7 +12,7 @@ const CheckOutFrom = ({ property }) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const propertyItem = property?.[0]
+    const propertyItem = property?.[0];
     const price = property?.[0]?.offeredAmound;
 
     useEffect(() => {
@@ -22,45 +23,61 @@ const CheckOutFrom = ({ property }) => {
                     setClientSecret(res.data?.clientSecret);
                 })
         }
-    }, [price])
+    }, [axiosSecure, price])
 
     const handlePayment = async (e) => {
         e.preventDefault();
+
         if (!stripe || !elements) {
             return
         }
+
         const card = elements.getElement(CardElement);
         if (card === null) {
             return
         }
+
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });
+
         if (error) {
             console.log(error);
             setError(error.message)
         } else {
-            console.log(paymentMethod);
+            console.log('Payment Method', paymentMethod);
             setError('')
         }
 
         // confirm payment
-        const { } = await stripe.confirmCardPayment(clientSecret, {
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
                 billing_details: {
-                    title: propertyItem?.title,
-                    location: propertyItem?.location,
-                    buyerEmail: user?.email,
-                    buyerName: user?.displayName,
-                    soldPrice: price,
-                    agentname: propertyItem?.agentname,
-                    agentemail: propertyItem?.agentemail,
-                    paymentData: Date.now()
+                    // title: propertyItem?.title,
+                    // location: propertyItem?.location,
+                    email: user?.email || 'anonymous',
+                    name: user?.displayName || 'anonymous',
+                    // soldPrice: price,
+                    // agentname: propertyItem?.agentname,
+                    // agentemail: propertyItem?.agentemail,
+                    // paymentData: Date.now()
                 },
             }
-        })
+        });
+
+        if (confirmError) {
+            console.log('Payemnt Error', confirmError);
+            toast.error(confirmError.code)
+            // setError(error.message)
+        } else {
+            console.log('Payment Intent', paymentIntent);
+            if (paymentIntent.status === "succeeded") {
+                toast.success('Payment sucess')
+                console.log('Payment Tranjaction id:', paymentIntent.id);
+            }
+        }
 
 
     }
@@ -83,44 +100,10 @@ const CheckOutFrom = ({ property }) => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe}>
+            <button type="submit" disabled={!stripe || !clientSecret}>
                 Pay
             </button>
             <p className="text-red-500">{error}</p>
-
-            {/* <div class="mb-6 grid grid-cols-2 gap-4">
-                <div class="col-span-2 sm:col-span-1">
-                    <label for="full_name" class="mb-2 block text-sm font-medium text-gray-900 "> Full name (as displayed on card)* </label>
-                    <input type="text" id="full_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 " placeholder="Bonnie Green" required />
-                </div>
-
-                <div class="col-span-2 sm:col-span-1">
-                    <label for="card-number-input" class="mb-2 block text-sm font-medium text-gray-900"> Card number* </label>
-                    <input type="text" id="card-number-input" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pe-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="xxxx-xxxx-xxxx-xxxx" pattern="^4[0-9]{12}(?:[0-9]{3})?$" required />
-                </div>
-
-                <div>
-                    <label for="card-expiration-input" class="mb-2 block text-sm font-medium text-gray-900 ">Card expiration* </label>
-                    <div class="relative">
-                        <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
-                        </div>
-                        <input datepicker datepicker-format="mm/yy" id="card-expiration-input" type="text" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-9 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500" placeholder="12/23" required />
-                    </div>
-                </div>
-                <div>
-                    <label for="cvv-input" class="mb-2 flex items-center gap-1 text-sm font-medium text-gray-900 ">
-                        CVV*
-                        <button data-tooltip-target="cvv-desc" data-tooltip-trigger="hover" class="text-gray-400 hover:text-gray-900">
-
-                        </button>
-                        <div id="cvv-desc" role="tooltip" class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300">
-                            The last 3 digits on back of card
-                            <div class="tooltip-arrow" data-popper-arrow></div>
-                        </div>
-                    </label>
-                    <input type="number" id="cvv-input" aria-describedby="helper-text-explanation" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="•••" required />
-                </div>
-            </div> */}
 
             <button disabled={!stripe || !clientSecret} type="submit" class="flex w-full items-center justify-center rounded-lg bg-primaryColor px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300">Pay now</button>
         </form>

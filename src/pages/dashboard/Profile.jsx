@@ -1,11 +1,46 @@
+import { useEffect, useState } from 'react';
 import slider1 from '../../assets/slider/slide_1.jpg'
 import UseAuth from '../../hooks/useAuth';
 import useRole from '../../hooks/useRole';
 
 const Profile = () => {
-    const { user } = UseAuth()
     const [role] = useRole();
-    
+    const [email, setEmail] = useState('');
+    const [photoURL, setPhotoURL] = useState('');
+    const { user, userProfileUpdate } = UseAuth();
+    const [displayName, setDisplayName] = useState('');
+
+    // useEffect(() => {
+    //     if (user) {
+    //         setDisplayName(user.displayName || '');
+    //         setEmail(user.email || '');
+    //         setPhotoURL(user.photoURL || '');
+    //     }
+    // }, [user]);
+
+    // const handleUpdateProfile = (e) => {
+    //     e.preventDefault();
+    //     let updatedProfile = {
+    //         displayName,
+    //         email,
+    //         photoURL
+    //     };
+
+    //     userProfileUpdate(displayName, photoURL)
+    //         .then((result) => {
+    //             toast.success('Profile updated successfully!');
+    //             // console.log(result);
+    //         })
+    //         .catch((error) => {
+    //             // console.error('Error updating profile:', error);
+    //             toast.error('Failed to update profile. Please try again.');
+    //         });
+    // };
+
+    // if (!user) {
+    //     return <p>Loading profile...</p>;
+    // }
+
     return (
         <div className="bg-gray-200 h-screen flex items-center justify-center px-3 md:px-0">
             <div className="bg-white w-[600px] font-Roboto text-center pb-5">

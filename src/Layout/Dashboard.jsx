@@ -22,11 +22,11 @@ const Dashboard = () => {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
 
-                <ul className="menu p-4 w-80 min-h-full bg-base-200 pb-16 text-base-content flex flex-col justify-between text-lg">
+                <ul className="menu p-4 w-80 min-h-full font-medium font-Roboto bg-base-200 pb-16 capitalize text-base-content flex flex-col justify-between text-lg">
                     <div className="">
                         <NavLink to="/" className="text-xl uppercase Sitelogo">
                             {/* <img src={siteLogo} className="w-40" alt="" /> */}
-                            <h1 className="text-3xl font-Merriweather">next estate</h1>
+                            <h1 className="text-3xl font-Merriweather mb-5">next estate</h1>
                         </NavLink>
 
                         {/* admin routes  */}

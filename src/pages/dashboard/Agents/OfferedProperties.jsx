@@ -3,6 +3,7 @@ import UseAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import verified from '../../../assets/slider/verifid.png';
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const OfferedProperties = () => {
     const { user } = UseAuth();
@@ -40,7 +41,10 @@ const OfferedProperties = () => {
 
     return (
         <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
-            <h1 className="text-2xl font-semibold font-Merriweather mb-5">Requested Property <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{property.length}</span></h1>
+            <Helmet>
+                <title>Requested Properties - Next Estate Real Estate React Template</title>
+            </Helmet>
+            <h1 className="text-2xl font-semibold font-Merriweather mb-5">Clients Requested Properties <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{property.length}</span></h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     {/* head */}

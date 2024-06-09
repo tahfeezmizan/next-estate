@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import UseAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { IMGBB_API_KEY } from '../../../constant';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const UpdateProperties = () => {
-
-    const { user } = UseAuth()
+    const { user } = UseAuth();
+    const { id } = useParams();
+    const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+    const [propertyData, setPropertyData] = useState([])
+
+    useEffect(() => {
+        axiosSecure.get(`/property/${id}`)
+            .then(res => {
+                setPropertyData(res.data);
+            })
+    }, []);
 
     const handleAddProperty = async e => {
         e.preventDefault();
@@ -41,18 +52,23 @@ const UpdateProperties = () => {
             verification_status: 'pending',
             image: data?.data?.display_url,
         }
+        console.log(propertyItem);
 
         // send data to bd and store 
-        const propertySend = await axiosSecure.post('/property', propertyItem)
-        if (propertySend?.data?.insertedId) {
-            toast.success('Added New Food in Menu')
-            form.reset()
-        }
+        const propertySend = await axiosSecure.patch(`/propertyupdate/${id}`, propertyItem)
+            .then(res => {
+                console.log(res.data);
+                if (res?.data?.modifiedCount) {
+                    toast.success('Update Property Sucessfully')
+                    navigate('/dashboard/myaddedproperties')
+                }
+            })
+
     }
     return (
         <section className="py-10">
             <Helmet>
-                <title>Add New Properties - Next Estate Real Estate React Template</title>
+                <title>Update Properties - Next Estate Real Estate React Template</title>
             </Helmet>
             <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
                 <div className=" mx-auto rounded-lg p-12 font-Roboto">
@@ -64,6 +80,7 @@ const UpdateProperties = () => {
                                 <input
                                     type="text" name="title"
                                     placeholder="Property Title"
+                                    defaultValue={propertyData?.title}
                                     className="input input-bordered rounded-none w-full"
                                     required
                                 />
@@ -73,6 +90,7 @@ const UpdateProperties = () => {
                                 <input
                                     type="text" name="location"
                                     placeholder="Location"
+                                    defaultValue={propertyData?.location}
                                     className="input input-bordered rounded-none w-full"
                                     required
                                 />
@@ -85,6 +103,7 @@ const UpdateProperties = () => {
                                 <input
                                     type="number" name="minprice"
                                     placeholder="$ Property Min Price"
+                                    defaultValue={propertyData?.minprice}
                                     className="input input-bordered rounded-none w-full"
                                     required
                                 />
@@ -94,6 +113,7 @@ const UpdateProperties = () => {
                                 <input
                                     type="number" name="maxprice"
                                     placeholder="$ Property Max Price"
+                                    defaultValue={propertyData?.maxprice}
                                     className="input input-bordered rounded-none w-full"
                                     required
                                 />
@@ -105,7 +125,8 @@ const UpdateProperties = () => {
                             <textarea
                                 rows={4}
                                 name='description'
-                                placeholder="Property Details message minimum 200 word                                "
+                                defaultValue={propertyData?.description}
+                                placeholder="Property Details message minimum 200 word"
                                 className="textarea textarea-bordered rounded-none w-full"
                                 required></textarea>
                         </div>

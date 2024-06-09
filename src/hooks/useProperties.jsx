@@ -8,13 +8,6 @@ const useProperties = () => {
     const axiosSecure = useAxiosSecure();
     const axisoCommon = useAxisoCommon();
 
-    // useEffect(() => {
-    //     axisoCommon.get('/property')
-    //         .then(res => {
-    //             setProperty(res.data);
-    //         })
-    // }, []);
-
     const { refetch, data: property = [] } = useQuery({
         queryKey: ['property'],
         queryFn: async () => {
