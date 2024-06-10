@@ -1,22 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
-import useProperties from "../../../hooks/useProperties";
+import { FaChevronDown } from "react-icons/fa";
+import { IoGridOutline, IoList } from "react-icons/io5";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Blogs from "../Blogs/Blogs";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import PropertiesCart from "./PropertiesCart";
-import Blogs from "../Blogs/Blogs";
-import { IoGridOutline, IoList } from "react-icons/io5";
-import { FaChevronDown } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAxisoCommon from "../../../hooks/useAxisoCommon";
-import { useQuery } from "@tanstack/react-query";
 
 const AllProperties = () => {
     const axiosSecure = useAxiosSecure();
     const [search, setSearch] = useState('');
-    const [sort, setSort] = useState(''); // State for sort option
+    const [sort, setSort] = useState('');
 
     const { refetch, data: data = [] } = useQuery({
-        queryKey: ['data', search, sort], // Add sort to query key
+        queryKey: ['data', search, sort], 
         queryFn: async () => {
             const res = await axiosSecure.get(`/allproperty?search=${search}&sort=${sort}`);
             return res.data;

@@ -9,8 +9,8 @@ const PageBanner = () => {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat'
         }}>
-            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto">
-                <h2 className="text-5xl font-Merriweather leading-relaxed capitalize">find exclusive property</h2>
+            <div className="w-full lg:w-5/6 xl:w-8/12 mx-auto px-4 md:px-0">
+                <h2 className="text-3xl md:text-5xl font-Merriweather leading-relaxed capitalize">find exclusive property</h2>
             </div>
         </div>
     );

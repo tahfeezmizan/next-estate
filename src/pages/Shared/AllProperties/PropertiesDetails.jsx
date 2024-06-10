@@ -72,7 +72,7 @@ const PropertiesDetails = () => {
                 // console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success('Review Added Successfully');
-                    // refetch(); // Uncomment this if you want to refetch the data
+                    refetch();
                 }
             })
             .catch(error => {

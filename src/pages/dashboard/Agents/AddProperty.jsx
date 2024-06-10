@@ -48,14 +48,15 @@ const AddProperty = () => {
             agentimage,
             title,
             image,
-            minprice,
             location,
-            maxprice,
+            minprice: parseFloat(minprice),
+            maxprice: parseFloat(maxprice),
             description,
             verification_status: 'pending',
+            advertise: false,
             image: data?.data?.display_url,
         }
-
+        console.log(propertyItem);
         // send data to bd and store 
         const propertySend = await axiosSecure.post('/property', propertyItem)
         if (propertySend?.data?.insertedId) {

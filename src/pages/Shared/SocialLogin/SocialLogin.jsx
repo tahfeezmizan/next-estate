@@ -18,16 +18,17 @@ const SocialLogin = () => {
                 onClick={() => googleLogin()
                     .then(result => {
                         toast.success('Congrs! Google Login Sucessfull');
-                        navigate(from);
 
-                        // const userinfo = {
-                        //     email: result?.user?.email,
-                        //     name: result?.user?.displayName
-                        // };
-                        // axiosCommon.post('/users', userinfo)
-                        // .then(res => {
-                        //     console.log(res.data);
-                        // })
+                        const userinfo = {
+                            email: result?.user?.email,
+                            name: result?.user?.displayName,
+                            role: "guest",
+                        };
+                        axiosCommon.post('/users', userinfo)
+                            .then(res => {
+                                console.log(res.data);
+                            })
+                        navigate(from);
                     })
                     .catch((error) => {
                         const errorText = error.message;

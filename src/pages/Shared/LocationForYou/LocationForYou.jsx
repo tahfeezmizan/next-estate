@@ -14,7 +14,7 @@ const LocationForYou = () => {
             <SectionTitle Heading="Our Location For You" subHeading="EXPLORE CITIES"></SectionTitle>
 
             <Swiper
-                slidesPerView={4}
+                slidesPerView={1}
                 spaceBetween={30}
                 pagination={{
                     clickable: true,

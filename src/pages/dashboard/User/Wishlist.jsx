@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 const Wishlist = () => {
     const [wishlist, refetch] = useWishlist();
     const axiosSecure = useAxiosSecure();
-    console.log(wishlist);
 
     const handleDelete = id => {
         Swal.fire({

@@ -17,16 +17,21 @@ const MySoldProperties = () => {
             return res.data;
         }
     });
-
-    console.log(soldProperty);
+    
+    const totalPrice = soldProperty.reduce((total, item) => total + item?.soldPrice, 0);
 
     return (
         <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
             <Helmet>
                 <title>My Sold Properties - Next Estate Real Estate React Template</title>
             </Helmet>
-            <h1 className="text-2xl font-semibold font-Merriweather mb-5">My Sold Properties <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{soldProperty.
-length}</span></h1>
+
+            <div className="flex justify-between items-center">
+                <h1 className="text-2xl font-semibold font-Merriweather mb-5">My Sold Properties <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{soldProperty.
+                    length}</span></h1>
+
+                <h1 className="text-2xl font-semibold font-Merriweather mb-5">Total Sold Price: <span className="px-3 font-Roboto">${totalPrice || 0}</span></h1>
+            </div>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     {/* head */}
@@ -57,8 +62,8 @@ length}</span></h1>
                                     <td>{item?.location}</td>
                                     <td>{item?.name}</td>
                                     <td>{item?.email}</td>
-                                    <td>${item?.soldPrice}</td>                                    
-                                    <td>{new Date(item?.paymentData).toLocaleDateString()}</td>                                    
+                                    <td>${item?.soldPrice}</td>
+                                    <td>{new Date(item?.paymentData).toLocaleDateString()}</td>
                                 </tr>
                             ))
                         }

@@ -34,26 +34,21 @@ const SingUp = () => {
         singUpUser(email, password)
             .then(result => {
                 userProfileUpdate(name, photoURL)
-                    .then(() => {
+                    .then(async () => {
                         toast.success('User Register Sucessfully')
-                        navigate("/singin")
-                        logOut()
-
                         const userinfo = {
                             email,
                             name,
+                            role: "guest",
                         };
 
                         // store user in bd with role
-                        axiosCommon.post('/users', userinfo)
-                            .then(res => {
-                                console.log(res.data);
-                            })
+                        const res = await axiosCommon.post('/users', userinfo);
                     })
+                logOut()
+                navigate("/singin")
             })
-
     }
-
 
     return (
         <div className="h-screen py-20 flex flex-col items-center justify-center" style={{
@@ -81,7 +76,7 @@ const SingUp = () => {
 
                                 {...register("name", { required: true })}
                             />
-                            {errors.email && <span className="text-xs text-red-500">Email is required</span>}
+                            {errors.name && <span className="text-xs text-red-500">Name is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">

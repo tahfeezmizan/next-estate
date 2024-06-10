@@ -1,7 +1,6 @@
-import verified from '../../../assets/slider/verifid.png'
-import { CiLocationOn } from 'react-icons/ci';
-import { FaCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { CiLocationOn } from 'react-icons/ci';
+import verified from '../../../assets/slider/verifid.png';
 
 const PropertiesCart = ({ card }) => {
     const { _id, title, image, location, minprice, maxprice, agentname, agentimage, verification_status } = card;

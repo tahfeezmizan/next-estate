@@ -37,6 +37,33 @@ const ManageProperties = () => {
             });
     };
 
+    const handleAdvertiseStatus = async (id, value) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to advertise this product?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.put(`/propertyadvertise/${id}`, { advertise: value })
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your product has been advertised.",
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    });
+            }
+        });
+
+    };
+
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -82,6 +109,7 @@ const ManageProperties = () => {
                             <th>Agent Name</th>
                             <th>Agent Email</th>
                             <th>Price Range</th>
+                            <th>Advertise</th>
                             <th>Status</th>
                             <th>Reject</th>
                         </tr>
@@ -98,10 +126,20 @@ const ManageProperties = () => {
                                     <span>${property.minprice}</span> - <span>${property.maxprice}</span>
                                 </td>
                                 <td>
+                                    {property?.advertise !== 'true' ? (
+                                        <button
+                                            onClick={() => handleAdvertiseStatus(property?._id, 'true')}
+                                            className='btn btn-sm text-sm rounded-full font-medium '
+                                        >run advertise</button>
+                                    ) : (
+                                        <span className='btn btn-sm text-sm text-white capitalize rounded-full font-medium bg-green-500 hover:bg-green-600'>advertised</span>
+                                    )}
+                                </td>
+                                <td>
                                     <button
                                         className={`btn btn-sm text-sm text-white rounded-full font-medium capitalize ${property.verification_status === 'pending' ? 'bg-yellow-400 hover:bg-yellow-500' :
-                                                property.verification_status === 'verified' ? 'bg-green-500 hover:bg-green-600' :
-                                                    'bg-red-500 hover:bg-red-600'
+                                            property.verification_status === 'verified' ? 'bg-green-500 hover:bg-green-600' :
+                                                'bg-red-500 hover:bg-red-600'
                                             }`}
                                         onClick={() => document.getElementById(`modal_${property._id}`).showModal()}
                                     >

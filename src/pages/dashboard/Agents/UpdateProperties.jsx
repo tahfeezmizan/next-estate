@@ -46,7 +46,7 @@ const UpdateProperties = () => {
             title,
             image,
             minprice: parseFloat(minprice),
-            maxprice: par,
+            maxprice: parseFloat(maxprice),
             location,
             description,
             verification_status: 'pending',
