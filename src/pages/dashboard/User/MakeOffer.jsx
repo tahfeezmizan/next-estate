@@ -46,11 +46,9 @@ const MakeOffer = () => {
             buyerEmail,
             buyerName,
         }
-        console.log(offeredValue);
 
         axiosSecure.post('/makeoffer', offeredValue)
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success('Send Offere Request');
                 }

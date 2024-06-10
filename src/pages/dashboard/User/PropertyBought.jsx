@@ -4,9 +4,6 @@ import verified from '../../../assets/slider/verifid.png'
 
 const PropertyBought = () => {
     const [refetch, boughtProperty] = usePropertyBought();
-    console.log(boughtProperty);
-    // const payItem = boughtProperty.filter(item => item?.status === 'accepted')
-    // const price = payItem.reduce((total, item) => total + item.offeredAmound, 0);
 
     return (
         <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">

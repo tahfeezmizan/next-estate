@@ -13,23 +13,26 @@ const AllProperties = () => {
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('');
 
-    const { refetch, data: data = [] } = useQuery({
+    const { isLoading, error, data = [], refetch } = useQuery({
         queryKey: ['data', search, sort],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allproperty?search=${search}&sort=${sort}`);
             return res.data;
         }
     });
+
     const verifidProperty = data?.filter(item => item?.verification_status === 'verified');
 
     const handleSearch = (e) => {
         e.preventDefault();
         const searchText = e.target.search.value;
         setSearch(searchText);
+        refetch();
     };
 
     const handleSort = (sortOption) => {
         setSort(sortOption);
+        refetch();
     };
 
     return (
@@ -70,6 +73,9 @@ const AllProperties = () => {
                             <button className='text-xl rounded-none'><IoGridOutline /></button>
                         </div>
                     </div>
+
+                    {isLoading && <p>Loading...</p>}
+                    {error && <p>Error: {error.message}</p>}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
                         {

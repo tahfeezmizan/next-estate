@@ -52,12 +52,10 @@ const UpdateProperties = () => {
             verification_status: 'pending',
             image: data?.data?.display_url,
         }
-        console.log(propertyItem);
 
         // send data to bd and store 
         const propertySend = await axiosSecure.patch(`/propertyupdate/${id}`, propertyItem)
             .then(res => {
-                console.log(res.data);
                 if (res?.data?.modifiedCount) {
                     toast.success('Update Property Sucessfully')
                     navigate('/dashboard/myaddedproperties')
