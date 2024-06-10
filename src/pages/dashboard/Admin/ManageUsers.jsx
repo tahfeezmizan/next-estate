@@ -13,7 +13,11 @@ const ManageUsers = () => {
     const { refetch, data: allUser = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users');
+            const res = await axiosSecure.get('/users', {
+                headers: {
+                    authorization: `Brear ${localStorage.getItem('access-token')}`
+                }
+            });
             return res.data;
         }
     });
@@ -83,7 +87,7 @@ const ManageUsers = () => {
 
     return (
         <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
-            <h1 className="text-2xl font-semibold font-Merriweather mb-5">Manage All Users<span className="bg-primaryColor px-3 ml-2 rounded-full text-lg font-Roboto text-white">{allUser.length}</span></h1>
+            <h1 className="text-2xl font-semibold font-Merriweather mb-5">Manage All Users<span className="bg-primaryColor px-3 ml-2 rounded-full text-lg font-Roboto text-white">{allUser?.length}</span></h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead className="bg-primaryColor capitalize text-center text-white text-xl">
@@ -102,7 +106,7 @@ const ManageUsers = () => {
                             allUser?.map((user, index) => (
                                 <tr key={user._id}>
                                     <th>{index + 1}</th>
-                                <td className='capitalize'>{user?.name}</td>
+                                    <td className='capitalize'>{user?.name}</td>
                                     <td>{user?.email}</td>
                                     {user?.fraud ? (
                                         <>

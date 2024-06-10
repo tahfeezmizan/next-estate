@@ -20,7 +20,7 @@ const MyAddedProperties = () => {
             return res.data;
         }
     });
-console.log(property);
+    
     useEffect(() => {
         const deleteAllProperties = async () => {
             for (const { _id } of property) {
