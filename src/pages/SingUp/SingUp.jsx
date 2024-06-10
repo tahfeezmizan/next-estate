@@ -43,6 +43,8 @@ const SingUp = () => {
                             email,
                             name,
                         };
+
+                        // store user in bd with role
                         axiosCommon.post('/users', userinfo)
                             .then(res => {
                                 console.log(res.data);

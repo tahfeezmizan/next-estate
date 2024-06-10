@@ -32,7 +32,6 @@ const Dashboard = () => {
                         {/* admin routes  */}
                         {
                             role === "admin" && <>
-                                <li><NavLink to="/dashboard/adminhome">Home</NavLink></li>
                                 <li><NavLink to="/dashboard/manageproperties">Manage Properties</NavLink></li>
                                 <li><NavLink to="/dashboard/manageusers">Manage Users</NavLink></li>
                                 <li><NavLink to="/dashboard/managereviews">Manage reviews</NavLink></li>
