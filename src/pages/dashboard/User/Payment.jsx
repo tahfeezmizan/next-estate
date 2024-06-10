@@ -14,7 +14,6 @@ const Payment = () => {
     const [property, setProperty] = useState([]);
 
     const price = property.map(item => item?.offeredAmound)
-    console.log(property);
 
     useEffect(() => {
         axiosSecure.get(`/offerpay/${id}`)

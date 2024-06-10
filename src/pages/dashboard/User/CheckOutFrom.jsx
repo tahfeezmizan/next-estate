@@ -84,7 +84,8 @@ const CheckOutFrom = ({ property }) => {
                     propertyId: propertyItem?._id,
                     agentname: propertyItem?.agentname,
                     agentemail: propertyItem?.agentemail,
-                    paymentData: Date.now()
+                    paymentData: Date.now(),
+                    status: 'pending',
                 }
 
                 const res = axiosSecure.post('/payments', payemntHistory)

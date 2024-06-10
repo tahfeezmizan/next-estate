@@ -10,7 +10,6 @@ const MakeOffer = () => {
     const { user } = UseAuth();
     const axiosSecure = useAxiosSecure();
     const [card, setCard] = useState();
-    console.log(card);
 
     useEffect(() => {
         axiosSecure.get(`/property/${id}`)
