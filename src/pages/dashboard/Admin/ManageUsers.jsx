@@ -102,7 +102,7 @@ const ManageUsers = () => {
                             allUser?.map((user, index) => (
                                 <tr key={user._id}>
                                     <th>{index + 1}</th>
-                                    <td className='capitalize'>{user?.name}</td>
+                                <td className='capitalize'>{user?.name}</td>
                                     <td>{user?.email}</td>
                                     {user?.fraud ? (
                                         <>

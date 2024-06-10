@@ -58,7 +58,7 @@ length}</span></h1>
                                     <td>{item?.name}</td>
                                     <td>{item?.email}</td>
                                     <td>${item?.soldPrice}</td>                                    
-                                    <td>${item?.paymentData}</td>                                    
+                                    <td>{new Date(item?.paymentData).toLocaleDateString()}</td>                                    
                                 </tr>
                             ))
                         }

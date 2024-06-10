@@ -20,16 +20,7 @@ const MyAddedProperties = () => {
             return res.data;
         }
     });
-
-    const { data: allUser = {}, refetch: refetchUser } = useQuery({
-        queryKey: ['users', user?.email],
-        enabled: !isLoading && !!user?.email,
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/users/${user?.email}`);
-            return res.data;
-        }
-    });
-
+console.log(property);
     useEffect(() => {
         const deleteAllProperties = async () => {
             for (const { _id } of property) {
@@ -38,10 +29,10 @@ const MyAddedProperties = () => {
             refetch();
         };
 
-        if (allUser?.fraud) {
+        if (property?.fraud) {
             deleteAllProperties();
         }
-    }, [allUser, property, axiosSecure, refetch]);
+    }, [property, axiosSecure, refetch]);
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -101,7 +92,7 @@ const MyAddedProperties = () => {
                                     <td>{property?.title}</td>
                                     <td>{property?.location}</td>
                                     <td>{property?.agentname}</td>
-                                    <td>{property?.email}</td>
+                                    <td>{property?.agentemail}</td>
                                     <td>{property?.verification_status}</td>
                                     <td><span>${property?.minprice}</span> - <span>${property?.maxprice}</span></td>
                                     <td>

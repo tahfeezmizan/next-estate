@@ -12,6 +12,7 @@ const Payment = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const [property, setProperty] = useState([]);
+    console.log('Payment Propery Id', id);
 
     const price = property.map(item => item?.offeredAmound)
 
@@ -48,7 +49,7 @@ const Payment = () => {
                             </div>
 
                             <Elements stripe={stripePromise}>
-                                <CheckOutFrom property={property} />
+                                <CheckOutFrom property={property} id={id} />
                             </Elements>
 
                             <div class="w-full  md:w-[580px] mt-6 flex items-center justify-center gap-8">

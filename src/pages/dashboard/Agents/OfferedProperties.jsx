@@ -86,9 +86,9 @@ const OfferedProperties = () => {
                                                 >Accept</button>
                                             ) : item?.status === 'accepted' ? (
                                                 <span className="btn btn-sm px-5 bg-green-500 hover:bg-green-600 text-sm rounded-full text-white font-medium uppercase">{item?.status}</span>
-                                            ) : (
-                                                ""
-                                            )
+                                            ) : item?.status === 'bought' ? (
+                                                <span className="btn btn-sm px-5 bg-blue-600 hover:bg-blue-500 text-sm rounded-full text-white font-medium uppercase">Complete</span>
+                                            ) : ''
                                         }
                                     </td>
                                     <td>

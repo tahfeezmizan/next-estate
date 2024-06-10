@@ -4,7 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import UseAuth from '../../../hooks/useAuth';
 import { toast } from 'react-toastify';
 
-const CheckOutFrom = ({ property }) => {
+const CheckOutFrom = ({ property,  id }) => {
     const { user } = UseAuth();
     const stripe = useStripe();
     const elements = useElements();
@@ -15,6 +15,7 @@ const CheckOutFrom = ({ property }) => {
 
     const propertyItem = property?.[0];
     const price = property?.[0]?.offeredAmound;
+    console.log('check from', propertyItem?._id);
 
     useEffect(() => {
         if (price > 0) {
@@ -68,6 +69,7 @@ const CheckOutFrom = ({ property }) => {
             // setError(error.message)
         } else {
             console.log('Payment Intent', paymentIntent);
+
             if (paymentIntent.status === "succeeded") {
                 toast.success('Payment sucess')
                 console.log('Payment Tranjaction id:', paymentIntent.id);
@@ -80,7 +82,7 @@ const CheckOutFrom = ({ property }) => {
                     location: propertyItem?.location,
                     email: user?.email || 'anonymous',
                     name: user?.displayName || 'anonymous',
-                    soldPrice: price,
+                    soldPrice: propertyItem?.offeredAmound,
                     propertyId: propertyItem?._id,
                     agentname: propertyItem?.agentname,
                     agentemail: propertyItem?.agentemail,
@@ -90,10 +92,20 @@ const CheckOutFrom = ({ property }) => {
 
                 const res = axiosSecure.post('/payments', payemntHistory)
                     .then(res => {
-                        console.log(res.data);
+                        console.log(' store payments data', res.data);
                     })
 
-                console.log(payemntHistory);
+                console.log('Payment History', payemntHistory);
+
+
+                // update property bought status update 
+                axiosSecure.patch(`/offeredaccept/${id}`, {status: 'bought', transactionId: paymentIntent?.id})
+                    .then((data) => {
+                        console.log('Property Status Update', data.data);
+                    })
+                    .catch((error) => {
+                        console.error("Error updating property status:", error);
+                    });
             }
         }
 

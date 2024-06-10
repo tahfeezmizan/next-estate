@@ -55,12 +55,11 @@ const Navbar = () => {
 
                                 </div>
                             </div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                <p className="text-lg font-bold capitalize">{user?.displayName || 'Name Not Found'}</p>
-                                <Link to='/profile'>Profile</Link>
-                                <Link to='/dashboard'>Dashboard</Link>
-
-                                <Link onClick={() => {
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52">
+                                <p className="text-lg font-bold capitalize mb-2">{user?.displayName || 'Name Not Found'}</p>
+                                <Link className="pb-1 text-base font-medium" to='dashboard/profile'>Profile</Link>
+                                <Link className="pb-1 text-base font-medium" to='/dashboard'>Dashboard</Link>
+                                <Link className="pb-1 text-base font-medium" onClick={() => {
                                     logOut()
                                 }}><a>Logout</a></Link>
 
