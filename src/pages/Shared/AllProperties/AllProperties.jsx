@@ -21,7 +21,7 @@ const AllProperties = () => {
         }
     });
 
-    const verifidProperty = data?.filter(item => item?.verification_status === 'verified');
+    const verifiedProperty = data?.filter(item => item?.verification_status === 'verified');
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -79,7 +79,7 @@ const AllProperties = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
                         {
-                            verifidProperty?.map(card => <PropertiesCart card={card} key={card._id}></PropertiesCart>)
+                            verifiedProperty?.map(card => <PropertiesCart card={card} key={card._id}></PropertiesCart>)
                         }
                     </div>
                 </section>
