@@ -56,14 +56,6 @@ const Advertisement = () => {
                                             <img className="w-full h-full object-cover transition-transform transform hover:scale-105 duration-500 ease-in-out" src={item?.image} alt="" />
                                         </div>
 
-                                        {/* <figure className="bg-gray-100">
-                                            <p className="absolute p-1 px-3 border-2 z-10 border-[#ff8717]"></p>
-                                            <div className="h-64 overflow-hidden border-red-600">
-                                                <img className="w-full p-3 h-full object-contain transition-transform transform hover:scale-105 duration-500 ease-in-out" src={item?.image} alt="" />
-                                            </div>
-                                        </figure> */}
-
-
                                         <div className="p-5">
                                             <p className="flex items-center gap-1 text-primaryColor leading-6"><span><CiLocationOn /></span>{item?.location}</p>
                                             <div className="flex gap-2 items-center pb-3">

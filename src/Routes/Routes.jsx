@@ -27,12 +27,14 @@ import UpdateProperties from "../pages/dashboard/Agents/UpdateProperties";
 import OfferedProperties from "../pages/dashboard/Agents/OfferedProperties";
 import Payment from "../pages/dashboard/User/Payment";
 import MySoldProperties from "../pages/dashboard/Agents/MySoldProperties";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Mainlayout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',

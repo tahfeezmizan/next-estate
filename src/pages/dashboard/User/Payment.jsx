@@ -12,7 +12,6 @@ const Payment = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const [property, setProperty] = useState([]);
-    console.log('Payment Propery Id', id);
 
     const price = property.map(item => item?.offeredAmound)
 
@@ -20,7 +19,6 @@ const Payment = () => {
         axiosSecure.get(`/offerpay/${id}`)
             .then(res => {
                 setProperty(res.data)
-                // console.log(res.data);
             })
     }, []);
 

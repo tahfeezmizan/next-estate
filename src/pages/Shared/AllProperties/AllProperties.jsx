@@ -14,12 +14,13 @@ const AllProperties = () => {
     const [sort, setSort] = useState('');
 
     const { refetch, data: data = [] } = useQuery({
-        queryKey: ['data', search, sort], 
+        queryKey: ['data', search, sort],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allproperty?search=${search}&sort=${sort}`);
             return res.data;
         }
     });
+    const verifidProperty = data?.filter(item => item?.verification_status === 'verified');
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -72,7 +73,7 @@ const AllProperties = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
                         {
-                            data?.map(card => <PropertiesCart card={card} key={card._id}></PropertiesCart>)
+                            verifidProperty?.map(card => <PropertiesCart card={card} key={card._id}></PropertiesCart>)
                         }
                     </div>
                 </section>

@@ -15,13 +15,11 @@ const CheckOutFrom = ({ property,  id }) => {
 
     const propertyItem = property?.[0];
     const price = property?.[0]?.offeredAmound;
-    console.log('check from', propertyItem?._id);
 
     useEffect(() => {
         if (price > 0) {
             axiosSecure.post('/create-payment-intent', { price: price })
                 .then(res => {
-                    console.log(res.data);
                     setClientSecret(res.data?.clientSecret);
                 })
         }
@@ -45,10 +43,8 @@ const CheckOutFrom = ({ property,  id }) => {
         });
 
         if (error) {
-            console.log(error);
             setError(error.message)
         } else {
-            console.log('Payment Method', paymentMethod);
             setError('')
         }
 
@@ -64,15 +60,12 @@ const CheckOutFrom = ({ property,  id }) => {
         });
 
         if (confirmError) {
-            console.log('Payemnt Error', confirmError);
             toast.error(confirmError.code)
             // setError(error.message)
         } else {
-            console.log('Payment Intent', paymentIntent);
 
             if (paymentIntent.status === "succeeded") {
                 toast.success('Payment sucess')
-                console.log('Payment Tranjaction id:', paymentIntent.id);
                 setTransactionId(paymentIntent?.id);
 
                 // save payemnt history in databese
@@ -92,16 +85,13 @@ const CheckOutFrom = ({ property,  id }) => {
 
                 const res = axiosSecure.post('/payments', payemntHistory)
                     .then(res => {
-                        console.log(' store payments data', res.data);
                     })
 
-                console.log('Payment History', payemntHistory);
 
 
                 // update property bought status update 
                 axiosSecure.patch(`/offeredaccept/${id}`, {status: 'bought', transactionId: paymentIntent?.id})
                     .then((data) => {
-                        console.log('Property Status Update', data.data);
                     })
                     .catch((error) => {
                         console.error("Error updating property status:", error);

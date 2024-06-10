@@ -52,7 +52,7 @@ const MakeOffer = () => {
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
-                    toast.success('Review Added Successfully');
+                    toast.success('Send Offere Request');
                 }
             })
             .catch(error => {
