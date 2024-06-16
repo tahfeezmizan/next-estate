@@ -55,15 +55,15 @@ const UserReview = () => {
                             data?.slice(0, 6)?.map(review => <SwiperSlide key={review?._id}>
                                 <div className="h-72 p-10 overflow-hidden bg-white rounded-sm font-Roboto">
                                     <div className="flex items-start gap-4 mb-4">
-                                        <img className="w-12 border rounded-full" src={review?.image} alt="" />
+                                        <img className="w-12 h-12 border rounded-full" src={review?.userPhoto} alt="" />
                                         <div className="">
-                                            <h2 className="font-semibold leading-8">{review?.name}</h2>
+                                            <h2 className="font-semibold leading-8">{review?.userName}</h2>
                                             <p className="text-sm leading-4 text-gray-500 font-normal">New York</p>
                                         </div>
                                     </div>
                                     <div className="mb-3">
                                         <h2 className="font-medium leading-8">{review?.title}</h2>
-                                        <p className="text-sm leading-6 text-gray-500 font-normal">{review?.description}</p>
+                                        <p className="text-sm leading-6 text-gray-500 font-normal">{review?.message}</p>
                                     </div>
                                     <div className="">
                                         <Rating

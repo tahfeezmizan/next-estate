@@ -18,7 +18,7 @@ const OfferedProperties = () => {
     });
 
     const handlePropetyAccept = (email, name, status) => {
-        console.log(email, name, status);
+        // console.log(email, name, status);
 
         axiosSecure.patch(`/offeredaccept/${email}`, { status })
             .then((data) => {

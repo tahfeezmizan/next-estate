@@ -56,8 +56,7 @@ const AddProperty = () => {
             advertise: false,
             image: data?.data?.display_url,
         }
-        console.log(propertyItem);
-        // send data to bd and store 
+        
         const propertySend = await axiosSecure.post('/property', propertyItem)
         if (propertySend?.data?.insertedId) {
             toast.success('Added New Propety')

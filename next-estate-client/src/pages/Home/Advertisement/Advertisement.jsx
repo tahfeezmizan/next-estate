@@ -58,6 +58,7 @@ const Advertisement = () => {
 
                                         <div className="p-5">
                                             <p className="flex items-center gap-1 text-primaryColor leading-6"><span><CiLocationOn /></span>{item?.location}</p>
+                                            <h2 className="font-semibold text-lg font-Roboto ">{item?.title}</h2>
                                             <div className="flex gap-2 items-center pb-3">
                                                 <p className='font-semibold text-lg'><span className="rounded">${item.minprice}</span> - <span>${item.maxprice}</span></p>
                                                 {

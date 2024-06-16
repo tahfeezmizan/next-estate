@@ -23,7 +23,7 @@ const PropertiesCart = ({ card }) => {
 
                 <div className="flex justify-between items-center ">
                     <div className="flex gap-4 items-center">
-                        <img className="w-12 border rounded-full" src={agentimage} alt="" />
+                        <img className="w-12 h-12 border rounded-full" src={agentimage} alt="" />
                         <div className="">
                             <h2 className="font-semibold leading-8">{agentname}</h2>
                         </div>

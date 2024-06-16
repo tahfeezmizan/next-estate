@@ -19,7 +19,7 @@ const ManageProperties = () => {
     const handleStatusUpdate = (e, id) => {
         e.preventDefault();
         const value = e.target.status.value;
-        console.log('Selected Verification Status:', value);
+        // console.log('Selected Verification Status:', value);
 
         axiosSecure.put(`/propertystatus/${id}`, { verification_status: value })
             .then((data) => {

@@ -59,7 +59,6 @@ const PropertyBought = () => {
                                             <h2 className="btn btn-sm px-5 text-sm rounded-full uppercase text-white font-medium bg-blue-500 hover:bg-blue-600">
                                                 {item?.status}
                                             </h2> <br />
-                                            
                                         </div>
                                     )}
                                 </td>
