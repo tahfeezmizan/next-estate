@@ -45,6 +45,20 @@ const Banner = () => {
                         </div>
                     </div>
                 </SwiperSlide>
+                <SwiperSlide
+                    style={{
+                        backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${slider2})`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+
+                    }}>
+                    <div className="h-full  flex items-center"  >
+                        <div className="w-8/12 text-center mx-auto text-white ">
+                            <h1 className='text-2xl md:text-6xl px-1 md:px-10 pb-5 md:pb-10 font-bold uppercase'>Discover Your Perfect Home</h1>
+                        </div>
+                    </div>
+                </SwiperSlide>
 
             </Swiper>
         </>
