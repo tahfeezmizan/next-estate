@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+gimport { useQuery } from '@tanstack/react-query';
 import { MdDeleteOutline } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
@@ -16,6 +16,7 @@ const ManageProperties = () => {
         }
     });
 
+   //update proprty status
     const handleStatusUpdate = (e, id) => {
         e.preventDefault();
         const value = e.target.status.value;
