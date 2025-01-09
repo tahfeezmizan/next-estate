@@ -71,7 +71,6 @@ async function run() {
         const verifyAdmin = async (req, res, next) => {
         }
 
-
         // users apis
 
         // all user getting api
@@ -117,7 +116,6 @@ async function run() {
                 res.status(500).json({ message: 'Internal server error', error: error.message });
             }
         });
-
 
         // check user fasttime login or not and store user data in bd
         app.put('/user', async (req, res) => {
@@ -171,8 +169,6 @@ async function run() {
             }
         });
 
-
-
         // delete a specifice user from db 
         app.delete('/users/:id', verifyToken, async (req, res) => {
             try {
@@ -185,8 +181,6 @@ async function run() {
                 res.status(500).json({ message: 'Internal server error', error: error.message });
             }
         })
-
-
 
         // property getting api
         app.get('/property', async (req, res) => {
@@ -230,7 +224,6 @@ async function run() {
             }
         });
 
-
         // property details page using id
         app.get('/property/:id', async (req, res) => {
             try {
@@ -243,7 +236,6 @@ async function run() {
                 res.status(500).send({
                     message: "Failed to load property data.",
                     error: error.message || "Internal Server Error"
-
                 });
             }
         });
@@ -338,7 +330,6 @@ async function run() {
             }
         });
 
-
         // properties delete method
         app.delete('/properties/:id', async (req, res) => {
             try {
@@ -365,8 +356,6 @@ async function run() {
             }
         })
 
-
-
         // reviews api
         app.get('/reviews', async (req, res) => {
             try {
@@ -377,7 +366,6 @@ async function run() {
                 res.status(500).send({
                     message: "Failed to load reviews data.",
                     error: error.message || "Internal Server Error"
-
                 });
             }
         });
@@ -393,7 +381,6 @@ async function run() {
                 res.status(500).send({ error: error.message });
             }
         });
-
 
         // post review 
         app.post('/reviews', async (req, res) => {
@@ -420,7 +407,6 @@ async function run() {
             }
         })
 
-
         //wishlist api
         // get wishlist data
         app.get('/wishlist', async (req, res) => {
@@ -436,7 +422,6 @@ async function run() {
             }
         });
 
-
         // get own reviews data by specific user
         app.get('/wishlist/:email', async (req, res) => {
             try {
@@ -450,7 +435,6 @@ async function run() {
                 res.status(500).send({
                     message: "Failed to load wishlist data.",
                     error: error.message || "Internal Server Error"
-
                 });
             }
         });
@@ -481,7 +465,6 @@ async function run() {
             }
         })
 
-
         // make offers apis
         app.get('/makeoffer', async (req, res) => {
             try {
@@ -496,7 +479,6 @@ async function run() {
                 });
             }
         });
-
 
         // get make offer data by specifice user 
         app.get('/makeoffer/:email', async (req, res) => {
@@ -526,7 +508,6 @@ async function run() {
             }
         })
 
-
         // get make offer data by specifice Agent 
         app.get('/offered/:email', async (req, res) => {
             try {
@@ -553,7 +534,6 @@ async function run() {
                 res.status(500).json({ message: 'Internal server error', error: error.message });
             }
         });
-
 
         // -------------------
         // payment releted apis 
