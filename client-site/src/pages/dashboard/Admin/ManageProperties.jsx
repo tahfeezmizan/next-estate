@@ -1,4 +1,4 @@
-gimport { useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { MdDeleteOutline } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
