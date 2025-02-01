@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useProperties from '../../hooks/useProperties';
 import SectionTitle from '../Shared/SectionTitle/SectionTitle';
 import PropertiesCart from '../Shared/AllProperties/PropertiesCart';
 import { Link } from 'react-router-dom';
 
 const Properties = () => {
-    const [data] = useProperties();
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        fetch('https://next-estate-server.vercel.app/property')
+            .then(response => response.json())
+            .then(json => (setData(json)))
+    }, [])
+
     return (
         <section className='bg-[#dfe7ed8f]'>
             <div className='w-full lg:w-5/6 xl:w-8/12 mx-auto py-20'>

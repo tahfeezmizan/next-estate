@@ -2,11 +2,11 @@ import axios from "axios";
 import { BASE_URL } from "../constant";
 
 export const axiosCommon = axios.create({
-    baseURL: `${BASE_URL}`
+    baseURL: `https://next-estate-server.vercel.app`
 });
 
-const useAxisoCommon = () => {
+const useAxiosCommon = () => {
     return axiosCommon;
 };
 
-export default useAxisoCommon;
+export default useAxiosCommon;

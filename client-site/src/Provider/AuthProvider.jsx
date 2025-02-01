@@ -64,15 +64,15 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
-                console.log(currentUser);
+                // console.log(currentUser);
 
                 const userData = { email: currentUser?.email }
-                axisoCommon.post('/jwt', userData)
-                    .then(res => {
-                        if (res.data?.token) {
-                            localStorage.setItem('access-token', res.data.token)
-                        }
-                    })
+                // axisoCommon.post('/jwt', userData)
+                //     .then(res => {
+                //         if (res.data?.token) {
+                //             localStorage.setItem('access-token', res.data.token)
+                //         }
+                //     })
             }
             else {
                 localStorage.removeItem('access-token')

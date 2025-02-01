@@ -1,13 +1,20 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { CiLocationOn } from "react-icons/ci";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
 import { FreeMode, Pagination } from 'swiper/modules';
-import useProperties from "../../../hooks/useProperties";
+import { Swiper, SwiperSlide } from "swiper/react";
+import verified from '../../../assets/slider/verifid.png';
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
-import verified from '../../../assets/slider/verifid.png'
 
 const Advertisement = () => {
-    const [data] = useProperties();
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch('https://next-estate-server.vercel.app/property')
+            .then(response => response.json())
+            .then(json => (setData(json)))
+    }, [])
+
     const advertised = data?.filter(item => item.advertise === 'true');
 
     return (
