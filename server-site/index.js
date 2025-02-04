@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const app = express();
-const port = process.env.PROT || 5000;
+const port = process.env.PORT || 5000;
 
 // midleware
 app.use(cors({
@@ -13,7 +13,7 @@ app.use(cors({
         'https://next-estate-ccc96.web.app',
         'https://next-estate-ccc96.firebaseapp.com'
     ],
-    credentials: true
+    // credentials: true
 }));
 app.use(express.json());
 
@@ -47,7 +47,7 @@ async function run() {
         // jwt releted api
         app.post('/jwt', async (req, res) => {
             const user = req.body;
-            const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3h' });
+            const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '12h' });
             res.send({ token });
         });
 
@@ -200,17 +200,19 @@ async function run() {
         app.get('/allproperty', async (req, res) => {
             try {
                 const { search = '', sort = '' } = req.query;
+                console.log(search);
+
 
                 const query = {};
                 if (search) {
-                    query.location = { $regex: search, $options: 'i' };
+                    query.title = { $regex: search, $options: 'i' };
                 }
 
                 let sortOption = {};
                 if (sort === 'minprice') {
-                    sortOption = { minprice: 1 }; 
+                    sortOption = { minprice: 1 };
                 } else if (sort === 'maxprice') {
-                    sortOption = { maxprice: -1 }; 
+                    sortOption = { maxprice: -1 };
                 }
 
                 const result = await propertyCollection.find(query).sort(sortOption).toArray();
@@ -618,10 +620,6 @@ async function run() {
                 });
             }
         });
-
-
-
-
 
 
         // Send a ping to confirm a successful connection

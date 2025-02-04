@@ -11,7 +11,6 @@ const Blogs = () => {
         queryKey: ['blogs'],
         queryFn: async () => {
             const res = await axiosCommon.get('/blogs');
-            console.log("API Response:", res.data);
             return Array.isArray(res.data) ? res.data : res.data.blogs || [];
         }
     });

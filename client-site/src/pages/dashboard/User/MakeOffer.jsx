@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UseAuth from "../../../hooks/useAuth";
 import { useEffect, useState } from "react";
@@ -21,6 +21,7 @@ const MakeOffer = () => {
     if (!card) {
         return <p>Loading...</p>;
     }
+    
     const { title, agentemail, image, location, maxprice, minprice, agentname, verification_status } = card;
 
     const handleOffer = (e) => {
@@ -29,6 +30,11 @@ const MakeOffer = () => {
         const offerprice = form.offerprice.value;
         const buyerEmail = user?.email;
         const buyerName = user?.displayName;
+        
+        const navigate = useNavigate();
+        const location = useLocation();
+        const from = '/dashboard/propertybought';
+
 
         const today = new Date();
         const date = today.getTime();
@@ -51,6 +57,7 @@ const MakeOffer = () => {
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Send Offere Request');
+                    navigate(from);
                 }
             })
             .catch(error => {

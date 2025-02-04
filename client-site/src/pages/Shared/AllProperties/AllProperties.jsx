@@ -53,8 +53,8 @@ const AllProperties = () => {
                                 <input
                                     type="text"
                                     name='search'
-                                    placeholder="Search"
-                                    className="input input-bordered outline-none border-none rounded-none "
+                                    placeholder="Search based on prouct name"
+                                    className="input w-full input-bordered outline-none border-none rounded-none "
                                 />
                                 <button className="btn rounded-none">Search</button>
                             </form>

@@ -5,6 +5,9 @@ import verified from '../../../assets/slider/verifid.png'
 const PropertyBought = () => {
     const [refetch, boughtProperty] = usePropertyBought();
 
+    console.log(location.pathname);
+
+
     return (
         <div className="w-full md:w-5/6 mx-auto py-10 mt-10 px-3 md:px-0">
             <h1 className="text-2xl font-semibold font-Merriweather mb-5">My Bought Property <span className="bg-primaryColor px-3 rounded-full text-lg font-Roboto text-white">{boughtProperty.length}</span></h1>
