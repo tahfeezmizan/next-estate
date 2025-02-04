@@ -13,7 +13,7 @@ app.use(cors({
         'https://next-estate-ccc96.web.app',
         'https://next-estate-ccc96.firebaseapp.com'
     ],
-    credentials: true
+    // credentials: true
 }));
 app.use(express.json());
 
@@ -47,7 +47,7 @@ async function run() {
         // jwt releted api
         app.post('/jwt', async (req, res) => {
             const user = req.body;
-            const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3h' });
+            const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '12h' });
             res.send({ token });
         });
 
@@ -620,10 +620,6 @@ async function run() {
                 });
             }
         });
-
-
-
-
 
 
         // Send a ping to confirm a successful connection
