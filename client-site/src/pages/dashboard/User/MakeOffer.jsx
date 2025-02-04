@@ -21,6 +21,7 @@ const MakeOffer = () => {
     if (!card) {
         return <p>Loading...</p>;
     }
+    
     const { title, agentemail, image, location, maxprice, minprice, agentname, verification_status } = card;
 
     const handleOffer = (e) => {

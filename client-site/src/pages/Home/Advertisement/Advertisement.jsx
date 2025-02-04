@@ -10,7 +10,7 @@ const Advertisement = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/property')
+        fetch('https://next-estate-green.vercel.app/property')
             .then(response => response.json())
             .then(json => (setData(json)))
     }, [])
@@ -59,7 +59,7 @@ const Advertisement = () => {
                                 <SwiperSlide key={item._id}>
                                     <div className="bg-gray-50  border rounded-xl flex justify-around flex-col hover:shadow-lg duration-500 overflow-hidden">
                                         <div className="h-64 overflow-hidden">
-                                            <p className="absolute top-4 left-4 p-1 px-3 z-10 bg-primaryColor text-white">{item?.advertise === 'true' && 'advertised'}</p>
+                                            <p className="absolute rounded-md top-4 left-4 p-1 px-3 z-10 bg-primaryColor text-white">{item?.advertise === 'true' && 'advertised'}</p>
                                             <img className="w-full h-full object-cover transition-transform transform hover:scale-105 duration-500 ease-in-out" src={item?.image} alt="" />
                                         </div>
 
