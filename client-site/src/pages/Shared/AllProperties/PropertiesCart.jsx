@@ -6,7 +6,7 @@ const PropertiesCart = ({ card }) => {
     const { _id, title, image, location, minprice, maxprice, agentname, agentimage, verification_status } = card;
 
     return (
-        <div className="bg-gray-50 dark:bg-slate-800 border rounded-xl flex justify-around flex-col hover:shadow-lg duration-500 overflow-hidden">
+        <div className="bg-gray-50  border rounded-xl flex justify-around flex-col hover:shadow-lg duration-500 overflow-hidden">
             <div className="h-64 overflow-hidden">
                 <img className="w-full h-full object-cover transition-transform transform hover:scale-105 duration-500 ease-in-out" src={image} alt="" />
             </div>

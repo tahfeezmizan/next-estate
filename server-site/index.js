@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const app = express();
-const port = process.env.PROT || 5000;
+const port = process.env.PORT || 5000;
 
 // midleware
 app.use(cors({
@@ -200,17 +200,19 @@ async function run() {
         app.get('/allproperty', async (req, res) => {
             try {
                 const { search = '', sort = '' } = req.query;
+                console.log(search);
+
 
                 const query = {};
                 if (search) {
-                    query.location = { $regex: search, $options: 'i' };
+                    query.title = { $regex: search, $options: 'i' };
                 }
 
                 let sortOption = {};
                 if (sort === 'minprice') {
-                    sortOption = { minprice: 1 }; 
+                    sortOption = { minprice: 1 };
                 } else if (sort === 'maxprice') {
-                    sortOption = { maxprice: -1 }; 
+                    sortOption = { maxprice: -1 };
                 }
 
                 const result = await propertyCollection.find(query).sort(sortOption).toArray();

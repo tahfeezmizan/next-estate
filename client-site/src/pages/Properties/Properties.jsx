@@ -8,7 +8,7 @@ const Properties = () => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch('https://next-estate-server.vercel.app/property')
+        fetch('http://localhost:5000/property')
             .then(response => response.json())
             .then(json => (setData(json)))
     }, [])
